@@ -10,7 +10,7 @@ const Hero = () => {
         playsInline
       />
       <div className="relative z-10">
-        {/* Your overlay content goes here */}
+        {/* overlay content goes here */}
       </div>
     </div>
   );
