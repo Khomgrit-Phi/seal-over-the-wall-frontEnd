@@ -15,10 +15,6 @@ function ExpressAndPlubish() {
     // all concent in ExpressAndPlubish page
 <div className='w-full px-[152px]'>
 
-{/* Progress bar */}
-<div className="bg-blue-300 mt-6 mb-14 mx-68">
-  <p className='text-cyan-700 justify-start h-11'>Stepper</p>
-</div>
 
 {/* Main Content in ExpressAndPlubish page*/}
 <div>
