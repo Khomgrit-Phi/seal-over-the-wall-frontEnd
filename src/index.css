@@ -6,7 +6,6 @@
 @import "tw-animate-css";
 /* @plugin "daisyui"; */
 
-
 /* Theme Colors */
 @theme {
   --color-primary-blue-500: rgb(55, 71, 216);
@@ -67,9 +66,9 @@
   }
 }
 
-*{
+* {
   font-family: var(--font-geist);
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 body {
   /* padding-top: 100px; */
@@ -128,7 +127,6 @@ body {
   border: none;
 }
 
-
 @layer utilities {
   @keyframes slide-left {
     from {
@@ -148,5 +146,3 @@ body{
  /*  padding-top: 100px; */
   font-family: var(--font-geist);
 }
-
-
