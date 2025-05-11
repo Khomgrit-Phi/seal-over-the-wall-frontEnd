@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import logo from "../../assets/images/custommike-navbar-logo.svg";
-import { BiHeart, BiUser, BiCartAlt, BiGlobe } from "react-icons/bi";
-import ExpandingSearch from "./ExpandingSearch";
-import { Link } from "react-router-dom";
-import DropdownMenu from "./DropdownMenu";
-import ProfileMenu from "./ProfileMenu";
+import { useEffect, useState } from 'react';
+import logo from '../../assets/images/custommike-navbar-logo.svg';
+import { BiHeart, BiUser, BiCartAlt, BiGlobe } from 'react-icons/bi';
+import ExpandingSearch from './ExpandingSearch';
+import { Link } from 'react-router-dom';
+import DropdownMenu from './DropdownMenu';
+import ProfileMenu from './ProfileMenu';
 
 const MainNav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -15,8 +15,8 @@ const MainNav = () => {
       setScrolled(offset > 50);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -24,16 +24,14 @@ const MainNav = () => {
       <nav
         id="navbar"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
-          ${
-            scrolled
-              ? "bg-white/80 backdrop-blur-md shadow-md"
-              : "bg-transparent"
-          }
+          ${scrolled ? 'bg-white/80 backdrop-blur-md shadow-md' : 'bg-transparent'}
       `}
       >
         <div className="flex flex-row items-center justify-between px-10 py-5">
           <div className="left-nav flex items-center gap-5">
-            <img src={logo} alt="Logo" className="logo w-52" />
+            <Link to="/">
+              <img src={logo} alt="Logo" className="logo w-52" />
+            </Link>
             <DropdownMenu />
           </div>
 
@@ -53,12 +51,12 @@ const MainNav = () => {
                 <ProfileMenu />
               </li>
               <li>
-                <Link to="#">
+                <Link to="/cart">
                   <BiCartAlt className="w-6 h-6 hover:text-primary-blue-500" />
                 </Link>
               </li>
               <li>
-                <Link to="#">
+                <Link to="/">
                   <BiGlobe className="w-6 h-6 hover:text-primary-blue-500" />
                 </Link>
               </li>

@@ -14,8 +14,6 @@ function CheckOut() {
     return saved ? parseInt(saved, 10) : 0;
   });
 
-
-
   const [checkoutData, setCheckoutData] = React.useState({
     shippingInfo: {},
     paymentInfo: {}
@@ -30,12 +28,10 @@ function CheckOut() {
 
   const handleNext = () => setStep((prev) => prev + 1);
   const handleBack = () => setStep((prev) => prev - 1);
-
   const handleReset = () => {
     localStorage.removeItem('checkout-step');
     setStep(0);
   };
-
   const handleEdit = () => setStep(0);
 
   const renderStepContent = () => {
@@ -81,6 +77,7 @@ function CheckOut() {
       {renderTitle()}
       <CheckoutStepper step={step} setStep={setStep} />
       {renderStepContent()}
+      <p></p>
     </div>
   );
 }

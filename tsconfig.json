@@ -10,5 +10,4 @@
     "esModuleInterop": true, // Ensure compatibility with CommonJS modules
     "skipLibCheck": true, // Skip type checking for node_modules
     "moduleResolution": "node" // Use Node.js-style module resolution
-  
   }}
