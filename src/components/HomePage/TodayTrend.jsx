@@ -6,7 +6,7 @@ const TodayTrend = () => {
     <>
     <section className="h-[620px] w-400 mx-auto">
             <div
-            data-aos="fade-up" data-aos-duration="2000" class="p-10 ">
+            data-aos="fade-up" data-aos-duration="2000" class="py-10 ">
               <h3 class="text-5xl font-bold text-primary-blue-500">
                 Today’s Trend
               </h3>

@@ -1,41 +1,35 @@
-import React, { useState } from 'react';
-import frontprint from "../../assets/images/create-design-pages/t-shirt-front-print.svg";
-import backprint from "../../assets/images/create-design-pages/t-shirt-back-print.svg";
+import React from 'react';
 
-function Printareas() {
-  const [selected, setSelected] = useState([]);
-  const printareas = [
-    { name: 'frontprint', icon: frontprint },
-    { name: 'backprint', icon: backprint },
-  ];
-
+function Printareas({ printareas = [], selected, setSelected }) {
   const togglePrintArea = (name) => {
-    setSelected((prevSelected) =>
-      prevSelected.includes(name)
-        ? prevSelected.filter((item) => item !== name) // Remove if already selected
-        : [...prevSelected, name] // Add if not selected
+    setSelected((prev) =>
+      prev.includes(name)
+        ? prev.filter((item) => item !== name)
+        : [...prev, name]
     );
   };
 
   return (
     <div>
-      <h2 className="font-semibold text-xl mb-[16px]">Print areas</h2>
-      <div className="flex gap-[24px]">
+      <h2 className="font-semibold text-xl mb-4">Print Areas</h2>
+      <div className="flex gap-6">
         {printareas.map((printarea) => (
           <button
             key={printarea.name}
             onClick={() => togglePrintArea(printarea.name)}
-            className="group relative cursor-pointer pb-2"
+            className="group relative cursor-pointer pb-2 focus:outline-none"
+            aria-pressed={selected.includes(printarea.name)}
           >
-            <img src={printarea.icon} alt={printarea.name} />
-
-            {/* Animated underline */}
+            <img
+              src={printarea.icon}
+              alt={`${printarea.label || printarea.name} preview`}
+              className="w-[80px] h-auto"
+            />
             <div className={`
               absolute bottom-0 left-0 h-1 w-full rounded-sm
-              origin-down
-              bg-primary-blue-500
-              transition-transform duration-300
-              ${selected.includes(printarea.name) ? 'scale-x-70' : 'scale-x-0'}
+              bg-primary-blue-500 transition-transform duration-300
+              ${selected.includes(printarea.name) ? 'scale-x-100' : 'scale-x-0'}
+              transform origin-left
             `} />
           </button>
         ))}

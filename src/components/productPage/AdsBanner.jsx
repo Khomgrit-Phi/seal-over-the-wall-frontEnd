@@ -1,7 +1,8 @@
 import ads1 from "../../assets/images/shop/ads/ads-1.png";
 import ads2 from "../../assets/images/shop/ads/ads-2.png";
 import ads3 from "../../assets/images/shop/ads/ads-3.png";
-import ads4 from "../../assets/images/shop/ads/ads-4.png";
+import artist from "../../assets/images/videos/Artist.mp4"
+
 const AdsBanner = () => {
   return (
     <section className=" mx-auto  flex flex-row gap-4 h-full">
@@ -47,9 +48,16 @@ const AdsBanner = () => {
         </div>
       </div>
 
-      <div className="flex-1 w-3/10 rounded-2xl overflow-hidden">
-        <img src={ads4} alt="Artist" className="w-full h-full object-cover" />
-      </div>
+      <div className="flex-1 w-3/10 rounded-xl overflow-hidden">
+       <video
+      src={artist}
+      autoPlay
+     loop
+     muted
+     playsInline
+     className="w-full h-full object-cover"
+     />
+    </div>
     </section>
   );
 };

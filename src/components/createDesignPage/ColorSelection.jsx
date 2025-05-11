@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Printareas from './Printareas';
+import ProductPrintAreaSelector from './ProductPrintAreaSelector';
 
-
-function ColorSelection() {
-  const [selected, setSelected] = useState([]);
+function ColorSelection({ productType = 'tshirt' }) {
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [selectedAreas, setSelectedAreas] = useState(['frontprint']);
 
   const colors = [
     { name: 'white', className: 'bg-primary-white' },
@@ -13,7 +13,7 @@ function ColorSelection() {
   ];
 
   const toggleColor = (colorName) => {
-    setSelected((prevSelected) =>
+    setSelectedColors((prevSelected) =>
       prevSelected.includes(colorName)
         ? prevSelected.filter((name) => name !== colorName)
         : [...prevSelected, colorName]
@@ -23,7 +23,8 @@ function ColorSelection() {
   return (
     <div>
       <h2 className="font-semibold text-xl mb-4">Colors</h2>
-      <div className="step-4 flex gap-4">
+
+      <div className="step-4 flex gap-4 mb-6">
         {colors.map((color) => (
           <button
             key={color.name}
@@ -36,17 +37,21 @@ function ColorSelection() {
               transition-all
               duration-300
               ${color.name === 'white' ? 'border border-black' : ''}
-              ${selected.includes(color.name) ? 'ring-4 ring-primary-blue-500 ring-offset-2' : ''}
+              ${selectedColors.includes(color.name) ? 'ring-4 ring-primary-blue-500 ring-offset-2' : ''}
             `}
           />
         ))}
       </div>
-      {<div className='step-3 mt-10'>
-      <Printareas />
-      </div>}
+
+      <div className='step-3 mt-[56px]'>
+      <ProductPrintAreaSelector
+       productType={productType}
+        selected={selectedAreas}
+        setSelected={setSelectedAreas}
+      />
+      </div>
     </div>
   );
-  
 }
 
 export default ColorSelection;

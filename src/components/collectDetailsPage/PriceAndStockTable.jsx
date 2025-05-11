@@ -4,6 +4,7 @@ import bags from '../../assets/images/Products/bag/prove/prove-bag-white-front.p
 import cups from '../../assets/images/Products/cup/prove/prove-cup-white-front.png';
 import line from '../../assets/images/collect-details-pages/Line.svg';
 
+
 function PriceAndStockTable() {
   return (
     <div className="w-[1000px] h-[600px] bg-white rounded-lg shadow-xl p-4 items-center">
