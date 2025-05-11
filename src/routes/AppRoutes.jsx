@@ -58,7 +58,7 @@ const router = createBrowserRouter([
     element: <CreateDesignLayout />,
     children: [
       { index: true, element: <Create /> },
-      { path: 'collectdetails', element: <CollectDetails /> }
+      
     ]
   }
 ]);
