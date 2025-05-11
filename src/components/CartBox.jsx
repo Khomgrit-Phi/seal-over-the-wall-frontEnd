@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import CheckedBox from './ui/CheckedBox';
 
-export default function CartBox({ imageArray, initialImage, name, size, price, quantity, color, updateTotalPrice }) {
+export default function CartBox({
+  imageArray,
+  cartItemId,
+  name,
+  size,
+  price,
+  quantity,
+  color,
+  onQuantityChange,
+  productType,
+  onDeleteData,
+  onDeleteFront
+}) {
   const colorArray = ['black', 'blue', 'gray', 'white'];
   const [selectedColor, setSelectedColor] = useState(color);
   const [selectedQuantity, setSelectedQuantity] = useState(quantity);
@@ -15,12 +27,6 @@ export default function CartBox({ imageArray, initialImage, name, size, price, q
     white: 3
   };
 
-  const testArray = [
-    'src/assets/images/Products/shirt/fetch/fetch-shirt-black-back.png',
-    'src/assets/images/Products/shirt/fetch/fetch-shirt-blue-front.png',
-    'src/assets/images/Products/shirt/fetch/fetch-shirt-gray-front.png',
-    'src/assets/images/Products/shirt/fetch/fetch-shirt-white-front.png'
-  ];
   // Determine the current image based on selected color
   const currentImage = imageArray[colorImageMap[selectedColor]];
 
@@ -32,9 +38,6 @@ export default function CartBox({ imageArray, initialImage, name, size, price, q
 
   useEffect(() => {
     setCurrentPrice(price * selectedQuantity);
-    // if (updateTotalPrice) { // Make sure the function exists before calling
-    //   updateTotalPrice(price * selectedQuantity);
-    // }
   }, [selectedQuantity, price]);
 
   const handleColorChange = (event) => {
@@ -45,12 +48,20 @@ export default function CartBox({ imageArray, initialImage, name, size, price, q
     setSelectedSize(event.target.value);
   };
 
+  useEffect(() => {
+    setCurrentPrice(price * selectedQuantity);
+  }, [selectedQuantity, price]);
+
   const handleIncreaseQuantityChange = () => {
-    setSelectedQuantity((prev) => prev + 1);
+    const newQuantity = selectedQuantity + 1;
+    setSelectedQuantity(newQuantity);
+    onQuantityChange(cartItemId, newQuantity); // Call the callback send back ID & quantity
   };
 
   const handleDecreaseQuantityChange = () => {
-    setSelectedQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+    const newQuantity = selectedQuantity > 1 ? selectedQuantity - 1 : 1;
+    setSelectedQuantity(newQuantity);
+    onQuantityChange(cartItemId, newQuantity); // Call the callback send back ID & quantity
   };
 
   return (
@@ -91,34 +102,50 @@ export default function CartBox({ imageArray, initialImage, name, size, price, q
               <label htmlFor="sizes" className="mr-2">
                 size:
               </label>
-              <select
-                id="sizes"
-                name="sizes"
-                value={selectedSize}
-                onChange={handleSizeChange}
-                className="appearance-none pr-8 pl-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring focus:border-primary-500"
-              >
-                {sizeOptions.map((sizeOption) => (
-                  <option key={sizeOption.value} value={sizeOption.value}>
-                    {sizeOption.label}
-                  </option>
-                ))}
-              </select>
-              <img src="src\assets\images\arrow-down.svg" className="w-[16px] h-[16px] ml-2" alt="arrow down" />
+              {productType === 'shirt' ? (
+                <>
+                  <select
+                    id="sizes"
+                    name="sizes"
+                    value={selectedSize}
+                    onChange={handleSizeChange}
+                    className="appearance-none pr-8 pl-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring focus:border-primary-500"
+                  >
+                    {sizeOptions.map((sizeOption) => (
+                      <option key={sizeOption.value} value={sizeOption.value}>
+                        {sizeOption.label}
+                      </option>
+                    ))}
+                  </select>
+                  <img src="src\assets\images\arrow-down.svg" className="w-[16px] h-[16px] ml-2" alt="arrow down" />
+                </>
+              ) : (
+                <select
+                  id="sizes"
+                  name="sizes"
+                  value="one size"
+                  className="appearance-none pr-8 pl-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring focus:border-primary-500"
+                  disabled
+                >
+                  <option value="one size">One Size</option>
+                </select>
+              )}
             </div>
             <p className="col-span-2">{price} THB</p>
           </div>
+
+          {/* quantity selection */}
           <div className="flex gap-[16px]">
             <button
               onClick={handleIncreaseQuantityChange}
-              className="flex items-center justify-center w-[24px] h-[24px] font-bold border-1 rounded-full hover:cursor-pointer"
+              className="flex items-center justify-center w-[24px] h-[24px] font-bold border-1 rounded-full hover:cursor-pointer transition-transform duration-300 hover:scale-110"
             >
               +
             </button>
             <p>{selectedQuantity}</p>
             <button
               onClick={handleDecreaseQuantityChange}
-              className="flex items-center justify-center w-[24px] h-[24px] font-bold border-1 rounded-full hover:cursor-pointer"
+              className="flex items-center justify-center w-[24px] h-[24px] font-bold border-1 rounded-full hover:cursor-pointer transition-transform duration-300 hover:scale-110"
             >
               -
             </button>
@@ -126,11 +153,21 @@ export default function CartBox({ imageArray, initialImage, name, size, price, q
           <button>
             <div className="flex gap-[8px] items-center">
               <p>{currentPrice} THB</p>
-              <img
-                src="src\assets\images\circle-xmark-solid.svg"
-                className="flex items-center justify-center w-[16px] h-[16px]"
-                alt="remove"
-              />
+
+              {/* Delete button */}
+              <button
+                onClick={() => {
+                  onDeleteData(cartItemId);
+                  onDeleteFront(cartItemId);
+                }}
+                className="transition-transform duration-300 hover:scale-140 hover:cursor-pointer"
+              >
+                <img
+                  src="src\assets\images\circle-xmark-solid.svg"
+                  className="flex items-center justify-center w-[16px] h-[16px]"
+                  alt="remove"
+                />
+              </button>
             </div>
           </button>
         </div>
