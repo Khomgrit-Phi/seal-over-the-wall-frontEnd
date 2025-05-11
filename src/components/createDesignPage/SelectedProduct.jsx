@@ -18,22 +18,22 @@ import cupgray from "../../assets/images/Products/cup/empty/empty-cup-gray-front
 
 const productMockups = {
   tshirt: [
-    { color: 'black', src: shirtblack },
     { color: 'white', src: shirtwhite },
-    { color: 'blue', src: shirtblue },
     { color: 'gray', src: shirtgray },
+    { color: 'black', src: shirtblack },
+    { color: 'blue', src: shirtblue },
   ],
   bags: [
-    { color: 'black', src: bagblack },
     { color: 'white', src: bagwhite },
-    { color: 'blue', src: bagblue },
     { color: 'gray', src: baggray },
+    { color: 'black', src: bagblack },
+    { color: 'blue', src: bagblue },
   ],
   cups: [
-    { color: 'black', src: cupblack },
     { color: 'white', src: cupwhite },
-    { color: 'blue', src: cupblue },
     { color: 'gray', src: cupgray },
+    { color: 'black', src: cupblack },
+    { color: 'blue', src: cupblue },
   ],
 };
 
@@ -55,7 +55,7 @@ function SelectedProduct({ selectedProduct, selectedColors, uploadedImage }) {
       <h2 className='font-semibold text-xl capitalize'>
         {selectedProduct} Preview
       </h2>
-      <div className='flex gap-12 flex-wrap justify-center'>
+      <div className='flex gap-12 flex-wrap justify-center mt-10'>
         {mockups.map(({ color, src }, i) => (
           <div key={i} className='relative w-[280px] h-[280px]'>
             <img src={src} alt={`${color} ${selectedProduct}`} className='w-full h-full object-contain' />
