@@ -69,7 +69,7 @@
 
 * {
   font-family: var(--font-geist);
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 body {
   /* padding-top: 100px; */
