@@ -9,7 +9,8 @@ import SelectedProduct from '../components/createDesignPage/SelectedProduct';
 import Walkthrough from '../components/createDesignPage/Walkthrough';
 import NextStepButton from '../components/createDesignPage/NextStepButton';
 import SaveButton from '../components/createDesignPage/SaveButton';
-import { createdProduct } from "../services/created"; // Ensure this points to your API helper
+import { createdProduct } from "../services/created";
+import { motion, AnimatePresence } from 'framer-motion';
 
 function CreateDesign({ onNext, updateCreateData }) {
   const [selectedProduct, setSelectedProduct] = useState('tshirt');
@@ -53,16 +54,33 @@ function CreateDesign({ onNext, updateCreateData }) {
   };
 
   const renderProductTemplate = () => {
-    switch (selectedProduct) {
-      case 'bags':
-        return <BagTemplate />;
-      case 'cups':
-        return <CupTemplate />;
-      case 'tshirt':
-      default:
-        return <TShirtTemplate />;
-    }
-  };
+  let TemplateComponent;
+  switch (selectedProduct) {
+    case 'bags':
+      TemplateComponent = <BagTemplate />;
+      break;
+    case 'cups':
+      TemplateComponent = <CupTemplate />;
+      break;
+    case 'tshirt':
+    default:
+      TemplateComponent = <TShirtTemplate />;
+  }
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={selectedProduct}
+        initial={{ opacity: 0, x: 0 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, x: -10 }}
+        transition={{ duration: 0.2 }}
+      >
+        {TemplateComponent}
+      </motion.div>
+    </AnimatePresence>
+  );
+};
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission

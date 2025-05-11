@@ -16,7 +16,9 @@ function ProductSelection({ selected, setSelected }) {
                 <button
                     key={product.name}
                     onClick={() => setSelected(product.name)}
-                    className="group relative cursor-pointer pb-2"
+                    className="group relative cursor-pointer pb-2
+                    transition-all duration-300 ease-in-out hover:scale-110"
+                    
                 >
                     <img src={product.icon} alt={product.name} />
                     <div className={`

@@ -79,7 +79,7 @@ function UploadDesignBox({ onUpload }) {
           />
         <button
         onClick={handleRemove}
-        className='absolute mt-130 left-1/2 -translate-x-1/2 bg-red-500 text-white font-medium py-2 px-4 rounded-[8px] cursor-pointer'
+        className='absolute mt-130 left-1/2 -translate-x-1/2 bg-red-400 text-white font-medium py-2 px-4 rounded-[8px] cursor-pointer transition-all duration-300 ease-in-out hover:bg-red-500 hover:scale-105'
           >
         Remove
       </button>
