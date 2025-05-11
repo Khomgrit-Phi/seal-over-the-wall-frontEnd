@@ -18,9 +18,6 @@ import ProductDetail from '../pages/ProductDetail';
 import Signup from '../pages/Signup';
 import Create from '../pages/Create';
 import CreateDesignLayout from '../layouts/CreateDesignLayout';
-import CollectDetails from '../pages/CollectDetails';
-import Preview from '../pages/Preview';
-import ExpressAnd
 
 const router = createBrowserRouter([
   {
