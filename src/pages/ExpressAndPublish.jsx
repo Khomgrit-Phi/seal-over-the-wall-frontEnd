@@ -25,8 +25,7 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
                 </button>
                 </div>
         </div>
-        <h2 className="text-2xl font-semibold text-primary-black mb-2">Express & Publish Content here!</h2>
-                <img src={gif} className="w-3/6 h-auto"/>
+          
       <Outlet />
     </div>
   );

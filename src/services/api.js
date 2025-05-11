@@ -6,7 +6,7 @@ const baseURL = import.meta.env.DEV //meta.env.DEV will be true in local environ
   : import.meta.env.VITE_PUBLIC_API_URL;
 
 const api = axios.create({
-  baseURL,
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true, // critical for sending cookies!
 });
 
