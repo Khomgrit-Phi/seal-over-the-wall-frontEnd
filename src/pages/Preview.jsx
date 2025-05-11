@@ -117,7 +117,7 @@ const Preview = ({ onNext, onBack }) => {
                     Follow
                   </button>
                 </div>
-        
+
                 <div className="w-1/2">
                   <p className="text-xl ">
                     Playful lines, dreamy vibes.  Artists Lalala creates illustrations that spark joy and imagination one doodle at a time.
@@ -126,11 +126,11 @@ const Preview = ({ onNext, onBack }) => {
                     <p className="flex items-center gap-2">
                       <img src={iconIg} alt="Instagram Icon" /> Artists Lalala
                     </p>
-        
+
                     <p className="flex items-center gap-2">
                       <img src={iconX} alt="Instagram Icon" /> Artists Lalala
                     </p>
-        
+
                     <p className="flex items-center gap-2">
                       <img src={iconFb} alt="Instagram Icon" /> Artists Lalala
                     </p>
