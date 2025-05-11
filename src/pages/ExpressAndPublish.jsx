@@ -21,7 +21,7 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
                     Ready to showcase your creation? Fill in your product details and click to present your work to buyers!
                     <br />
                  </p>
-                <div className="flex justify-end items-center gap-4 pr-[136px] mt-1.5 ">
+                <div className="flex justify-end items-center gap-4 pr-[128px] mt-1.5 ">
                 <button>
                 <BackButton onBack={onBack} />
                 </button>
@@ -32,15 +32,10 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
                 </div>
         </div>
           <div className='w-full px-[152px]'>
-          
-          
           {/* Main Content in ExpressAndPlubish page*/}
           <div>
-            
-          
             {/* Product Preview */}
             <div className='mt-2'>
-          
               {/* Product type col and Product preview image*/}
               <div className='flex items-center'>
                 {/* Product type col for select */}
@@ -52,7 +47,7 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
                 {/* Product preview image */}
                 <img src={shirtProvWhiteFront} alt="T-shirt" className='w-132 h-132' />
               </div>
-          
+
               {/* add image slice */}
               <div className='mt-4 flex flex-row overflow-x-auto items-center'>
                 {/* added images */}
@@ -67,7 +62,7 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
                     <img src= {shirtProvWhiteBackPreviewWomen} alt="T-shirt" className="h-full max-w-full object-contain" />
                   </div>
                 </div>
-          
+
                 {/* add image */}
                 <div className='ml-16'>
                   <div className=' border-[#DBDBDC] border-dashed w-74 h-56 border-2 flex justify-center items-center'>
@@ -83,7 +78,7 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
                 </div>
               </div>
             </div>
-          
+
             {/* Form Sections about product*/}
             <div className='flex flex-row gap-38 mt-20'>
               {/* input left */}
@@ -110,7 +105,7 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
                         />
                 </div>
               </div>
-          
+
               {/* input right */}
               <div>
                 <h3 className='text-2xl text-[#202020] font-semibold mb-8'>About Me</h3>
@@ -130,13 +125,13 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
                 <div>
                   <h3 className='text-2xl text-[#202020] font-semibold mb-8 mt-6'>Product Tags</h3>
                   <div>
-                    
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          
+
           </div>
       <Outlet />
     </div>
