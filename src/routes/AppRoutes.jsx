@@ -16,10 +16,11 @@ import Manage from '../pages/admin/Manage';
 import HomeUser from '../pages/user/HomeUser';
 import ProductDetail from '../pages/ProductDetail';
 import Signup from '../pages/Signup';
-import ExpressPublishPage from '../pages/expressAndPubish';
 import Create from '../pages/Create';
 import CreateDesignLayout from '../layouts/CreateDesignLayout';
 import CollectDetails from '../pages/CollectDetails';
+import ExpressAndPlublish from '../pages/expressAndPublish.jsx';
+import Preview from '../pages/Preview.jsx';
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,8 @@ const router = createBrowserRouter([
       { path: 'register', element: <Register /> },
       { path: 'checkout', element: <CheckOut /> },
       { path: 'signup', element: <Signup /> },
-      { path: 'expressAndPubish', element: <ExpressPublishPage /> }
+      { path: 'expressAndPublish', element: <ExpressAndPlublish /> },
+      { path: 'Preview', element: <Preview /> }
     ]
   },
   {
