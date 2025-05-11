@@ -103,7 +103,7 @@ function CreateDesign({ onNext, updateCreateData }) {
         </div>
 
         {/* Preview Section */}
-        <div className="flex justify-center mt-2">
+        <div className="flex justify-center mt-10">
           <SelectedProduct
             selectedProduct={selectedProduct}
             selectedColors={selectedColors}
