@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import ProductPrintAreaSelector from './ProductPrintAreaSelector';
 
-function ColorSelection({ productType = 'tshirt' }) {
-  const [selectedColors, setSelectedColors] = useState([]);
+function ColorSelection({ productType = 'tshirt', selectedColors, setSelectedColors }) {
   const [selectedAreas, setSelectedAreas] = useState(['frontprint']);
 
   const colors = [
@@ -13,10 +12,10 @@ function ColorSelection({ productType = 'tshirt' }) {
   ];
 
   const toggleColor = (colorName) => {
-    setSelectedColors((prevSelected) =>
-      prevSelected.includes(colorName)
-        ? prevSelected.filter((name) => name !== colorName)
-        : [...prevSelected, colorName]
+    setSelectedColors((prev) =>
+      prev.includes(colorName)
+        ? prev.filter((c) => c !== colorName)
+        : [...prev, colorName]
     );
   };
 
@@ -44,14 +43,15 @@ function ColorSelection({ productType = 'tshirt' }) {
       </div>
 
       <div className='step-3 mt-[56px]'>
-      <ProductPrintAreaSelector
-       productType={productType}
-        selected={selectedAreas}
-        setSelected={setSelectedAreas}
-      />
+        <ProductPrintAreaSelector
+          productType={productType}
+          selected={selectedAreas}
+          setSelected={setSelectedAreas}
+        />
       </div>
     </div>
   );
 }
+
 
 export default ColorSelection;
