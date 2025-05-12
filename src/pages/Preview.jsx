@@ -3,7 +3,6 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import NextStepButton from '../components/createDesignPage/NextStepButton';
 import BackButton from '../components/collectDetailsPage/BackButton';
-import gif from '../assets/images/gif/custommike-motion.gif';
 import shirtProvWhiteFront from '../../src/assets/images/Products/shirt/prove/prove-shirt-white-front.png';
 import bagWhiteFront from '../../src/assets/images/Products/bag/prove/prove-bag-white-front.png';
 import cupWhiteFront from '../../src/assets/images/Products/cup/prove/prove-cup-white-front.png';
