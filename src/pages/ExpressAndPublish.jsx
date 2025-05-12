@@ -53,6 +53,7 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
 
         <div className="mt-4 flex flex-row overflow-x-auto items-center">
           <div className="gap-4 flex flex-row">
+            <div className='bg-white w-98 h-58 rounded-lg border border-[#DBDBDC] shadow-md flex items-center justify-center'></div>
             <button onClick={() => handleChildImageClick(productPreviewChild1)} className="preview-thumb">
               <img src={iconArrowLeft} alt="arrow left" className="icon-left" />
               <img src={productPreviewChild1} alt="Child 1" className="thumb-img" />
