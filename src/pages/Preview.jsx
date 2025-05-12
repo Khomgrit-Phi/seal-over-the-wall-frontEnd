@@ -35,7 +35,7 @@ const Preview = ({ onNext, onBack }) => {
           <br />
           This page will display the image, color, size, product type, and description you provided earlier.
         </p>
-        <div className="flex justify-end items-center gap-4 pr-[152px] mt-1.5 ">
+        <div className="flex justify-end items-center gap-4 pr-[128px] mt-1.5 ">
           <button>
             <BackButton onBack={onBack} />
           </button>
@@ -45,33 +45,12 @@ const Preview = ({ onNext, onBack }) => {
           </button>
         </div>
       </div>
-      // all concent in Preview page
+
+
       <div className="w-full px-[152px]">
-        {/* Progress bar */}
-        <div className="bg-blue-300 mt-6 mb-14 mx-68">
-          <p className="text-cyan-700 justify-start h-11">Stepper</p>
-        </div>
 
         {/* Main Content in ExpressAndPlublish page*/}
         <div className="mb-33">
-          <header className="mx-34">
-            <h1 className="text-5xl font-bold text-[#202020]">Preview</h1>
-            <p className="text-xl font-normal mt-3 text-[#202020]">Preview your design before publishing.</p>
-            <p className="text-xl font-normal text-[#202020]">
-              This page will display the image, color, size, product type, and description you provided earlier.
-            </p>
-          </header>
-
-          {/* Buttons */}
-          <div className="flex justify-end gap-4">
-            <button className="w-18 h-12 border border-[#202020] rounded-lg bg-white"></button>
-            <button className="w-30 h-12 bg-[#E1E1E4] rounded-lg text-[#202020] font-normal text-lg px-4 py-3 flex justify-center items-center">
-              Draft
-            </button>
-            <button className="w-30 h-12 bg-[#334DD8] rounded-lg text-[#fff] font-normal text-lg px-4 py-3 flex justify-center items-center">
-              Publish
-            </button>
-          </div>
 
           {/* Product Preview */}
           <div className="mt-2">
