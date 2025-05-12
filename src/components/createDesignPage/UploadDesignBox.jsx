@@ -1,6 +1,8 @@
   import React, { useRef, useState } from 'react';
 import fileicon from '../../assets/images/create-design-pages/file-icon.svg';
 
+
+
 const CLOUD_NAME = 'dvpnipb6g';
 const UPLOAD_PRESET = 'upload_designs';
 

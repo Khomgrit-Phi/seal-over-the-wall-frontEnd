@@ -1,5 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Mockup images
@@ -17,6 +16,13 @@ import cupblack from "../../assets/images/Products/cup/empty/empty-cup-black-fro
 import cupwhite from "../../assets/images/Products/cup/empty/empty-cup-white-front.png";
 import cupblue from "../../assets/images/Products/cup/empty/empty-cup-blue-front.png";
 import cupgray from "../../assets/images/Products/cup/empty/empty-cup-gray-front.png";
+
+// Print area positions
+const printAreas = {
+  tshirt: { top: '32%', left: '20%', width: '60%', height: '40%' },
+  bags: { top: '50%', left: '26%', width: '43%', height: '30%' },
+  cups: { top: '40%', left: '29%', width: '40%', height: '30%', transform: 'rotate(-20deg)' },
+};
 
 // Product mockup map
 const productMockups = {
@@ -38,13 +44,6 @@ const productMockups = {
     { color: 'black', src: cupblack },
     { color: 'blue', src: cupblue },
   ],
-};
-
-// Print area positions
-const printAreas = {
-  tshirt: { top: '32%', left: '20%', width: '60%', height: '40%' },
-  bags: { top: '50%', left: '26%', width: '43%', height: '30%' },
-  cups: { top: '40%', left: '29%', width: '40%', height: '30%', transform: 'rotate(-20deg)' },
 };
 
 function SelectedProduct({ selectedProduct, selectedColors, uploadedImage }) {
@@ -69,20 +68,22 @@ function SelectedProduct({ selectedProduct, selectedColors, uploadedImage }) {
           exit={{ opacity: 0, y: -30 }}
           transition={{ duration: 0.4 }}
         >
-          {mockups.map(({ color, src }, i) => (
+          {mockups.map(({ color, src }) => (
             <motion.div
               key={color}
-              className='relative w-[280px] h-[280px]'
+              data-color={color}
+              className='preview-to-capture relative w-[280px] h-[280px]'
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
               layout
+
             >
               <img
                 src={src}
                 alt={`${color} ${selectedProduct}`}
-                className='w-full h-full object-contain'
+                className='absolute inset-0 w-full h-full object-contain'
               />
 
               {uploadedImage && (
@@ -111,6 +112,7 @@ function SelectedProduct({ selectedProduct, selectedColors, uploadedImage }) {
               )}
             </motion.div>
           ))}
+
           {mockups.length === 0 && (
             <p className="text-gray-500 italic mt-4">
               Please select at least one color
