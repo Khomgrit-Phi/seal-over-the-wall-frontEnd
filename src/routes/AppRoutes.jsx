@@ -19,6 +19,11 @@ import Signup from '../pages/Signup';
 import Create from '../pages/Create';
 import CreateDesignLayout from '../layouts/CreateDesignLayout';
 
+import CollectDetails from '../pages/CollectDetails';
+import ExpressAndPlublish from '../pages/ExpressAndPublish.jsx';
+import Preview from '../pages/Preview.jsx';
+
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -34,6 +39,8 @@ const router = createBrowserRouter([
       { path: 'register', element: <Register /> },
       { path: 'checkout', element: <CheckOut /> },
       { path: 'signup', element: <Signup /> },
+      { path: 'expressAndPublish', element: <ExpressAndPlublish /> },
+      { path: 'Preview', element: <Preview /> }
 
     ]
   },
