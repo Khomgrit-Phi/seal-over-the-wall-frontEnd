@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import CheckoutButton from '../../components/CheckoutButtonCard';
-import { useState } from 'react';
 import CheckoutPaymentQR from './CheckoutPaymentQR';
 
 const CheckoutPaymentCard = ({ onNext, updateData }) => {
@@ -10,16 +9,31 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
     cardNumber: '',
     expDate: '',
     cvv: '',
-    saveDetail: ''
+    saveDetail: false
   });
 
-  const handleOnchange = (e) => {
+  const handleOnchange = useCallback((e) => {
     const { name, value, type, checked } = e.target;
+    const newValue = type === 'checkbox' ? checked : value;
+
+    let formattedValue = newValue;
+
+    if (name === 'cardNumber') {
+      formattedValue = newValue.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
+    } else if (name === 'expDate') {
+      formattedValue = newValue.replace(/\D/g, '').substring(0, 4);
+      if (formattedValue.length >= 2) {
+        formattedValue = formattedValue.slice(0, 2) + '/' + formattedValue.slice(2);
+      }
+    } else if (name === 'cvv') {
+      formattedValue = newValue.replace(/\D/g, '').substring(0, 4);
+    }
+
     setCardData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: formattedValue
     }));
-  };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +60,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
 
   return (
     <main className="flex flex-row gap-[16px] mx-[152px] mb-auto">
-      {/* <!-- Left Content --> */}
+      {/* */}
       <div className="flex flex-col w-[1072px] mx-auto mb-10">
         <h1 className="text-[2rem] font-semibold col-span-2">Payment methods</h1>
         <div className="flex flex-row gap-[32px] mt-[16px] mb-6 ">
@@ -57,7 +71,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
             }}
             className="flex justify-center  w-[140px] h-[57px]border-zinc-400 hover:border-[2px] hover:border-[#334DD8] "
           >
-            <img src="src/assets/images/card-icon.svg" />
+            <img src="src/assets/images/card-icon.svg" alt="Card" />
           </button>
           {/* PromptPay logo */}
           <button
@@ -66,17 +80,17 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
             }}
             className="w-[140px] h-[57px] border-zinc-400 hover:border-[2px] hover:border-[#334DD8]"
           >
-            <img src="src/assets/images/promt-pay logo.png" />
+            <img src="src/assets/images/promt-pay logo.png" alt="PromptPay" />
           </button>
         </div>
 
-        {/* <!-- information area --> */}
+        {/* */}
 
         {/* If card */}
         {method === 'card' && (
           <form onSubmit={handleSubmit} className="flex flex-col items-start w-full h-auto">
-            <button className="flex flex-row w-[full] h-[28px] items-center hover: cursor-pointer hover:scale-105 duration-300">
-              <img src="src/assets/images/circle-plus.png" className="inline-flex w-[20px] h-[20px] mt-0.5 mr-2.5" />
+            <button className="flex flex-row w-full h-[28px] items-center hover: cursor-pointer hover:scale-105 duration-300">
+              <img src="src/assets/images/circle-plus.png" className="inline-flex w-[20px] h-[20px] mt-0.5 mr-2.5" alt="Add Card" />
               <span className="inline-flex font-semibold text-xl px-2">Add other credit card</span>
             </button>
 
@@ -92,6 +106,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
                   value={cardData.firstName}
                   onChange={handleOnchange}
                   className="w-full h-[56px] border-secondary-light-gray-500 border-[1.25px] p-[20px]"
+                  required
                 />
               </div>
               <div className="col-span-1">
@@ -105,6 +120,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
                   value={cardData.lastName}
                   onChange={handleOnchange}
                   className="w-full h-[56px] border-secondary-light-gray-500 border-[1.25px] p-[20px]"
+                  required
                 />
               </div>
               <div className="col-span-2">
@@ -114,11 +130,14 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
                 <div className="flex flex-col gap-[24px]">
                   <input
                     type="text"
-                    placeholder="Card number"
+                    placeholder="Card number (XXXX XXXX XXXX XXXX)"
                     name="cardNumber"
                     value={cardData.cardNumber}
                     onChange={handleOnchange}
                     className="w-full h-[56px] border-secondary-light-gray-500 border-[1.25px] p-[20px]"
+                    maxLength="19"
+                    pattern="\d{4} \d{4} \d{4} \d{4}|\d{16}"
+                    required
                   />
 
                   <input
@@ -128,6 +147,9 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
                     value={cardData.expDate}
                     onChange={handleOnchange}
                     className="w-full h-[56px] border-secondary-light-gray-500 border-[1.25px] p-[20px]"
+                    maxLength="5"
+                    pattern="(0[1-9]|1[0-2])\/\d{2}"
+                    required
                   />
                   <input
                     type="text"
@@ -136,11 +158,14 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
                     value={cardData.cvv}
                     onChange={handleOnchange}
                     className="w-full h-[56px] border-secondary-light-gray-500 border-[1.25px] p-[20px]"
+                    maxLength="4"
+                    pattern="\d{3,4}"
+                    required
                   />
                 </div>
               </div>
               <div className="col-span-2 flex gap-2 w-full">
-                <img src="src\assets\images\mingcute_information-fill.svg" />
+                <img src="src\assets\images\mingcute_information-fill.svg" alt="Info" />
                 <p className="w-full text-secondary-light-gray-500 ">Credit card payments may take up to 24h to be processed</p>
               </div>
             </div>
@@ -148,7 +173,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
               <input
                 type="checkbox"
                 name="saveDetail"
-                value={cardData.saveDetail}
+                checked={cardData.saveDetail}
                 onChange={handleOnchange}
                 className="w-[24px] h-[24px]"
               />

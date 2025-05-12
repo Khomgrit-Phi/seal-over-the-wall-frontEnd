@@ -4,6 +4,8 @@ import GiftCard from '../components/GiftCard';
 import Questions from '../components/Questions';
 import AdBox from '../components/AdBox';
 import { getCart, deleteCartItem } from '../services/cart.js';
+import { createOrder } from '../services/order.js';
+import { Link } from 'react-router';
 
 const Cart = () => {
   const [orderItem, setOrderItem] = useState([]);
@@ -11,7 +13,7 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const userId = '681f06a48872b623329fd31b';
+  const userId = '6821de629f107d6ad0c88355';
 
   // Fetch cart data
   useEffect(() => {
@@ -25,7 +27,7 @@ const Cart = () => {
         setOrderItem(
           fetchedCartData.items.map((item) => ({
             imageArray: item.productId?.images || [],
-            productImages: item.selectedImages,
+            productImage: item.selectedImage,
             name: item.productId?.title || '',
             size: item.selectedSize,
             color: item.selectedColor,
@@ -55,6 +57,17 @@ const Cart = () => {
   // Delete item and prepare for order convertion (Front End)
   const handleDeleteItem = (itemIdToDelete) => {
     setOrderItem((prevItems) => prevItems.filter((item) => item._id !== itemIdToDelete));
+  };
+
+  // Update color
+  const handleColorChange = (cartItemId, newColor, newImage) => {
+    setOrderItem((prevItems) =>
+      prevItems.map((item) => (item.cartItemId === cartItemId ? { ...item, color: newColor, productImage: newImage } : item))
+    );
+  };
+
+  const handleSizeChange = (cartItemId, newSize) => {
+    setOrderItem((prevItems) => prevItems.map((item) => (item.cartItemId === cartItemId ? { ...item, size: newSize } : item)));
   };
 
   // Delete item in DB and and re-render the Cart
@@ -101,6 +114,24 @@ const Cart = () => {
     [cartData?._id, userId]
   );
 
+  // Submitting the finalized Cart and convert it to order
+  const handleCheckoutOrder = async () => {
+    const formattedOrderItems = orderItem.map((item) => ({
+      productId: item.productId,
+      selectedSize: item.size,
+      selectedColor: item.color,
+      selectedImage: item.productImage,
+      quantity: item.quantity,
+      unitPrice: item.price
+    }));
+    console.log('Formatted order items:', formattedOrderItems);
+    try {
+      await createOrder(userId, formattedOrderItems, cartData.total);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // Recalculate total price
   useEffect(() => {
     const newTotal = orderItem.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -136,6 +167,8 @@ const Cart = () => {
           onQuantityChange={handleQuantityChange}
           onDeleteData={handleRemoveFromCart}
           onDeleteFront={handleDeleteItem}
+          onSizeChange={handleSizeChange}
+          onColorChange={handleColorChange}
         />
       ))}
       <div className="flex flex-col justify-center items-center w-full mt-[42px] pl-[360px] mb-[72px]">
@@ -165,9 +198,14 @@ const Cart = () => {
           <p className="font-semibold text-lg">Total</p>
           <p className=" font-semibold text-lg text-right">{totalPrice} THB</p>
         </div>
-        <button className="w-[800px] h-[56px] bg-black font-semibold text-white text-xl hover:scale-105 duration-300 hover:cursor-pointer">
-          Check Out
-        </button>
+        <Link to="/Checkout">
+          <button
+            onClick={handleCheckoutOrder}
+            className="w-[800px] h-[56px] bg-black font-semibold text-white text-xl hover:scale-105 duration-300 hover:cursor-pointer"
+          >
+            Check Out
+          </button>
+        </Link>
       </div>
       <div className="flex flex-col items-center">
         <h2 className="text-2xl font-bold mb-[32px] w-[1616px] text-start">Gift Cards</h2>

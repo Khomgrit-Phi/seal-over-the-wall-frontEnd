@@ -10,6 +10,8 @@ export default function CartBox({
   quantity,
   color,
   onQuantityChange,
+  onSizeChange,
+  onColorChange,
   productType,
   onDeleteData,
   onDeleteFront
@@ -27,7 +29,6 @@ export default function CartBox({
     white: 3
   };
 
-  // Determine the current image based on selected color
   const currentImage = imageArray[colorImageMap[selectedColor]];
 
   const sizeOptions = [
@@ -41,16 +42,17 @@ export default function CartBox({
   }, [selectedQuantity, price]);
 
   const handleColorChange = (event) => {
-    setSelectedColor(event.target.value);
+    const newColor = event.target.value;
+    const newImage = imageArray[[colorImageMap[newColor]]];
+    setSelectedColor(newColor);
+    onColorChange(cartItemId, newColor, newImage);
   };
 
   const handleSizeChange = (event) => {
-    setSelectedSize(event.target.value);
+    const newSize = event.target.value;
+    setSelectedSize(newSize);
+    onSizeChange(cartItemId, newSize);
   };
-
-  useEffect(() => {
-    setCurrentPrice(price * selectedQuantity);
-  }, [selectedQuantity, price]);
 
   const handleIncreaseQuantityChange = () => {
     const newQuantity = selectedQuantity + 1;
