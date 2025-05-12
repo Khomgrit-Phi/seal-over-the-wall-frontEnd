@@ -18,9 +18,11 @@ import ProductDetail from '../pages/ProductDetail';
 import Signup from '../pages/Signup';
 import Create from '../pages/Create';
 import CreateDesignLayout from '../layouts/CreateDesignLayout';
+
 import CollectDetails from '../pages/CollectDetails';
 import ExpressAndPlublish from '../pages/ExpressAndPublish.jsx';
 import Preview from '../pages/Preview.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,7 @@ const router = createBrowserRouter([
       { path: 'signup', element: <Signup /> },
       { path: 'expressAndPublish', element: <ExpressAndPlublish /> },
       { path: 'Preview', element: <Preview /> }
+
     ]
   },
   {
@@ -61,7 +64,6 @@ const router = createBrowserRouter([
     element: <CreateDesignLayout />,
     children: [
       { index: true, element: <Create /> },
-      { path: 'collectdetails', element: <CollectDetails /> }
     ]
   }
 ]);
