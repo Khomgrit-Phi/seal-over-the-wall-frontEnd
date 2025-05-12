@@ -19,7 +19,7 @@ import Signup from '../pages/Signup';
 import Create from '../pages/Create';
 import CreateDesignLayout from '../layouts/CreateDesignLayout';
 import CollectDetails from '../pages/CollectDetails';
-import ExpressAndPlublish from '../pages/expressAndPublish.jsx';
+import ExpressAndPlublish from '../pages/ExpressAndPublish.jsx';
 import Preview from '../pages/Preview.jsx';
 
 const router = createBrowserRouter([
