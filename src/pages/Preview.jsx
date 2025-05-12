@@ -21,6 +21,8 @@ import iconX from '../assets/images/preview/icon-x.svg';
 import iconFb from '../assets/images/preview/icon-fb.svg';
 import iconShirtFrontArea from '../assets/images/preview/iconShirtFrontArea.svg';
 import iconShirtBackArea from '../assets/images/preview/iconShirtBackArea.svg';
+import { motion } from "framer-motion";
+
 
 
 
