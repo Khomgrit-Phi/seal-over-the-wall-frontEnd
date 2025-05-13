@@ -26,8 +26,9 @@ const ProfileMenu = () => {
 
   const handleSignOut = async () => {
     try {
-      const res = await logoutUser();
-      if (res) setUser(null);
+      await logoutUser();
+      setUser(null);
+      console.log(user);
       navigate('/');
     } catch (error) {
       console.error(error);
