@@ -2,8 +2,8 @@ import api from '../services/api.js';
 
 
 //create an cart along when user is registered
-export const createCart = async () => {
-    const response = await api.post("/cart");
+export const createCart = async (userId) => {
+    const response = await api.post("/cart", userId);
     return response.data;
 }
 

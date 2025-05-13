@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-import { Outlet } from "react-router-dom";
-import NextStepButton from "../components/createDesignPage/NextStepButton";
-import BackButton from "../components/collectDetailsPage/BackButton";
-import gif from "../assets/images/gif/custommike-motion.gif"
-=======
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import NextStepButton from '../components/createDesignPage/NextStepButton';
@@ -18,7 +11,6 @@ import shirtProvWhiteFront from '../../src/assets/images/Products/shirt/prove/pr
 import shirtProveBlueFront from '../../src/assets/images/Products/shirt/prove/prove-shirt-blue-front.png';
 import shirtProveGrayFront from '../../src/assets/images/Products/shirt/prove/prove-shirt-gray-back.png';
 import shirtProveBlackFront from '../../src/assets/images/Products/shirt/prove/prove-shirt-black-front.png';
->>>>>>> origin/bass
 
 const ExpressAndPublish = ({ onNext, onBack }) => {
   const [productPreview, setProductPreview] = useState(shirtProvWhiteFront);
@@ -34,29 +26,6 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
   const handleProductNameChange = (e) => setProductName(e.target.value);
   const handleConceptChange = (e) => setConcept(e.target.value);
 
-<<<<<<< HEAD
-const ExpressAndPublish = ({ onNext, onBack }) => {
-  return (
-    <div className=" flex flex-col items-center">
-            <div className="w-full mb-10 pl-[288px]">
-                <h1 className="text-4xl font-bold">Express & Publish</h1>
-                <p className="text-lg mt-4 mb-13">
-                    Ready to showcase your creation? Fill in your product details and click to present your work to buyers!
-                    <br />
-                 </p>
-                <div className="flex justify-end items-center gap-4 pr-[152px] mt-1.5 ">
-                <button>
-                <BackButton onBack={onBack} />
-                </button>
-
-                <button >
-                <NextStepButton onNext={onNext} />
-                </button>
-                </div>
-        </div>
-        <h2 className="text-2xl font-semibold text-primary-black mb-2">Express & Publish Content here!</h2>
-                <img src={gif} className="w-3/6 h-auto"/>
-=======
   return (
     <div className="flex flex-col items-center">
       <div className="w-full mb-10 pl-[288px]">
@@ -65,8 +34,12 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
           Ready to showcase your creation? Fill in your product details and click to present your work to buyers!
         </p>
         <div className="flex justify-end items-center gap-4 pr-[128px] mt-1.5">
-          <button><BackButton onBack={onBack} /></button>
-          <button><NextStepButton onNext={onNext} /></button>
+          <button>
+            <BackButton onBack={onBack} />
+          </button>
+          <button>
+            <NextStepButton onNext={onNext} />
+          </button>
         </div>
       </div>
 
@@ -84,7 +57,7 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
 
         <div className="mt-4 flex flex-row overflow-x-auto items-center">
           <div className="gap-4 flex flex-row">
-            <div className='bg-white w-98 h-58 rounded-lg border border-[#DBDBDC] shadow-md flex items-center justify-center'></div>
+            <div className="bg-white w-98 h-58 rounded-lg border border-[#DBDBDC] shadow-md flex items-center justify-center"></div>
             <button onClick={() => handleChildImageClick(productPreviewChild1)} className="preview-thumb">
               <img src={iconArrowLeft} alt="arrow left" className="icon-left" />
               <img src={productPreviewChild1} alt="Child 1" className="thumb-img" />
@@ -103,9 +76,15 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
               <p className="text-2xl font-semibold">Upload your image</p>
               <p className="text-lg font-medium">Drag & Drop it here</p>
               <img src={iconUplodeFile} alt="upload icon" className="w-10 h-10" />
-              <p className="text-xl font-medium text-[#91919B]">or <span className="underline text-[#334DD8]">Choose file</span></p>
-              <p className="text-base text-[#91919B]">Max file size : <span className="font-medium">25 MB</span></p>
-              <p className="text-base text-[#91919B]">Supported file types : <span className="font-medium">JPG, PNG</span></p>
+              <p className="text-xl font-medium text-[#91919B]">
+                or <span className="underline text-[#334DD8]">Choose file</span>
+              </p>
+              <p className="text-base text-[#91919B]">
+                Max file size : <span className="font-medium">25 MB</span>
+              </p>
+              <p className="text-base text-[#91919B]">
+                Supported file types : <span className="font-medium">JPG, PNG</span>
+              </p>
             </div>
           </div>
         </div>
@@ -122,10 +101,13 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
           <div className="grow">
             <h3 className="text-2xl font-semibold">Product Tags</h3>
             <div className="mt-3 flex flex-wrap gap-4">
-              {["custom", "t-shirt", "collection", "Artists Lalala"].map(tag => (
-                <button key={tag} className="tag-button">{tag}</button>
+              {['custom', 't-shirt', 'collection', 'Artists Lalala'].map((tag) => (
+                <button key={tag} className="tag-button">
+                  {tag}
+                </button>
               ))}
-              <button className="tag-button border-dashed border-2 flex gap-2 items-center">Add
+              <button className="tag-button border-dashed border-2 flex gap-2 items-center">
+                Add
                 <img src={iconAdd} alt="add icon" className="h-6 w-6" />
               </button>
             </div>
@@ -144,14 +126,9 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
           </div>
         </div>
       </div>
->>>>>>> origin/bass
       <Outlet />
     </div>
   );
 };
 
-<<<<<<< HEAD
 export default ExpressAndPublish;
-=======
-export default ExpressAndPublish;
->>>>>>> origin/bass

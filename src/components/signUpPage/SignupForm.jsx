@@ -1,10 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import { signupUser } from "../../services/authService";
-import SignUpFormInput from "./SignUpFormInput";
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { signupUser } from '../../services/authService';
+import SignUpFormInput from './SignUpFormInput';
 
 const SignupForm = () => {
-
   const [registerForm, setRegisterForm] = useState({
     firstName: '',
     lastName: '',
@@ -20,7 +19,7 @@ const SignupForm = () => {
     password: '',
     confirmPassword: '',
     smsPromotion: false,
-    emailPromotion: false,
+    emailPromotion: false
   });
 
   const navigate = useNavigate();
@@ -44,7 +43,7 @@ const SignupForm = () => {
         district: registerForm.password,
         subDistrict: registerForm.password,
         city: registerForm.password,
-        postal: registerForm.password,
+        postal: registerForm.password
       },
       email: registerForm.email,
       phoneNumber: registerForm.phoneNumber, // For mobile phone number
@@ -52,20 +51,17 @@ const SignupForm = () => {
       password: registerForm.password,
       confirmPassword: registerForm.confirmPassword,
       smsPromotion: registerForm.smsPromotion,
-      emailPromotion: registerForm.smsPromotion,
-    }
-    console.log("Submitting the form with these details:", submittingData);
+      emailPromotion: registerForm.smsPromotion
+    };
+    console.log('Submitting the form with these details:', submittingData);
     await signupUser(submittingData);
-    alert("Register successful");
+    alert('Register successful');
     navigate('/login');
-  }
+  };
 
   return (
     <>
-      <section
-        id="signup"
-        className="flex items-center justify-center min-h-screen"
-      >
+      <section id="signup" className="flex items-center justify-center min-h-screen">
         <div className="w-full max-w-4xl p-6 placeholder-gray-300 bg-white">
           <h2 className="mb-10 text-5xl font-bold text-center">Sign Up</h2>
           <h3 className="text-3xl font-semibold">User Information</h3>
@@ -75,57 +71,24 @@ const SignupForm = () => {
                 <SignUpFormInput name="email" label="Email" onChange={handleOnchange} required />
               </div>
               <div>
-                <SignUpFormInput
-                  name="phoneNumber"
-                  label="Mobile phone number"
-                  type="tel"
-                  onChange={handleOnchange}
-                  required
-                />
+                <SignUpFormInput name="phoneNumber" label="Mobile phone number" type="tel" onChange={handleOnchange} required />
               </div>
             </div>
             <div className="mt-4">
-              <SignUpFormInput
-                name="userName"
-                label="Username"
-                onChange={handleOnchange}
-                required
-              />
+              <SignUpFormInput name="userName" label="Username" onChange={handleOnchange} required />
             </div>
             <div className="mt-4">
-              <SignUpFormInput
-                name="password"
-                label="Password"
-                type="password"
-                onChange={handleOnchange}
-                required
-              />
+              <SignUpFormInput name="password" label="Password" type="password" onChange={handleOnchange} required />
             </div>
             <div className="mt-4">
-              <SignUpFormInput
-                name="confirmPassword"
-                label="Confirm Password"
-                type="password"
-                onChange={handleOnchange}
-                required
-              />
+              <SignUpFormInput name="confirmPassword" label="Confirm Password" type="password" onChange={handleOnchange} required />
             </div>
             <div className="grid grid-cols-2 gap-4 mt-4">
               <div>
-                <SignUpFormInput
-                  name="firstName"
-                  label="First name"
-                  onChange={handleOnchange}
-                  required
-                />
+                <SignUpFormInput name="firstName" label="First name" onChange={handleOnchange} required />
               </div>
               <div>
-                <SignUpFormInput
-                  name="lastName"
-                  label="Last name"
-                  onChange={handleOnchange}
-                  required
-                />
+                <SignUpFormInput name="lastName" label="Last name" onChange={handleOnchange} required />
               </div>
             </div>
             <div className="mt-4">
@@ -148,38 +111,18 @@ const SignupForm = () => {
             </div>
             <div className="grid grid-cols-2 gap-4 mt-4">
               <div>
-                <SignUpFormInput
-                  name="district"
-                  label="District"
-                  onChange={handleOnchange}
-                  required
-                />
+                <SignUpFormInput name="district" label="District" onChange={handleOnchange} required />
               </div>
               <div>
-                <SignUpFormInput
-                  name="subDistrict"
-                  label="Subdistrict"
-                  onChange={handleOnchange}
-                  required
-                />
+                <SignUpFormInput name="subDistrict" label="Subdistrict" onChange={handleOnchange} required />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4 mt-4">
               <div>
-                <SignUpFormInput
-                  name="postal"
-                  label="Postal code"
-                  onChange={handleOnchange}
-                  required
-                />
+                <SignUpFormInput name="postal" label="Postal code" onChange={handleOnchange} required />
               </div>
               <div>
-                <SignUpFormInput
-                  name="city"
-                  label="City"
-                  onChange={handleOnchange}
-                  required
-                />
+                <SignUpFormInput name="city" label="City" onChange={handleOnchange} required />
               </div>
             </div>
             <div className="mt-5 space-y-3">
@@ -217,7 +160,7 @@ const SignupForm = () => {
               By signing up I agree to the
               <a href="#" className="underline">
                 terms and conditions
-              </a>{" "}
+              </a>{' '}
               and
               <a href="#" className="underline">
                 privacy policy

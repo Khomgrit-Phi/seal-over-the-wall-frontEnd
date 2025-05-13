@@ -41,13 +41,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const cart = async () => {
+    try {
+      await api.get(`/cart/${user?._id}`);
+    } catch (error) {
+      console.error("Can not get user's cart: ", error);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>; // Show loading indicator while restoring session
   }
 
-  return <AuthContext.Provider value={{ user, setUser, login, logout, loading }}>
-    {children}
-  </AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, setUser, login, logout, loading, cart }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => useContext(AuthContext);

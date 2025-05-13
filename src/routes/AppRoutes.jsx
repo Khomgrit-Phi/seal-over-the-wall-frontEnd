@@ -1,5 +1,3 @@
-
-
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import ProtectedRoute from '../context/ProtectedRoute';
 import CreateDesignLayout from '../layouts/CreateDesignLayout';
@@ -22,7 +20,6 @@ import Shop from '../pages/Shop';
 import Signup from '../pages/Signup';
 import HomeUser from '../pages/user/HomeUser';
 
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -33,13 +30,25 @@ const router = createBrowserRouter([
       { path: 'product-detail', element: <ProductDetail /> },
       { path: 'how-to-work', element: <HowtoWork /> },
       { path: 'express-yourself', element: <ExpressYourself /> },
-      { path: 'cart', element: <ProtectedRoute><Cart /></ProtectedRoute> },
+      {
+        path: 'cart',
+        element: (
+          <ProtectedRoute>
+            <Cart />
+          </ProtectedRoute>
+        )
+      },
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Register /> },
-      { path: 'checkout', element: <ProtectedRoute><CheckOut /></ProtectedRoute> },
-      { path: 'signup', element: <Signup /> },
-
-
+      {
+        path: 'checkout',
+        element: (
+          <ProtectedRoute>
+            <CheckOut />
+          </ProtectedRoute>
+        )
+      },
+      { path: 'signup', element: <Signup /> }
     ]
   },
   {
@@ -60,9 +69,7 @@ const router = createBrowserRouter([
   {
     path: '/create',
     element: <CreateDesignLayout />,
-    children: [
-      { index: true, element: <Create /> },
-    ]
+    children: [{ index: true, element: <Create /> }]
   }
 ]);
 

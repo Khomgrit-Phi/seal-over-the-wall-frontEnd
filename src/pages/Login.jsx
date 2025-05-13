@@ -1,43 +1,38 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Carousel from '../components/Carousel';
 import { useAuth } from '../context/AuthContext';
-import { loginUser } from "../services/authService";
+import { loginUser } from '../services/authService';
 
+import bag from '../assets/images/login-bag.svg';
+import cup from '../assets/images/login-cup.svg';
+import shirt from '../assets/images/login-shirt.svg';
 
-import bag from "../assets/images/login-bag.svg";
-import cup from "../assets/images/login-cup.svg";
-import shirt from "../assets/images/login-shirt.svg";
-
-const slides = [
-  shirt, bag, cup
-]
+const slides = [shirt, bag, cup];
 
 export default function Login() {
-
   const { setUser } = useAuth();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
     setLoading(true);
 
     try {
       const data = await loginUser(email, password);
       setUser(data.user);
-      navigate("/");
+      createCart();
+      navigate('/');
     } catch (err) {
       console.error(err);
-      setError(
-        err?.response?.data?.message || "Login failed. Please try again."
-      );
+      setError(err?.response?.data?.message || 'Login failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -55,15 +50,13 @@ export default function Login() {
               <p className="mt-[12px]">Enter your email and password to access your account</p>
             </div>
 
-            {error && (
-              <div className="px-4 py-2 mb-4 text-center text-red-700 bg-red-100 rounded">
-                {error}
-              </div>
-            )}
+            {error && <div className="px-4 py-2 mb-4 text-center text-red-700 bg-red-100 rounded">{error}</div>}
 
             <form onSubmit={handleLogin} className="w-[430px]">
               <div className="grid w-full grid-cols-2">
-                <label htmlFor="email" className="text-start mb-[8px]">Email</label>
+                <label htmlFor="email" className="text-start mb-[8px]">
+                  Email
+                </label>
                 <input
                   id="email"
                   type="email"
@@ -75,7 +68,9 @@ export default function Login() {
                   placeholder="Enter your email"
                 />
 
-                <label htmlFor="password" className="text-start mb-[8px]">Password</label>
+                <label htmlFor="password" className="text-start mb-[8px]">
+                  Password
+                </label>
                 <input
                   id="password"
                   type="password"
@@ -89,19 +84,16 @@ export default function Login() {
               <div className="flex justify-between w-full mt-[12px]">
                 <div className="flex">
                   <input type="checkbox" className="rounded-lg border-secondary-light-gray-300" />
-                  <p className="ml-[8px]">
-                    Remember me
-                  </p>
+                  <p className="ml-[8px]">Remember me</p>
                 </div>
-                <p className="flex text-end">
-                  Forgot Password
-                </p>
+                <p className="flex text-end">Forgot Password</p>
               </div>
               <button
                 type="submit"
                 disabled={loading}
-                className={`bg-[#202020] mt-[40px] w-full h-auto rounded-lg flex py-2 justify-center hover:scale-105 duration-300 text-[#FFFFFF] text-2xl hover:cursor-pointer`}>
-                {loading ? "Signing in..." : "Sign in"}
+                className={`bg-[#202020] mt-[40px] w-full h-auto rounded-lg flex py-2 justify-center hover:scale-105 duration-300 text-[#FFFFFF] text-2xl hover:cursor-pointer`}
+              >
+                {loading ? 'Signing in...' : 'Sign in'}
               </button>
             </form>
             <div className="flex gap-[8px]">
@@ -114,10 +106,14 @@ export default function Login() {
                 <p>Facebook</p>
               </button>
             </div>
-            <p className="mt-[185px]">Don't have an account? <Link to="/signup" className="font-semibold">Sign Up</Link></p>
+            <p className="mt-[185px]">
+              Don't have an account?{' '}
+              <Link to="/signup" className="font-semibold">
+                Sign Up
+              </Link>
+            </p>
           </div>
         </div>
-
 
         {/* Right Side */}
         <div className="w-full h-full col-span-1">
@@ -129,5 +125,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-  )
+  );
 }
