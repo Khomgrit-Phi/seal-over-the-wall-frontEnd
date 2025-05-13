@@ -30,7 +30,9 @@ export default function Login() {
     setLoading(true);
 
     try {
+        console.log("Attemp to login")
       const data = await loginUser(email, password);
+      console.log("Fetch data successful")
       setUser(data.user);
       console.log(data);
       navigate("/");
