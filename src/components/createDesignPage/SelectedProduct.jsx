@@ -125,3 +125,5 @@ function SelectedProduct({ selectedProduct, selectedColors, uploadedImage }) {
 }
 
 export default SelectedProduct;
+
+
