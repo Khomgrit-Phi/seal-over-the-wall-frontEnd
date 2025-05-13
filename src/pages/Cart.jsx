@@ -3,7 +3,7 @@ import CartBox from '../components/CartBox';
 import GiftCard from '../components/GiftCard';
 import Questions from '../components/Questions';
 import AdBox from '../components/AdBox';
-import { getCart, deleteCartItem } from '../services/cart.js';
+import { getCart, deleteCartItem, updateDetail } from '../services/cart.js';
 import { createOrder } from '../services/order.js';
 import { Link } from 'react-router';
 
@@ -78,7 +78,6 @@ const Cart = () => {
         console.error('Cart ID is not available.  Cannot delete.');
         return;
       }
-
       // call DELETE method
       try {
         const cartId = cartData._id;
@@ -113,6 +112,8 @@ const Cart = () => {
     },
     [cartData?._id, userId]
   );
+
+  // Re-update the DB everytime use select a new color, size, quantity
 
   // Submitting the finalized Cart and convert it to order
   const handleCheckoutOrder = async () => {

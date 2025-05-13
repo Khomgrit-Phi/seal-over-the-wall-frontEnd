@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CheckedBox from './ui/CheckedBox';
+import { updateDetail } from '../services/cart';
 
 export default function CartBox({
   imageArray,
@@ -21,15 +22,13 @@ export default function CartBox({
   const [selectedQuantity, setSelectedQuantity] = useState(quantity);
   const [selectedSize, setSelectedSize] = useState(size);
   const [currentPrice, setCurrentPrice] = useState(price * quantity);
-
   const colorImageMap = {
     black: 0,
     blue: 1,
     gray: 2,
     white: 3
   };
-
-  const currentImage = imageArray[colorImageMap[selectedColor]];
+  const [selectedImage, setSelectedImage] = useState(imageArray[colorImageMap[selectedColor]]);
 
   const sizeOptions = [
     { label: 'S', value: 's' },
@@ -41,36 +40,64 @@ export default function CartBox({
     setCurrentPrice(price * selectedQuantity);
   }, [selectedQuantity, price]);
 
-  const handleColorChange = (event) => {
+  const handleColorChange = async (event) => {
     const newColor = event.target.value;
     const newImage = imageArray[[colorImageMap[newColor]]];
+    setSelectedImage(newImage);
     setSelectedColor(newColor);
+    console.log(newColor);
     onColorChange(cartItemId, newColor, newImage);
+
+    try {
+      await updateDetail(cartItemId, newColor, selectedSize, selectedQuantity, newImage);
+    } catch (error) {
+      console.error('Failed to update size in DB:', error);
+    }
   };
 
-  const handleSizeChange = (event) => {
+  const handleSizeChange = async (event) => {
     const newSize = event.target.value;
+    console.log(newSize);
     setSelectedSize(newSize);
     onSizeChange(cartItemId, newSize);
+    console.log(cartItemId);
+
+    try {
+      await updateDetail(cartItemId, selectedColor, newSize, selectedQuantity, selectedImage);
+    } catch (error) {
+      console.error('Failed to update size in DB:', error);
+    }
   };
 
-  const handleIncreaseQuantityChange = () => {
+  const handleIncreaseQuantityChange = async () => {
     const newQuantity = selectedQuantity + 1;
     setSelectedQuantity(newQuantity);
     onQuantityChange(cartItemId, newQuantity); // Call the callback send back ID & quantity
+
+    try {
+      await updateDetail(cartItemId, selectedColor, selectedSize, newQuantity, selectedImage);
+    } catch (error) {
+      console.error('Failed to update size in DB:', error);
+    }
   };
 
-  const handleDecreaseQuantityChange = () => {
+  const handleDecreaseQuantityChange = async () => {
     const newQuantity = selectedQuantity > 1 ? selectedQuantity - 1 : 1;
     setSelectedQuantity(newQuantity);
     onQuantityChange(cartItemId, newQuantity); // Call the callback send back ID & quantity
+
+    try {
+      await updateDetail(cartItemId, selectedColor, selectedSize, newQuantity, selectedImage);
+    } catch (error) {
+      console.error('Failed to update size in DB:', error);
+    }
   };
 
   return (
     <div className="flex items-center justify-center">
       <div className=" mr-[64px]"></div>
       <div className="flex w-[1072px] h-[204px] items-center border-b-2 border-secondary-light-gray-300">
-        <img src={currentImage} className="w-[204px] h-[200px]" alt={name} />
+        <img src={selectedImage} className="w-[204px] h-[200px]" alt={name} />
         <div className="flex w-full justify-between items-center py-[60px] pl-[68px]">
           <div className="grid grid-cols-2">
             <h3 className="col-span-2 text-2xl font-semibold">{name}</h3>
