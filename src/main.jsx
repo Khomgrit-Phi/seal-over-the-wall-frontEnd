@@ -5,9 +5,13 @@ import './index.css';
 // React Component
 import App from './App.jsx'
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 createRoot(document.getElementById('root')).render(
-    <App/>
+    <AuthProvider>
+        <App/>
+    </AuthProvider>
+        
 )
 
 

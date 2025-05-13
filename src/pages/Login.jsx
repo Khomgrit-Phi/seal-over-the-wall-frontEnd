@@ -3,6 +3,8 @@ import Carousel from '../components/Carousel';
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../context/AuthContext';
+import { loginUser } from "../services/authService";
 
 
 import shirt from "../assets/images/login-shirt.svg";
@@ -15,7 +17,7 @@ const slides = [
 
 export default function Login() {
 
-const Login = () => {
+
   const { setUser } = useAuth();
   const navigate = useNavigate();
 
@@ -59,6 +61,12 @@ const Login = () => {
                         <p className="mt-[12px]">Enter your email and password to access your account</p>
                     </div>
 
+                    {error && (
+                    <div className="bg-red-100 text-red-700 px-4 py-2 rounded mb-4 text-center">
+                        {error}
+                    </div>
+                    )}
+
                     <form onSubmit={handleLogin}>
                         <div className="grid grid-cols-2 w-full">
                             <label htmlFor="email" className="text-start mb-[8px]">Email</label>
@@ -96,8 +104,12 @@ const Login = () => {
                             Forgot Password
                         </p>
                     </div>
-                    <button className={`bg-[#202020] mt-[40px] w-full h-auto rounded-lg flex py-2 justify-center hover:scale-105 duration-300 text-[#FFFFFF] text-2xl hover:cursor-pointer`}>
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className={`bg-[#202020] mt-[40px] w-full h-auto rounded-lg flex py-2 justify-center hover:scale-105 duration-300 text-[#FFFFFF] text-2xl hover:cursor-pointer`}>
                         Sign In
+                        {loading ? "Logging in..." : "Login"}
                     </button>
                     <div className="flex gap-[8px]">
                         <button className="flex w-[211px] h-[48px] rounded-lg border-1 border-secondary-light-gray-300 items-center justify-center gap-[8px] mt-[12px] hover:scale-105 duration-300 hover:cursor-pointer">
@@ -125,4 +137,4 @@ const Login = () => {
         </div>
     </div>
   )
-}}
+}

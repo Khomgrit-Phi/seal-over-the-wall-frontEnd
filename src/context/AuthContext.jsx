@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null); // Store user information
   const [loading, setLoading] = useState(true); // Track loading state
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // Fetch the user's profile on app load
   useEffect(() => {
@@ -28,14 +28,14 @@ export const AuthProvider = ({ children }) => {
 
   const login = (userData) => {
     setUser(userData); // Save user info in the context
-    navigate('/'); // Redirect to main page after login
+    // navigate('/'); // Redirect to main page after login
   };
 
   const logout = async () => {
     try {
       await api.post('/mongo/auth/logout');
       setUser(null);
-      navigate('/login'); // Redirect to login page after logout
+      // navigate('/login'); // Redirect to login page after logout
     } catch (err) {
       console.error('Logout failed:', err);
     }
