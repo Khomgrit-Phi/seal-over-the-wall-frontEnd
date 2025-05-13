@@ -12,7 +12,7 @@ const SignupForm = () => {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-xl font-medium text-gray-700">
-                  Email
+                  Email<span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
@@ -22,7 +22,7 @@ const SignupForm = () => {
               </div>
               <div>
                 <label className="block text-xl font-medium text-gray-700">
-                  Mobile phone number
+                  Mobile phone number<span className="text-red-500">*</span>
                 </label>
                 <input
                   type="tel"
@@ -33,7 +33,7 @@ const SignupForm = () => {
             </div>
             <div className="mt-4">
               <label className="block text-xl font-medium text-gray-700">
-                User name
+                User name<span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -43,7 +43,7 @@ const SignupForm = () => {
             </div>
             <div className="mt-4">
               <label className="block text-xl font-medium text-gray-700">
-                Password
+                Password<span className="text-red-500">*</span>
               </label>
               <input
                 type="password"
@@ -53,7 +53,7 @@ const SignupForm = () => {
             </div>
             <div className="mt-4">
               <label className="block text-xl font-medium text-gray-700">
-                Confirm Password
+                Confirm Password<span className="text-red-500">*</span>
               </label>
               <input
                 type="password"
@@ -64,7 +64,7 @@ const SignupForm = () => {
             <div className="grid grid-cols-2 gap-4 mt-4">
               <div>
                 <label className="block text-xl font-medium text-gray-700">
-                  First name
+                  First name<span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -74,7 +74,7 @@ const SignupForm = () => {
               </div>
               <div>
                 <label className="block text-xl font-medium text-gray-700">
-                  Last name
+                  Last name<span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -85,7 +85,7 @@ const SignupForm = () => {
             </div>
             <div className="mt-4">
               <label className="block text-xl font-medium text-gray-700">
-                Street number and name or P.O box
+                Street number and name or P.O box<span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -106,7 +106,7 @@ const SignupForm = () => {
             <div className="grid grid-cols-2 gap-4 mt-4">
               <div>
                 <label className="block text-xl font-medium text-gray-700">
-                  City
+                  City<span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -116,7 +116,7 @@ const SignupForm = () => {
               </div>
               <div>
                 <label className="block text-xl font-medium text-gray-700">
-                  Postal code
+                  Postal code<span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -128,7 +128,7 @@ const SignupForm = () => {
             <div className="grid grid-cols-2 gap-4 mt-4">
               <div>
                 <label className="block text-xl font-medium text-gray-700">
-                  State
+                  State<span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -138,7 +138,7 @@ const SignupForm = () => {
               </div>
               <div>
                 <label className="block text-xl font-medium text-gray-700">
-                  Country
+                  Country<span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"

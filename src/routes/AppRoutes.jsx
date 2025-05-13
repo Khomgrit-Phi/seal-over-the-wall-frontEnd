@@ -5,7 +5,7 @@ import HowtoWork from '../pages/HowtoWork';
 import ExpressYourself from '../pages/ExpressYourself';
 import Cart from '../pages/Cart';
 import CheckOut from '../pages/checkout/CheckOut';
-import Login from '../pages/auth/Login';
+import Login from '../pages/Login';
 import Register from '../pages/auth/Register';
 import Layout from '../layouts/Layout';
 import LayoutAdmin from '../layouts/LayoutAdmin';

@@ -1,5 +1,9 @@
 import React from 'react';
 import Carousel from '../components/Carousel';
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 import shirt from "../assets/images/login-shirt.svg";
 import bag from "../assets/images/login-bag.svg";
@@ -11,9 +15,42 @@ const slides = [
 
 export default function Login() {
 
+const Login = () => {
+  const { setUser } = useAuth();
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    try {
+      const data = await loginUser(email, password);
+      setUser(data.user);
+      console.log(data);
+      navigate("/home");
+    } catch (err) {
+      console.error(err);
+      setError(
+        err?.response?.data?.message || "Login failed. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
   return (
     <div className="flex items-center justify-center">
         <div className="w-[1440px] h-[1024px] grid grid-cols-2 shadow-xl my-[50px]">
+            {/* Left Side */}
             <div className="flex col-span-1 w-full h-full items-center justify-center">
                 <div className="flex flex-col items-center w-[430px] mt-[48px]">
                     <img src="src\assets\images\custommike-navbar-logo.svg" className="w-[139px] h-[18px] mb-[185px]"/>
@@ -21,12 +58,33 @@ export default function Login() {
                         <h3 className="text-4xl font-bold">Welcome Back</h3>
                         <p className="mt-[12px]">Enter your email and password to access your account</p>
                     </div>
-                    <div className="grid grid-cols-2 w-full">
-                        <p className="text-start mb-[8px]">Email</p>
-                        <input placeholder="Enter your email" className="col-span-2 rounded-lg border-1 border-secondary-light-gray-300 py-[14px] px-[16px] mb-[24px]" />
-                        <p className="text-start mb-[8px]">Password</p>
-                        <input placeholder="Enter your password" className="col-span-2 rounded-lg border-1 border-secondary-light-gray-300 py-[14px] px-[16px]" />
-                    </div>
+
+                    <form onSubmit={handleLogin}>
+                        <div className="grid grid-cols-2 w-full">
+                            <label htmlFor="email" className="text-start mb-[8px]">Email</label>
+                            <input
+                                id="email"
+                                type="email"
+                                className="col-span-2 rounded-lg border-1 border-secondary-light-gray-300 py-[14px] px-[16px] mb-[24px]"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                                autoFocus
+                                placeholder="Enter your email"
+                            />
+
+                            <label htmlFor="password" className="text-start mb-[8px]">Password</label>
+                            <input
+                                id="password"
+                                type="password"
+                                className="col-span-2 rounded-lg border-1 border-secondary-light-gray-300 py-[14px] px-[16px]"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                placeholder="Enter your password"
+                            />
+                        </div>
+                    </form>
                     <div className="flex justify-between w-full mt-[12px]">
                         <div className="flex">
                             <input type="checkbox" className="border-secondary-light-gray-300 rounded-lg"/>
@@ -51,9 +109,12 @@ export default function Login() {
                             <p>Facebook</p>
                         </button>
                     </div>
-                    <p className="mt-[185px]">Don't have an account? <span>Sign Up</span></p>
+                    <p className="mt-[185px]">Don't have an account? <Link to="/signup" className="font-semibold">Sign Up</Link></p>
                 </div>
             </div>
+
+
+            {/* Right Side */}
             <div className="col-span-1 w-full h-full">
                 <Carousel autoSlide={true} autoSlideInterval={5000}>
                     {slides.map((s) => (
@@ -64,4 +125,4 @@ export default function Login() {
         </div>
     </div>
   )
-}
+}}
