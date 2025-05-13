@@ -15,18 +15,20 @@ import {
 } from "@/components/ui/menubar";
 
 import { BiUser } from "react-icons/bi";
-import { Link, Navigate } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import { logoutUser } from "../../services/authService";
 
 const ProfileMenu = () => {
 
-  const { user, loading } = useAuth();
+  const { user, loading, setUser } = useAuth();
+  const navigate = useNavigate();
 
   const handleSignOut = async () => {
     try {
       const res = await logoutUser();
-      return res
+      if (res) setUser(null);
+      navigate('/');
     } catch (error) {
       console.error(error);
     }
