@@ -15,11 +15,12 @@ import {
 } from "@/components/ui/menubar";
 
 import { BiUser } from "react-icons/bi";
+import { Navigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 
 const ProfileMenu = () => {
 
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
 
   return (
     <div>
@@ -36,17 +37,24 @@ const ProfileMenu = () => {
             {/* <MenubarItem inset className="text-lg ">{user.firstName} {user.lastName}</MenubarItem> */}
             <MenubarItem inset className="text-lg ">Somchai Kitkardee</MenubarItem>
 
+            {loading && (<div>Loading</div>)}
+            {!user && (<Navigate to="/login" />)}
+
             {/* TODO: ให้แก้ตรงนี้ดึง user.email มาใช้ */}
-            <MenubarItem inset >{user.email}</MenubarItem>
-            <MenubarSeparator className="border-gray-200 border-1" />
-            <MenubarItem inset className="text-lg cursor-pointer ">Dashboard</MenubarItem>
-            <MenubarItem inset className="text-lg cursor-pointer ">Order</MenubarItem>
-            <MenubarItem inset className="text-lg cursor-pointer ">Create Hub</MenubarItem>
-            <MenubarSeparator className="border-gray-200 border-1" />
-            <MenubarItem inset className="text-lg cursor-pointer ">Following</MenubarItem>
-            <MenubarItem inset className="text-lg cursor-pointer ">Account Setting</MenubarItem>
-            <MenubarSeparator className="border-gray-200 border-1" />
-            <MenubarItem inset className="text-lg cursor-pointer ">Sign out</MenubarItem>
+            {user && !loading && (
+              <>
+                <MenubarItem inset >{user.email}</MenubarItem>
+                <MenubarSeparator className="border-gray-200 border-1" />
+                <MenubarItem inset className="text-lg cursor-pointer ">Dashboard</MenubarItem>
+                <MenubarItem inset className="text-lg cursor-pointer ">Order</MenubarItem>
+                <MenubarItem inset className="text-lg cursor-pointer ">Create Hub</MenubarItem>
+                <MenubarSeparator className="border-gray-200 border-1" />
+                <MenubarItem inset className="text-lg cursor-pointer ">Following</MenubarItem>
+                <MenubarItem inset className="text-lg cursor-pointer ">Account Setting</MenubarItem>
+                <MenubarSeparator className="border-gray-200 border-1" />
+                <MenubarItem inset className="text-lg cursor-pointer ">Sign out</MenubarItem>
+              </>
+            )}
           </MenubarContent>
 
         </MenubarMenu>
