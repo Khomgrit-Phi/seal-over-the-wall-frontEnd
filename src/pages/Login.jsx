@@ -44,7 +44,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center mt-[112px]">
       <div className="w-[1440px] h-[1024px] grid grid-cols-2 shadow-xl my-[50px]">
         {/* Left Side */}
         <div className="flex items-center justify-center w-full h-full col-span-1">
