@@ -15,7 +15,7 @@ const SignupForm = () => {
     city: '',
     postal: '',
     email: '',
-    phone: '', // For mobile phone number
+    phoneNumber: '', // For mobile phone number
     userName: '',
     password: '',
     confirmPassword: '',
@@ -47,7 +47,7 @@ const SignupForm = () => {
         postal: registerForm.password,
       },
       email: registerForm.email,
-      phone: registerForm.phone, // For mobile phone number
+      phoneNumber: registerForm.phoneNumber, // For mobile phone number
       userName: registerForm.userName,
       password: registerForm.password,
       confirmPassword: registerForm.confirmPassword,
@@ -76,7 +76,7 @@ const SignupForm = () => {
               </div>
               <div>
                 <SignUpFormInput
-                  name="phone"
+                  name="phoneNumber"
                   label="Mobile phone number"
                   type="tel"
                   onChange={handleOnchange}
