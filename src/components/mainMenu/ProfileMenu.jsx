@@ -28,7 +28,6 @@ const ProfileMenu = () => {
     try {
       await logoutUser();
       setUser(null);
-      console.log(user);
       navigate('/');
     } catch (error) {
       console.error(error);
