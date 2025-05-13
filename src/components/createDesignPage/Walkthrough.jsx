@@ -35,7 +35,8 @@ const WalkthroughTooltip = ({ step, index, stepIndex, backProps, skipProps, prim
           {...primaryProps}
           className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-5 py-2 rounded-lg"
         >
-          {continuous ? 'ถัดไป' : 'เสร็จสิ้น'}
+          {stepIndex === steps.length - 1 ? 'เริ่มใช้งาน' : 'ถัดไป'}
+
         </button>
       </div>
     </div>

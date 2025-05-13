@@ -1,10 +1,9 @@
 import React from 'react'
-import tshirticon from "../../assets/images/create-design-pages/selection-t-shirt.svg" 
-import bagsicon from "../../assets/images/create-design-pages/selection-bags.svg" 
-import cupsicon from "../../assets/images/create-design-pages/selection-cups.svg" 
+import tshirticon from "../../assets/images/create-design-pages/selection-t-shirt.svg"
+import bagsicon from "../../assets/images/create-design-pages/selection-bags.svg"
+import cupsicon from "../../assets/images/create-design-pages/selection-cups.svg"
 
-function ProductSelection() {
-    const [selected, setSelected] = React.useState('tshirt');
+function ProductSelection({ selected, setSelected }) {
     const products = [
         { name: 'tshirt', icon: tshirticon },
         { name: 'bags', icon: bagsicon, className: 'size-w-[100px]' },
@@ -20,7 +19,6 @@ function ProductSelection() {
                     className="group relative cursor-pointer pb-2"
                 >
                     <img src={product.icon} alt={product.name} />
-                    {/* Animated underline */}
                     <div className={`
                         absolute bottom-0 left-0 h-1 w-full rounded-sm
                         origin-down scale-x-0
@@ -31,6 +29,7 @@ function ProductSelection() {
                 </button>
             ))}
         </div>
-    )
+    );
 }
+
 export default ProductSelection

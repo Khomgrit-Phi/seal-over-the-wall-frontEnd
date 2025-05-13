@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { Link } from "react-router";
-import CarouselPic from "./CarouselPic";
+import * as React from 'react';
+import { Link } from 'react-router';
+import CarouselPic from './CarouselPic';
 
-import { cn } from "@/lib/utils";
-import { Icons } from "@/components/icons";
+import { cn } from '@/lib/utils';
+import { Icons } from '@/components/icons';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -13,17 +13,15 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+  navigationMenuTriggerStyle
+} from '@/components/ui/navigation-menu';
 
 function DropdownMenu() {
   return (
     <NavigationMenu className="">
       <NavigationMenuList className="">
         <NavigationMenuItem className="">
-          <NavigationMenuTrigger className="text-lg  hover:text-primary-blue-500 ">
-            Shop
-          </NavigationMenuTrigger>
+          <NavigationMenuTrigger className="text-lg  hover:text-primary-blue-500 ">Shop</NavigationMenuTrigger>
           <NavigationMenuContent className="bg-white rounded-xl shadow-2xl ">
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[572px] lg:grid-cols-2 border-none">
               <li className="">
@@ -53,13 +51,13 @@ function DropdownMenu() {
                     <Link to="#">Product</Link>
                   </li>
                   <li>
-                    <Link to="#">Shirt</Link>
+                    <Link to="/shop">Shirt</Link>
                   </li>
                   <li>
-                    <Link to="#">Mug</Link>
+                    <Link to="/shop">Mug</Link>
                   </li>
                   <li>
-                    <Link to="#">Bag</Link>
+                    <Link to="/shop">Bag</Link>
                   </li>
                 </ul>
               </div>
@@ -68,16 +66,12 @@ function DropdownMenu() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <Link to="#" legacyBehavior passHref>
-            <NavigationMenuLink className="text-lg hover:text-primary-blue-500">
-              How to Work
-            </NavigationMenuLink>
+            <NavigationMenuLink className="text-lg hover:text-primary-blue-500">How to Work</NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <Link to="#" legacyBehavior passHref>
-            <NavigationMenuLink className="text-lg  hover:text-primary-blue-500">
-              Express yourself
-            </NavigationMenuLink>
+            <NavigationMenuLink className="text-lg  hover:text-primary-blue-500">Express yourself</NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
       </NavigationMenuList>

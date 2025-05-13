@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import CheckedBox from './ui/CheckedBox';
 
-export default function CartBox({ imageArray, name, size, price, quantity, color, updateTotalPrice }) {
+export default function CartBox({ imageArray, initialImage, name, size, price, quantity, color, updateTotalPrice }) {
   const colorArray = ['black', 'blue', 'gray', 'white'];
-  const [selectedColor, setSelectedColor] = useState(color); // Initialize with the prop color
-  const [selectedQuantity, setSelectedQuantity] = useState(quantity); // Initialize with the prop color
-  const [selectedSize, setSelectedSize] = useState(size); // Initialize with the prop size
-  const [currentPrice, setCurrentPrice] = useState(price * quantity); // Initialize with the prop size
+  const [selectedColor, setSelectedColor] = useState(color);
+  const [selectedQuantity, setSelectedQuantity] = useState(quantity);
+  const [selectedSize, setSelectedSize] = useState(size);
+  const [currentPrice, setCurrentPrice] = useState(price * quantity);
 
   const colorImageMap = {
     black: 0,
@@ -15,7 +15,14 @@ export default function CartBox({ imageArray, name, size, price, quantity, color
     white: 3
   };
 
-  const currentImage = imageArray[colorImageMap[selectedColor]] || imageArray[0];
+  const testArray = [
+    'src/assets/images/Products/shirt/fetch/fetch-shirt-black-back.png',
+    'src/assets/images/Products/shirt/fetch/fetch-shirt-blue-front.png',
+    'src/assets/images/Products/shirt/fetch/fetch-shirt-gray-front.png',
+    'src/assets/images/Products/shirt/fetch/fetch-shirt-white-front.png'
+  ];
+  // Determine the current image based on selected color
+  const currentImage = imageArray[colorImageMap[selectedColor]];
 
   const sizeOptions = [
     { label: 'S', value: 's' },
@@ -24,9 +31,11 @@ export default function CartBox({ imageArray, name, size, price, quantity, color
   ];
 
   useEffect(() => {
-    setCurrentPrice(price * selectedQuantity); // Update currentPrice when quantity changes
-    updateTotalPrice(price * selectedQuantity); //  Call the function to update the total price in Cart.jsx
-  }, [selectedQuantity, price, updateTotalPrice]); //  Dependencies:  Run this effect when selectedQuantity, price, or updateTotalPrice changes
+    setCurrentPrice(price * selectedQuantity);
+    // if (updateTotalPrice) { // Make sure the function exists before calling
+    //   updateTotalPrice(price * selectedQuantity);
+    // }
+  }, [selectedQuantity, price]);
 
   const handleColorChange = (event) => {
     setSelectedColor(event.target.value);
@@ -38,11 +47,10 @@ export default function CartBox({ imageArray, name, size, price, quantity, color
 
   const handleIncreaseQuantityChange = () => {
     setSelectedQuantity((prev) => prev + 1);
-    setCurrentPrice(price * new quantity());
   };
+
   const handleDecreaseQuantityChange = () => {
     setSelectedQuantity((prev) => (prev > 1 ? prev - 1 : 1));
-    setCurrentPrice(price * new quantity());
   };
 
   return (
@@ -82,7 +90,6 @@ export default function CartBox({ imageArray, name, size, price, quantity, color
             <div className="flex col-span-1 items-center">
               <label htmlFor="sizes" className="mr-2">
                 size:
-                {/* size: <span className="ml-1">{selectedSize ? selectedSize.toUpperCase() : ''}</span> */}
               </label>
               <select
                 id="sizes"

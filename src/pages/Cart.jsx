@@ -4,7 +4,7 @@ import GiftCard from '../components/GiftCard';
 import Questions from '../components/Questions';
 import AdBox from '../components/AdBox';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { getCart } from '../services/cart.js';
 
 const Cart = () => {
   const [orderItem, setOrderItem] = useState([]);
@@ -12,106 +12,96 @@ const Cart = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    setOrderItem([
-      {
-        image: [
-          'src/assets/images/Products/shirt/espresso/espresso-shirt-black-back.png',
-          'src/assets/images/Products/shirt/espresso/espresso-shirt-blue-back.png',
-          'src/assets/images/Products/shirt/espresso/espresso-shirt-gray-front.png',
-          'src/assets/images/Products/shirt/espresso/espresso-shirt-white-front.png'
-        ],
-        name: 'More Espresso',
-        size: 'M',
-        color: 'black',
-        productType: 'shirt',
-        quantity: 1,
-        price: 499
-      },
-      {
-        image: [
-          'src/assets/images/Products/shirt/fetch/fetch-shirt-black-front.png',
-          'src/assets/images/Products/shirt/fetch/fetch-shirt-blue-front.png',
-          'src/assets/images/Products/shirt/fetch/fetch-shirt-gray-front.png',
-          'src/assets/images/Products/shirt/fetch/fetch-shirt-white-front.png'
-        ],
-        name: 'Fetch This',
-        size: 'M',
-        color: 'white',
-        productType: 'shirt',
-        quantity: 1,
-        price: 299
-      },
-      {
-        image: [
-          'src/assets/images/Products/bag/dont/dont-bag-black-front.png',
-          'src/assets/images/Products/bag/dont/dont-bag-blue-front.png',
-          'src/assets/images/Products/bag/dont/dont-bag-gray-front.png',
-          'src/assets/images/Products/bag/dont/dont-bag-white-front.png'
-        ],
-        name: 'Dont kill my vibe',
-        size: 'M',
-        color: 'white',
-        productType: 'bag',
-        quantity: 1,
-        price: 299
-      },
-      {
-        image: [
-          'src/assets/images/Products/cup/screaming/screaming-cup-black-front.png',
-          'src/assets/images/Products/cup/screaming/screaming-cup-blue-front.png',
-          'src/assets/images/Products/cup/screaming/screaming-cup-gray-front.png',
-          'src/assets/images/Products/cup/screaming/screaming-cup-white-front.png'
-        ],
-        name: 'Have you try Screaming?',
-        size: 'M',
-        color: 'black',
-        productType: 'cup',
-        quantity: 1,
-        price: 399
-      }
-    ]);
-  }, []);
+  const userId = '681f06a48872b623329fd31b';
+
+  // useEffect(() => {
+  //   setOrderItem([
+  //     {
+  //       image: [
+  //         'src/assets/images/Products/shirt/espresso/espresso-shirt-black-back.png',
+  //         'src/assets/images/Products/shirt/espresso/espresso-shirt-blue-back.png',
+  //         'src/assets/images/Products/shirt/espresso/espresso-shirt-gray-front.png',
+  //         'src/assets/images/Products/shirt/espresso/espresso-shirt-white-front.png'
+  //       ],
+  //       name: 'More Espresso',
+  //       size: 'M',
+  //       color: 'black',
+  //       productType: 'shirt',
+  //       quantity: 1,
+  //       price: 499
+  //     },
+  //     {
+  //       image: [
+  //         'src/assets/images/Products/shirt/fetch/fetch-shirt-black-front.png',
+  //         'src/assets/images/Products/shirt/fetch/fetch-shirt-blue-front.png',
+  //         'src/assets/images/Products/shirt/fetch/fetch-shirt-gray-front.png',
+  //         'src/assets/images/Products/shirt/fetch/fetch-shirt-white-front.png'
+  //       ],
+  //       name: 'Fetch This',
+  //       size: 'M',
+  //       color: 'white',
+  //       productType: 'shirt',
+  //       quantity: 1,
+  //       price: 299
+  //     },
+  //     {
+  //       image: [
+  //         'src/assets/images/Products/bag/dont/dont-bag-black-front.png',
+  //         'src/assets/images/Products/bag/dont/dont-bag-blue-front.png',
+  //         'src/assets/images/Products/bag/dont/dont-bag-gray-front.png',
+  //         'src/assets/images/Products/bag/dont/dont-bag-white-front.png'
+  //       ],
+  //       name: 'Dont kill my vibe',
+  //       size: 'M',
+  //       color: 'white',
+  //       productType: 'bag',
+  //       quantity: 1,
+  //       price: 299
+  //     },
+  //     {
+  //       image: [
+  //         'src/assets/images/Products/cup/screaming/screaming-cup-black-front.png',
+  //         'src/assets/images/Products/cup/screaming/screaming-cup-blue-front.png',
+  //         'src/assets/images/Products/cup/screaming/screaming-cup-gray-front.png',
+  //         'src/assets/images/Products/cup/screaming/screaming-cup-white-front.png'
+  //       ],
+  //       name: 'Have you try Screaming?',
+  //       size: 'M',
+  //       color: 'black',
+  //       productType: 'cup',
+  //       quantity: 1,
+  //       price: 399
+  //     }
+  //   ]);
+  // }, []);
 
   useEffect(() => {
     const fetchCartData = async () => {
       setLoading(true);
       setError(null);
       try {
-        // Replace '/api/cart' with your actual API endpoint
-        const response = await axios.get('/api/cart/populated/:cartId');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
+        const response = await getCart(userId);
+        console.log('Full Response:', response);
+        const cartData = response.data.cart;
+
+        console.log(cartData.items.productId?.images);
+
         setOrderItem(
-          data.items.map((item) => {
-            const product = item.productId; // The populated Product object
-            const selectedColor = item.selectedColor;
-            let imageUrl = '';
-
-            if (product && product.color) {
-              const colorVariant = product.color.find((c) => c.colorName === selectedColor);
-              if (colorVariant && colorVariant.image && colorVariant.image.length > 0) {
-                imageUrl = colorVariant.image[0]; // Or handle multiple images as needed
-              }
-            }
-
-            return {
-              imageArray: product?.color.find((c) => c.colorName === selectedColor)?.image || [], // Array of images for the selected color
-              name: product?.styleName || '',
-              size: item.selectedSize,
-              color: selectedColor,
-              quantity: item.quantity,
-              price: product?.price || 0,
-              productId: item.productId._id, // Access the ObjectId
-              cartItemId: item._id
-            };
-          })
+          cartData.items.map((item) => ({
+            imageArray: item.productId?.images || [], // For initial display
+            productImages: item.selectedImages, // Entire images array from Product
+            name: item.productId?.title || '',
+            size: item.selectedSize,
+            color: item.selectedColor,
+            quantity: item.quantity,
+            price: item.unitPrice,
+            productId: item.productId?._id,
+            cartItemId: item._id
+          }))
         );
-        setTotalPrice(data.total);
+        setTotalPrice(cartData.total);
       } catch (err) {
-        setError(err.message);
+        setError(err.response?.data?.message || err.message);
       } finally {
         setLoading(false);
       }
@@ -127,7 +117,6 @@ const Cart = () => {
   if (error) {
     return <div>Error loading cart: {error}</div>;
   }
-
   return (
     <div className="flex flex-col ">
       <h2 className="text-center text-4xl font-bold mt-[132px]">Cart</h2>
@@ -135,10 +124,10 @@ const Cart = () => {
       <div className="flex justify-center  items-center w-full pl-[88px]">
         <div className="w-[1072px] flex justify-between mt-[50px] pb-[25px] border-b-2 border-secondary-light-gray-300"></div>
       </div>
-      {orderItem.map((item, index) => (
+      {orderItem.map((item) => (
         <CartBox
           key={item.cartItemId} // Use a unique ID from your cart item
-          imageArray={item.image}
+          imageArray={item.imageArray}
           name={item.name}
           size={item.size}
           color={item.color}

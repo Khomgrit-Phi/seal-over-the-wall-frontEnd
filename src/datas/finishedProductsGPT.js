@@ -163,8 +163,7 @@ export const products = [
       ],
     },
 
-    {
-      productId: 5,
+    {productId: 5,
       productType: "bag",
       styleName: "dont",
       title: "Don't Kill My Vibe Bag",
@@ -258,6 +257,7 @@ export const products = [
           image: [
             "src/assets/images/Products/t-shirt/fetch/fetch-shirt-black-front.png",
             "src/assets/images/Products/t-shirt/fetch/fetch-shirt-black-back.png",
+            
           ],
         },
         {
