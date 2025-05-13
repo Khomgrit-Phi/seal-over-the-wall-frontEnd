@@ -194,10 +194,10 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
                 </div>
 
 
-            </div>
-            <Outlet />
-        </div>
-    );
-};
+</div>
+  );
 
-export default ExpressAndPublish;
+
+}
+
+export default ExpressAndPlublish;
