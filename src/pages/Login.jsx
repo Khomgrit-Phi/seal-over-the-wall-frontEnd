@@ -33,7 +33,7 @@ export default function Login() {
       const data = await loginUser(email, password);
       setUser(data.user);
       console.log(data);
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       console.error(err);
       setError(
@@ -89,24 +89,24 @@ export default function Login() {
                   placeholder="Enter your password"
                 />
               </div>
-            </form>
-            <div className="flex justify-between w-full mt-[12px]">
-              <div className="flex">
-                <input type="checkbox" className="rounded-lg border-secondary-light-gray-300" />
-                <p className="ml-[8px]">
-                  Remember me
+                <div className="flex justify-between w-full mt-[12px]">
+                <div className="flex">
+                    <input type="checkbox" className="rounded-lg border-secondary-light-gray-300" />
+                    <p className="ml-[8px]">
+                    Remember me
+                    </p>
+                </div>
+                <p className="flex text-end">
+                    Forgot Password
                 </p>
-              </div>
-              <p className="flex text-end">
-                Forgot Password
-              </p>
-            </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className={`bg-[#202020] mt-[40px] w-full h-auto rounded-lg flex py-2 justify-center hover:scale-105 duration-300 text-[#FFFFFF] text-2xl hover:cursor-pointer`}>
-              {loading ? "Signing in..." : "Sign in"}
-            </button>
+                </div>
+                <button
+                type="submit"
+                disabled={loading}
+                className={`bg-[#202020] mt-[40px] w-full h-auto rounded-lg flex py-2 justify-center hover:scale-105 duration-300 text-[#FFFFFF] text-2xl hover:cursor-pointer`}>
+                {loading ? "Signing in..." : "Sign in"}
+                </button>
+            </form>
             <div className="flex gap-[8px]">
               <button className="flex w-[211px] h-[48px] rounded-lg border-1 border-secondary-light-gray-300 items-center justify-center gap-[8px] mt-[12px] hover:scale-105 duration-300 hover:cursor-pointer">
                 <img src="src\assets\images\google-color-svgrepo-com.svg" className="w-[24px] h-[24px]" />
