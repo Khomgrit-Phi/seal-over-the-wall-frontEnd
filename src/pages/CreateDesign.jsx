@@ -25,13 +25,13 @@ function CreateDesign({ onNext, updateCreateData }) {
 
   const handleSaveDesign = async () => {
     if (!designURL || selectedColors.length === 0 || !selectedProduct) {
-      alert("Please complete all steps before saving your design.");
+      showModal("Please complete all steps before saving your design.");
       return;
     }
 
     const originalElements = document.querySelectorAll('.preview-to-capture');
     if (!originalElements.length) {
-      alert('No previews found.');
+      showModal('No previews found.');
       return;
     }
 
@@ -98,7 +98,7 @@ function CreateDesign({ onNext, updateCreateData }) {
     }
 
     document.body.removeChild(tempContainer);
-    showModal('Design saved!');
+    showModal("Design saved!");
     setIsSaved(true);
   };
 
@@ -167,17 +167,16 @@ function CreateDesign({ onNext, updateCreateData }) {
     e.preventDefault();
   };
 
-  // Modal Alert
-const [modal, setModal] = useState({ open: false, title: '', message: '' });
+  // Modal Alert State
+  const [modal, setModal] = useState({ open: false, title: '', message: '' });
 
-const showModal = (title, message) => {
-  setModal({ open: true, title, message });
-};
+  const showModal = (message) => {
+    setModal({ open: true, title: "Alert", message });
+  };
 
-const closeModal = () => {
-  setModal({ open: false, title: '', message: '' });
-};
-
+  const closeModal = () => {
+    setModal({ open: false, title: '', message: '' });
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -216,27 +215,45 @@ const closeModal = () => {
       </div>
 
       {/* Upload Design & Mockup Template */}
-      <div className="w-full flex flex-col items-center gap-8 px-4 my-10">
-        <div className="absolute z-10 mt-25">
+      <motion.div
+        className="w-full flex flex-col items-center gap-8 px-4 my-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
+        <motion.div
+          className="absolute z-10 mt-25"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
           <UploadDesignBox onUpload={setDesignURL} />
-        </div>
+        </motion.div>
+
         <div className="relative">{renderProductTemplate()}</div>
-      </div>
+      </motion.div>
 
       {/* Preview Section */}
-      <div className="flex justify-center mt-10">
+      <motion.div
+        className="flex justify-center mt-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+      >
         <SelectedProduct
           selectedProduct={selectedProduct}
           selectedColors={selectedColors}
           uploadedImage={designURL}
         />
-        <ModalAlert
+      </motion.div>
+
+      {/* Modal + Walkthrough */}
+      <ModalAlert
         isOpen={modal.open}
         onClose={closeModal}
         title={modal.title}
         message={modal.message}
-        />
-      </div>
+      />
       <Walkthrough />
     </form>
   );
