@@ -22,7 +22,7 @@ function ProductPrintAreaSelector({ productType, selected, setSelected }) {
           <button
             key={printarea.name}
             onClick={() => togglePrintArea(printarea.name)}
-            className="group relative cursor-pointer pb-2 focus:outline-none"
+            className="group relative cursor-pointer pb-2 focus:outline-none transition-all duration-300 ease-in-out hover:scale-110"
             aria-pressed={selected.includes(printarea.name)}
           >
             <img

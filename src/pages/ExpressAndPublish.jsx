@@ -1,13 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import NextStepButton from "../components/createDesignPage/NextStepButton";
-import BackButton from "../components/collectDetailsPage/BackButton";
+import NextStepButton from "../components/createDesignPage/NextStepButton.jsx";
+import BackButton from "../components/collectDetailsPage/BackButton.jsx";
 import shirtProvWhiteFront from "../../src/assets/images/Products/shirt/prove/prove-shirt-white-front.png";
-// import bagWhiteFront from "../../src/assets/images/Products/bag/prove/prove-bag-white-front.png";
-// import cupWhiteFront from "../../src/assets/images/Products/cup/prove/prove-cup-white-front.png";
-// import shirtProvWhiteBack from "../../src/assets/images/Products/shirt/prove/prove-shirt-white-back.png";
-// import shirtProvWhiteFrontPreviewWomen from "../../src/assets/images/expressAndPublish/prove-shirt-white-front-preview-women-1.jpg";
-// import shirtProvWhiteBackPreviewWomen from "../../src/assets/images/expressAndPublish/prove-shirt-white-back-preview-women-1.jpg";
 import iconUplodeFile from "../../src/assets/images/expressAndPublish/icon-uplodeFile.png";
 import shirtProveBlueFront from "../../src/assets/images/Products/shirt/prove/prove-shirt-blue-front.png";
 import shirtProveGrayFront from "../../src/assets/images/Products/shirt/prove/prove-shirt-gray-back.png";
@@ -79,11 +74,7 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
                             sendChild2={setproductPreviewChild2}
                             sendChild3={setproductPreviewChild3}
                             onCategoryChange={handleCategoryChange} />
-                        {/* <div className='flex flex-col gap-4 ml-34 mr-72'>
-                        <img src= {shirtProvWhiteFront} alt="T-shirt" className="h-30 w-30 rounded-lg" />
-                        <img src= {bagWhiteFront} alt="Bag" className="h-30 w-30 rounded-lg" />
-                        <img src= {cupWhiteFront} alt="Cup" className="h-30 w-30 rounded-lg" />
-                    </div> */}
+
                         {/* Product preview image */}
                         <img src={productPreview} alt="T-shirt" className='w-132 h-132' />
                     </div>
@@ -152,20 +143,6 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
 
                     {/* input right */}
                     <div className='grow'>
-                        {/* <h3 className='text-2xl text-[#202020] font-semibold mb-8'>About Me</h3>
-                    <div className='flex flex-col'>
-                        <div className='flex flex-row gap-4 items-center'>
-                            <div className="w-14 h-14 rounded-full bg-primary-blue-500 flex items-center justify-center text-primary-white text-2xl font-semibold">
-                                    AL
-                            </div>
-                            <div className="ml-2 font-semibold text-2xl text-primary-black">Artists Lalala</div>
-                        </div>
-                    </div>
-                    <input
-                                    type="text"
-                                    className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-192 h-29 mt-6"
-                                    placeholder="Give everyone a little peek into who you are here! You can totally share your social media links as well."
-                                /> */}
                         <div>
                             <h3 className='text-2xl text-[#202020] font-semibold'>Product Tags</h3>
                             <div className='mt-3 flex flex-wrap gap-4'>

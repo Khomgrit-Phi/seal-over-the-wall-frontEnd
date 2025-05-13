@@ -9,111 +9,260 @@ import SelectedProduct from '../components/createDesignPage/SelectedProduct';
 import Walkthrough from '../components/createDesignPage/Walkthrough';
 import NextStepButton from '../components/createDesignPage/NextStepButton';
 import SaveButton from '../components/createDesignPage/SaveButton';
-import { createdProduct } from "../services/created"; // Ensure this points to your API helper
+import { createdProduct } from "../services/created";
+import { motion, AnimatePresence } from 'framer-motion';
+import html2canvas from 'html2canvas';
+import ModalAlert from '../components/createDesignPage/ModalAlert';
 
 function CreateDesign({ onNext, updateCreateData }) {
   const [selectedProduct, setSelectedProduct] = useState('tshirt');
   const [designURL, setDesignURL] = useState('');
   const [selectedColors, setSelectedColors] = useState(['white']);
+  const [isSaved, setIsSaved] = useState(false);
+  const [modal, setModal] = useState({ open: false, title: '', message: '' });
+  const [showLoadingModal, setShowLoadingModal] = useState(false);
+
+  const CLOUD_NAME = 'dvpnipb6g';
+  const UPLOAD_PRESET = 'upload_designs';
+
+  const showModal = (message) => {
+    setModal({ open: true, title: "Alert", message });
+  };
+
+  const closeModal = () => {
+    setModal({ open: false, title: '', message: '' });
+  };
+
+  const handleSaveDesign = async () => {
+    if (!designURL || selectedColors.length === 0 || !selectedProduct) {
+      showModal("Please complete all steps before saving your design.");
+      return;
+    }
+
+    const originalElements = document.querySelectorAll('.preview-to-capture');
+    if (!originalElements.length) {
+      showModal('No previews found.');
+      return;
+    }
+
+    setShowLoadingModal(true);
+
+    const upscale = 3;
+    const tempContainer = document.createElement('div');
+    tempContainer.style.position = 'absolute';
+    tempContainer.style.top = '-9999px';
+    tempContainer.style.left = '-9999px';
+    document.body.appendChild(tempContainer);
+
+    try {
+      for (let i = 0; i < originalElements.length; i++) {
+        const el = originalElements[i];
+        const color = el.getAttribute('data-color') || `color_${i + 1}`;
+        const clone = el.cloneNode(true);
+        const origWidth = el.offsetWidth;
+        const origHeight = el.offsetHeight;
+
+        clone.style.transform = `scale(${upscale})`;
+        clone.style.transformOrigin = 'top left';
+        clone.style.width = `${origWidth}px`;
+        clone.style.height = `${origHeight}px`;
+
+        tempContainer.appendChild(clone);
+
+        const canvas = await html2canvas(clone, {
+          backgroundColor: null,
+          useCORS: true,
+          scale: 1,
+        });
+
+        const finalCanvas = document.createElement('canvas');
+        finalCanvas.width = origWidth * upscale;
+        finalCanvas.height = origHeight * upscale;
+
+        const ctx = finalCanvas.getContext('2d');
+        ctx.drawImage(canvas, 0, 0);
+
+        const blob = await new Promise((resolve) =>
+          finalCanvas.toBlob(resolve, 'image/png')
+        );
+
+        const formData = new FormData();
+        formData.append('file', blob);
+        formData.append('upload_preset', UPLOAD_PRESET);
+        formData.append('public_id', `final_preview_${selectedProduct}_${color}_${Date.now()}`);
+
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`, {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await res.json();
+        if (data.secure_url) {
+          console.log(`✅ Uploaded ${color}: ${data.secure_url}`);
+        } else {
+          console.error(`❌ Failed to upload ${color}`);
+        }
+
+        tempContainer.removeChild(clone);
+      }
+
+      document.body.removeChild(tempContainer);
+      showModal("Design saved!");
+      setIsSaved(true);
+
+    } catch (err) {
+      console.error("Upload error:", err);
+      showModal("Something went wrong.");
+    } finally {
+      setShowLoadingModal(false);
+    }
+  };
 
   const handleSave = async () => {
     if (!designURL || selectedColors.length === 0 || !selectedProduct) {
-      alert("Please complete all required fields before saving.");
+      showModal("Please complete all steps before saving.");
       return;
     }
+
+    setShowLoadingModal(true);
 
     try {
       const payload = {
         productType: selectedProduct,
         selectedColors,
         designUrl: designURL,
-        title: "",           // Will be updated in next step
-        description: "",     // Optional for now
-        price: 0,            // Set later
-        isPublished: false   // Default to false
+        title: "",
+        description: "",
+        price: 0,
+        isPublished: false,
       };
 
       const result = await createdProduct(payload);
-      alert("Design saved successfully!");
+      showModal("Design saved successfully!");
+      setIsSaved(true);
 
-      console.log("Saved design:", result);
-
-      // Optional: forward data to next step
-      if (updateCreateData) {
-        updateCreateData({ createdesign: result.design });
-      }
-
-      // Optional: move to next step
+      if (updateCreateData) updateCreateData({ createdesign: result.design });
       if (onNext) onNext();
 
     } catch (error) {
       console.error("Save failed:", error);
-      alert("Failed to save design.");
+      showModal("Failed to save design.");
+    } finally {
+      setShowLoadingModal(false);
     }
   };
+
+  const handleSubmit = (e) => e.preventDefault();
 
   const renderProductTemplate = () => {
+    let TemplateComponent;
     switch (selectedProduct) {
-      case 'bags':
-        return <BagTemplate />;
-      case 'cups':
-        return <CupTemplate />;
+      case 'bags': TemplateComponent = <BagTemplate />; break;
+      case 'cups': TemplateComponent = <CupTemplate />; break;
       case 'tshirt':
-      default:
-        return <TShirtTemplate />;
+      default: TemplateComponent = <TShirtTemplate />;
     }
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
+    return (
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selectedProduct}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          {TemplateComponent}
+        </motion.div>
+      </AnimatePresence>
+    );
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        {/* Product Selection */}
-        <div className="step-1 flex justify-center mb-6">
-          <ProductSelection
-            selected={selectedProduct}
-            setSelected={setSelectedProduct}
-          />
-        </div>
+    <form onSubmit={handleSubmit}>
+      <div className="step-1 flex justify-center mb-6">
+        <ProductSelection selected={selectedProduct} setSelected={setSelectedProduct} />
+      </div>
 
-        {/* Color & Action Buttons */}
-        <div className="absolute w-[1615px] flex justify-center items-center">
-          <div className="w-full flex justify-between items-start pr-[127px]">
-            <ColorSelection
-              productType={selectedProduct}
-              selectedColors={selectedColors}
-              setSelectedColors={setSelectedColors}
-            />
-            <div className="flex justify-end items-center gap-4 mt-6">
-              <SaveButton onSave={handleSave} />
-              <NextStepButton onNext={onNext} />
-            </div>
-          </div>
-        </div>
-
-        {/* Upload Area & Mockup */}
-        <div className="w-full flex flex-col items-center gap-8 px-4 my-10">
-          <div className="absolute z-10 mt-25">
-            <UploadDesignBox onUpload={setDesignURL} />
-          </div>
-          <div className="relative">{renderProductTemplate()}</div>
-        </div>
-
-        {/* Preview Section */}
-        <div className="flex justify-center mt-10">
-          <SelectedProduct
-            selectedProduct={selectedProduct}
+      <div className="absolute w-[1615px] flex justify-center items-center">
+        <div className="w-full flex justify-between items-start pr-[127px]">
+          <ColorSelection
+            productType={selectedProduct}
             selectedColors={selectedColors}
-            uploadedImage={designURL}
+            setSelectedColors={setSelectedColors}
           />
+          <div className="flex justify-end items-center gap-4 mt-6">
+            <SaveButton
+              onSave={handleSaveDesign}
+              disabled={!designURL || selectedColors.length === 0 || !selectedProduct}
+            />
+            <NextStepButton
+              onNext={() => {
+                if (!isSaved) {
+                  showModal("Please save your design before going to the next step.");
+                  return;
+                }
+                onNext();
+              }}
+            />
+          </div>
         </div>
+      </div>
 
-        <Walkthrough />
-      </form>
-    </>
+      <motion.div
+        className="w-full flex flex-col items-center gap-8 px-4 my-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
+        <motion.div
+          className="absolute z-10 mt-25"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
+          <UploadDesignBox onUpload={setDesignURL} />
+        </motion.div>
+
+        <div className="relative">{renderProductTemplate()}</div>
+      </motion.div>
+
+      <motion.div
+        className="flex justify-center mt-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+      >
+        <SelectedProduct
+          selectedProduct={selectedProduct}
+          selectedColors={selectedColors}
+          uploadedImage={designURL}
+        />
+      </motion.div>
+
+      <ModalAlert
+        isOpen={modal.open}
+        onClose={closeModal}
+        title={modal.title}
+        message={modal.message}
+      />
+
+      <ModalAlert
+        isOpen={showLoadingModal}
+        onClose={() => {}}
+        title="Saving your design..."
+        message={
+          <div className="flex flex-col items-center gap-4">
+            <div className="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full" />
+            <p className="text-gray-600 text-sm">Please wait while we process and upload your design...</p>
+          </div>
+        }
+        hideActions={true}
+        disableClose={true}
+      />
+
+      <Walkthrough />
+    </form>
   );
 }
 
