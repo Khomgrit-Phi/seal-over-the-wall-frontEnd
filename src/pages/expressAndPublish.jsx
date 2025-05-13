@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import NextStepButton from "../components/createDesignPage/NextStepButton";
-import BackButton from "../components/collectDetailsPage/BackButton";
+import NextStepButton from "../components/createDesignPage/NextStepButton.jsx";
+import BackButton from "../components/collectDetailsPage/BackButton.jsx";
 import shirtProvWhiteFront from "../../src/assets/images/Products/shirt/prove/prove-shirt-white-front.png";
 import iconUplodeFile from "../../src/assets/images/expressAndPublish/icon-uplodeFile.png";
 import shirtProveBlueFront from "../../src/assets/images/Products/shirt/prove/prove-shirt-blue-front.png";
