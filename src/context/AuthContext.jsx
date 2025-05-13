@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import api from '../services/api';
 
 export const AuthContext = createContext();
@@ -12,6 +12,8 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
+        // TODO : create backend route + controller to fetch user infomation.
+        // TODO : or make it browse from the cookie.
         const response = await api.get('/mongo/auth/profile');
         setUser(response.data.user); // Restore user state
       } catch (err) {
@@ -45,8 +47,8 @@ export const AuthProvider = ({ children }) => {
   }
 
   return <AuthContext.Provider value={{ user, setUser, login, logout, loading }}>
-            {children}
-          </AuthContext.Provider>;
+    {children}
+  </AuthContext.Provider>;
 };
 
 export const useAuth = () => useContext(AuthContext);
