@@ -23,10 +23,14 @@ export const logoutUser = async () => {
 };
 
 export const signupUser = async (userData) => {
+  console.log("before block try")
   try {
+    console.log("sending response",userData);
     const response = await api.post('/user/signUp', userData);
+    console.log(response)
     return response.data;
   } catch (error) {
+    console.log("inside catch",error);
     return error.message;
   }
 };
