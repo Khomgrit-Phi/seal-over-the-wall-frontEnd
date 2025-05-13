@@ -13,8 +13,7 @@ export const AuthProvider = ({ children }) => {
     const fetchProfile = async () => {
       try {
         // TODO : create backend route + controller to fetch user infomation.
-        // TODO : or make it browse from the cookie.
-        const response = await api.get('/mongo/auth/profile');
+        const response = await api.get('/user/auth/profile');
         setUser(response.data.user); // Restore user state
       } catch (err) {
         console.error('Not authenticated:', err);
