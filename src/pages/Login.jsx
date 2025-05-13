@@ -33,7 +33,7 @@ export default function Login() {
       const data = await loginUser(email, password);
       setUser(data.user);
       console.log(data);
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       console.error(err);
       setError(
