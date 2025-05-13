@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
 export const AuthContext = createContext();
@@ -45,7 +44,9 @@ export const AuthProvider = ({ children }) => {
     return <div>Loading...</div>; // Show loading indicator while restoring session
   }
 
-  return <AuthContext.Provider value={{ user, setUser, login, logout, loading }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, setUser, login, logout, loading }}>
+            {children}
+          </AuthContext.Provider>;
 };
 
 export const useAuth = () => useContext(AuthContext);

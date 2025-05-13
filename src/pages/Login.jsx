@@ -67,7 +67,7 @@ export default function Login() {
                     </div>
                     )}
 
-                    <form onSubmit={handleLogin}>
+                    <form onSubmit={handleLogin} className="w-[430px]">
                         <div className="grid grid-cols-2 w-full">
                             <label htmlFor="email" className="text-start mb-[8px]">Email</label>
                             <input
@@ -108,8 +108,7 @@ export default function Login() {
                         type="submit"
                         disabled={loading}
                         className={`bg-[#202020] mt-[40px] w-full h-auto rounded-lg flex py-2 justify-center hover:scale-105 duration-300 text-[#FFFFFF] text-2xl hover:cursor-pointer`}>
-                        Sign In
-                        {loading ? "Logging in..." : "Login"}
+                        {loading ? "Signing in..." : "Sign in"}
                     </button>
                     <div className="flex gap-[8px]">
                         <button className="flex w-[211px] h-[48px] rounded-lg border-1 border-secondary-light-gray-300 items-center justify-center gap-[8px] mt-[12px] hover:scale-105 duration-300 hover:cursor-pointer">
