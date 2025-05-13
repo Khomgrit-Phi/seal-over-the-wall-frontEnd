@@ -19,9 +19,19 @@ function CreateDesign({ onNext, updateCreateData }) {
   const [designURL, setDesignURL] = useState('');
   const [selectedColors, setSelectedColors] = useState(['white']);
   const [isSaved, setIsSaved] = useState(false);
+  const [modal, setModal] = useState({ open: false, title: '', message: '' });
+  const [showLoadingModal, setShowLoadingModal] = useState(false);
 
   const CLOUD_NAME = 'dvpnipb6g';
   const UPLOAD_PRESET = 'upload_designs';
+
+  const showModal = (message) => {
+    setModal({ open: true, title: "Alert", message });
+  };
+
+  const closeModal = () => {
+    setModal({ open: false, title: '', message: '' });
+  };
 
   const handleSaveDesign = async () => {
     if (!designURL || selectedColors.length === 0 || !selectedProduct) {
@@ -35,6 +45,8 @@ function CreateDesign({ onNext, updateCreateData }) {
       return;
     }
 
+    setShowLoadingModal(true);
+
     const upscale = 3;
     const tempContainer = document.createElement('div');
     tempContainer.style.position = 'absolute';
@@ -42,21 +54,21 @@ function CreateDesign({ onNext, updateCreateData }) {
     tempContainer.style.left = '-9999px';
     document.body.appendChild(tempContainer);
 
-    for (let i = 0; i < originalElements.length; i++) {
-      const el = originalElements[i];
-      const color = el.getAttribute('data-color') || `color_${i + 1}`;
-      const clone = el.cloneNode(true);
-      const origWidth = el.offsetWidth;
-      const origHeight = el.offsetHeight;
+    try {
+      for (let i = 0; i < originalElements.length; i++) {
+        const el = originalElements[i];
+        const color = el.getAttribute('data-color') || `color_${i + 1}`;
+        const clone = el.cloneNode(true);
+        const origWidth = el.offsetWidth;
+        const origHeight = el.offsetHeight;
 
-      clone.style.transform = `scale(${upscale})`;
-      clone.style.transformOrigin = 'top left';
-      clone.style.width = `${origWidth}px`;
-      clone.style.height = `${origHeight}px`;
+        clone.style.transform = `scale(${upscale})`;
+        clone.style.transformOrigin = 'top left';
+        clone.style.width = `${origWidth}px`;
+        clone.style.height = `${origHeight}px`;
 
-      tempContainer.appendChild(clone);
+        tempContainer.appendChild(clone);
 
-      try {
         const canvas = await html2canvas(clone, {
           backgroundColor: null,
           useCORS: true,
@@ -90,16 +102,20 @@ function CreateDesign({ onNext, updateCreateData }) {
         } else {
           console.error(`❌ Failed to upload ${color}`);
         }
-      } catch (err) {
-        console.error(`Error uploading ${color}:`, err);
+
+        tempContainer.removeChild(clone);
       }
 
-      tempContainer.removeChild(clone);
-    }
+      document.body.removeChild(tempContainer);
+      showModal("Design saved!");
+      setIsSaved(true);
 
-    document.body.removeChild(tempContainer);
-    showModal("Design saved!");
-    setIsSaved(true);
+    } catch (err) {
+      console.error("Upload error:", err);
+      showModal("Something went wrong.");
+    } finally {
+      setShowLoadingModal(false);
+    }
   };
 
   const handleSave = async () => {
@@ -107,6 +123,8 @@ function CreateDesign({ onNext, updateCreateData }) {
       showModal("Please complete all steps before saving.");
       return;
     }
+
+    setShowLoadingModal(true);
 
     try {
       const payload = {
@@ -123,38 +141,35 @@ function CreateDesign({ onNext, updateCreateData }) {
       showModal("Design saved successfully!");
       setIsSaved(true);
 
-      if (updateCreateData) {
-        updateCreateData({ createdesign: result.design });
-      }
-
+      if (updateCreateData) updateCreateData({ createdesign: result.design });
       if (onNext) onNext();
+
     } catch (error) {
       console.error("Save failed:", error);
       showModal("Failed to save design.");
+    } finally {
+      setShowLoadingModal(false);
     }
   };
+
+  const handleSubmit = (e) => e.preventDefault();
 
   const renderProductTemplate = () => {
     let TemplateComponent;
     switch (selectedProduct) {
-      case 'bags':
-        TemplateComponent = <BagTemplate />;
-        break;
-      case 'cups':
-        TemplateComponent = <CupTemplate />;
-        break;
+      case 'bags': TemplateComponent = <BagTemplate />; break;
+      case 'cups': TemplateComponent = <CupTemplate />; break;
       case 'tshirt':
-      default:
-        TemplateComponent = <TShirtTemplate />;
+      default: TemplateComponent = <TShirtTemplate />;
     }
 
     return (
       <AnimatePresence mode="wait">
         <motion.div
           key={selectedProduct}
-          initial={{ opacity: 0, x: 0 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, x: -10 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
           {TemplateComponent}
@@ -163,32 +178,12 @@ function CreateDesign({ onNext, updateCreateData }) {
     );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  // Modal Alert State
-  const [modal, setModal] = useState({ open: false, title: '', message: '' });
-
-  const showModal = (message) => {
-    setModal({ open: true, title: "Alert", message });
-  };
-
-  const closeModal = () => {
-    setModal({ open: false, title: '', message: '' });
-  };
-
   return (
     <form onSubmit={handleSubmit}>
-      {/* Product Selection */}
       <div className="step-1 flex justify-center mb-6">
-        <ProductSelection
-          selected={selectedProduct}
-          setSelected={setSelectedProduct}
-        />
+        <ProductSelection selected={selectedProduct} setSelected={setSelectedProduct} />
       </div>
 
-      {/* Color Selection + Save/Next Buttons */}
       <div className="absolute w-[1615px] flex justify-center items-center">
         <div className="w-full flex justify-between items-start pr-[127px]">
           <ColorSelection
@@ -214,7 +209,6 @@ function CreateDesign({ onNext, updateCreateData }) {
         </div>
       </div>
 
-      {/* Upload Design & Mockup Template */}
       <motion.div
         className="w-full flex flex-col items-center gap-8 px-4 my-10"
         initial={{ opacity: 0, y: 30 }}
@@ -233,7 +227,6 @@ function CreateDesign({ onNext, updateCreateData }) {
         <div className="relative">{renderProductTemplate()}</div>
       </motion.div>
 
-      {/* Preview Section */}
       <motion.div
         className="flex justify-center mt-10"
         initial={{ opacity: 0, y: 20 }}
@@ -247,13 +240,27 @@ function CreateDesign({ onNext, updateCreateData }) {
         />
       </motion.div>
 
-      {/* Modal + Walkthrough */}
       <ModalAlert
         isOpen={modal.open}
         onClose={closeModal}
         title={modal.title}
         message={modal.message}
       />
+
+      <ModalAlert
+        isOpen={showLoadingModal}
+        onClose={() => {}}
+        title="Saving your design..."
+        message={
+          <div className="flex flex-col items-center gap-4">
+            <div className="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full" />
+            <p className="text-gray-600 text-sm">Please wait while we process and upload your design...</p>
+          </div>
+        }
+        hideActions={true}
+        disableClose={true}
+      />
+
       <Walkthrough />
     </form>
   );

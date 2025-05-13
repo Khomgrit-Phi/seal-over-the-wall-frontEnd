@@ -20,9 +20,15 @@ import cupgray from "../../assets/images/Products/cup/empty/empty-cup-gray-front
 // Print area positions
 const printAreas = {
   tshirt: { top: '32%', left: '20%', width: '60%', height: '40%' },
-  bags: { top: '50%', left: '26%', width: '43%', height: '30%' },
+  bags: {
+    top: '55.76%',
+    left: '25.34%',
+    width: '45.57%',
+    height: '35.97%',
+  },
   cups: { top: '40%', left: '29%', width: '40%', height: '30%', transform: 'rotate(-20deg)' },
 };
+
 
 // Product mockup map
 const productMockups = {
@@ -73,6 +79,7 @@ function SelectedProduct({ selectedProduct, selectedColors, uploadedImage }) {
               key={color}
               data-color={color}
               className='preview-to-capture relative w-[280px] h-[280px]'
+              style={{ aspectRatio: selectedProduct === 'bags' ? '3/4' : '1' }}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
@@ -99,15 +106,19 @@ function SelectedProduct({ selectedProduct, selectedColors, uploadedImage }) {
                     ...printAreas[selectedProduct],
                   }}
                 >
-                  <img
-                    src={uploadedImage}
-                    alt="Design Overlay"
-                    className="w-full h-full object-contain"
-                    style={{
-                      filter: 'contrast(1.2) brightness(0.95)',
-                      mixBlendMode: 'multiply',
-                    }}
-                  />
+                  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <img
+                      src={uploadedImage}
+                      alt="Design Overlay"
+                      style={{
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        objectFit: 'contain',
+                        filter: 'contrast(1.2) brightness(0.95)',
+                        mixBlendMode: 'multiply',
+                      }}
+                    />
+                  </div>
                 </motion.div>
               )}
             </motion.div>
