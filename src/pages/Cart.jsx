@@ -3,7 +3,7 @@ import CartBox from '../components/CartBox';
 import GiftCard from '../components/GiftCard';
 import Questions from '../components/Questions';
 import AdBox from '../components/AdBox';
-import { getCart, deleteCartItem, updateDetail } from '../services/cart.js';
+import { getCart, deleteCartItem } from '../services/cart.js';
 import { createOrder } from '../services/order.js';
 import { Link } from 'react-router';
 
