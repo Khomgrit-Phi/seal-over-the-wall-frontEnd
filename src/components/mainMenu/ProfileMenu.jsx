@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/menubar";
 
 import { BiUser } from "react-icons/bi";
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import { logoutUser } from "../../services/authService";
 
@@ -40,14 +40,10 @@ const ProfileMenu = () => {
         <MenubarMenu>
 
           {/* อันนี้ปุ่ม User */}
-          <MenubarTrigger><BiUser className="w-6 h-6 border-none hover:text-primary-blue-500" /></MenubarTrigger>
+          {!user ?
+            (<Link to="/login"><BiUser className="w-6 h-6 border-none hover:text-primary-blue-500" /></Link>)
+            : (<MenubarTrigger><BiUser className="w-6 h-6 border-none hover:text-primary-blue-500" /></MenubarTrigger>)}
 
-          {loading && (<div>Loading</div>)}
-          {!user && (<Navigate to="/login" />)}
-          {/* อันนี้ list ที่ต้องโชว์หลังจาก login แล้ว */}
-
-
-          {/* TODO: ให้แก้ตรงนี้ดึง user.email มาใช้ */}
           {user && !loading && (
             <MenubarContent className="bg-white border-gray-200 border-1">
 
