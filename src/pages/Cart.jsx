@@ -1,114 +1,142 @@
+import React, { useEffect, useState, useCallback } from 'react'; // Import useCallback
 import CartBox from '../components/CartBox';
-import CheckedBox from '../components/ui/CheckedBox';
 import GiftCard from '../components/GiftCard';
 import Questions from '../components/Questions';
 import AdBox from '../components/AdBox';
-import { useEffect, useState } from 'react';
-import { getCart } from '../services/cart.js';
+import { getCart, deleteCartItem } from '../services/cart.js';
+import { createOrder } from '../services/order.js';
+import { Link } from 'react-router';
 
 const Cart = () => {
   const [orderItem, setOrderItem] = useState([]);
+  const [cartData, setCartData] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const userId = '6821de629f107d6ad0c88355';
 
-  const userId = '681f06a48872b623329fd31b';
-
-  // useEffect(() => {
-  //   setOrderItem([
-  //     {
-  //       image: [
-  //         'src/assets/images/Products/shirt/espresso/espresso-shirt-black-back.png',
-  //         'src/assets/images/Products/shirt/espresso/espresso-shirt-blue-back.png',
-  //         'src/assets/images/Products/shirt/espresso/espresso-shirt-gray-front.png',
-  //         'src/assets/images/Products/shirt/espresso/espresso-shirt-white-front.png'
-  //       ],
-  //       name: 'More Espresso',
-  //       size: 'M',
-  //       color: 'black',
-  //       productType: 'shirt',
-  //       quantity: 1,
-  //       price: 499
-  //     },
-  //     {
-  //       image: [
-  //         'src/assets/images/Products/shirt/fetch/fetch-shirt-black-front.png',
-  //         'src/assets/images/Products/shirt/fetch/fetch-shirt-blue-front.png',
-  //         'src/assets/images/Products/shirt/fetch/fetch-shirt-gray-front.png',
-  //         'src/assets/images/Products/shirt/fetch/fetch-shirt-white-front.png'
-  //       ],
-  //       name: 'Fetch This',
-  //       size: 'M',
-  //       color: 'white',
-  //       productType: 'shirt',
-  //       quantity: 1,
-  //       price: 299
-  //     },
-  //     {
-  //       image: [
-  //         'src/assets/images/Products/bag/dont/dont-bag-black-front.png',
-  //         'src/assets/images/Products/bag/dont/dont-bag-blue-front.png',
-  //         'src/assets/images/Products/bag/dont/dont-bag-gray-front.png',
-  //         'src/assets/images/Products/bag/dont/dont-bag-white-front.png'
-  //       ],
-  //       name: 'Dont kill my vibe',
-  //       size: 'M',
-  //       color: 'white',
-  //       productType: 'bag',
-  //       quantity: 1,
-  //       price: 299
-  //     },
-  //     {
-  //       image: [
-  //         'src/assets/images/Products/cup/screaming/screaming-cup-black-front.png',
-  //         'src/assets/images/Products/cup/screaming/screaming-cup-blue-front.png',
-  //         'src/assets/images/Products/cup/screaming/screaming-cup-gray-front.png',
-  //         'src/assets/images/Products/cup/screaming/screaming-cup-white-front.png'
-  //       ],
-  //       name: 'Have you try Screaming?',
-  //       size: 'M',
-  //       color: 'black',
-  //       productType: 'cup',
-  //       quantity: 1,
-  //       price: 399
-  //     }
-  //   ]);
-  // }, []);
-
+  // Fetch cart data
   useEffect(() => {
     const fetchCartData = async () => {
       setLoading(true);
       setError(null);
       try {
         const response = await getCart(userId);
-        console.log('Full Response:', response);
-        const cartData = response.data.cart;
-
-        console.log(cartData.items.productId?.images);
-
+        const fetchedCartData = response.data.cart;
+        setCartData(fetchedCartData);
         setOrderItem(
-          cartData.items.map((item) => ({
-            imageArray: item.productId?.images || [], // For initial display
-            productImages: item.selectedImages, // Entire images array from Product
+          fetchedCartData.items.map((item) => ({
+            imageArray: item.productId?.images || [],
+            productImage: item.selectedImage,
             name: item.productId?.title || '',
             size: item.selectedSize,
             color: item.selectedColor,
             quantity: item.quantity,
             price: item.unitPrice,
             productId: item.productId?._id,
-            cartItemId: item._id
+            cartItemId: item._id,
+            productType: item.productId?.productType,
+            _id: item._id // keep an id for deletion
           }))
         );
-        setTotalPrice(cartData.total);
+        setTotalPrice(fetchedCartData.total);
       } catch (err) {
         setError(err.response?.data?.message || err.message);
       } finally {
         setLoading(false);
       }
     };
-
     fetchCartData();
-  }, []);
+  }, [userId]);
+
+  // Update quantity
+  const handleQuantityChange = (cartItemId, newQuantity) => {
+    setOrderItem((prevItems) => prevItems.map((item) => (item.cartItemId === cartItemId ? { ...item, quantity: newQuantity } : item)));
+  };
+
+  // Delete item and prepare for order convertion (Front End)
+  const handleDeleteItem = (itemIdToDelete) => {
+    setOrderItem((prevItems) => prevItems.filter((item) => item._id !== itemIdToDelete));
+  };
+
+  // Update color
+  const handleColorChange = (cartItemId, newColor, newImage) => {
+    setOrderItem((prevItems) =>
+      prevItems.map((item) => (item.cartItemId === cartItemId ? { ...item, color: newColor, productImage: newImage } : item))
+    );
+  };
+
+  const handleSizeChange = (cartItemId, newSize) => {
+    setOrderItem((prevItems) => prevItems.map((item) => (item.cartItemId === cartItemId ? { ...item, size: newSize } : item)));
+  };
+
+  // Delete item in DB and and re-render the Cart
+  // Get item ID
+  const handleRemoveFromCart = useCallback(
+    async (cartItemIdToRemove) => {
+      if (!cartData?._id) {
+        console.error('Cart ID is not available.  Cannot delete.');
+        return;
+      }
+
+      // call DELETE method
+      try {
+        const cartId = cartData._id;
+        const response = await deleteCartItem(cartId, cartItemIdToRemove);
+        console.log('Item removed from cart:', response);
+
+        // Re-fetch cart data *and* update state
+        const updatedCartResponse = await getCart(userId);
+        const updatedCartData = updatedCartResponse.data.cart;
+
+        setCartData(updatedCartData); // Update cartData
+        setOrderItem(
+          updatedCartData.items.map((item) => ({
+            imageArray: item.productId?.images || [],
+            productImages: item.selectedImages,
+            name: item.productId?.title || '',
+            size: item.selectedSize,
+            color: item.selectedColor,
+            quantity: item.quantity,
+            price: item.unitPrice,
+            productId: item.productId?._id,
+            cartItemId: item._id,
+            productType: item.productId?.productType,
+            _id: item._id
+          }))
+        );
+        setTotalPrice(updatedCartData.total);
+      } catch (error) {
+        console.error('Error removing item from cart:', error);
+        setError('Failed to remove item. Please try again.');
+      }
+    },
+    [cartData?._id, userId]
+  );
+
+  // Submitting the finalized Cart and convert it to order
+  const handleCheckoutOrder = async () => {
+    const formattedOrderItems = orderItem.map((item) => ({
+      productId: item.productId,
+      selectedSize: item.size,
+      selectedColor: item.color,
+      selectedImage: item.productImage,
+      quantity: item.quantity,
+      unitPrice: item.price
+    }));
+    console.log('Formatted order items:', formattedOrderItems);
+    try {
+      await createOrder(userId, formattedOrderItems, cartData.total);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Recalculate total price
+  useEffect(() => {
+    const newTotal = orderItem.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    setTotalPrice(newTotal);
+  }, [orderItem]);
 
   if (loading) {
     return <div>Loading cart...</div>;
@@ -117,16 +145,16 @@ const Cart = () => {
   if (error) {
     return <div>Error loading cart: {error}</div>;
   }
+
   return (
     <div className="flex flex-col ">
       <h2 className="text-center text-4xl font-bold mt-[132px]">Cart</h2>
-
       <div className="flex justify-center  items-center w-full pl-[88px]">
         <div className="w-[1072px] flex justify-between mt-[50px] pb-[25px] border-b-2 border-secondary-light-gray-300"></div>
       </div>
       {orderItem.map((item) => (
         <CartBox
-          key={item.cartItemId} // Use a unique ID from your cart item
+          key={item.cartItemId}
           imageArray={item.imageArray}
           name={item.name}
           size={item.size}
@@ -134,10 +162,15 @@ const Cart = () => {
           quantity={item.quantity}
           price={item.price}
           productId={item.productId}
-          cartItemId={item.cartItemId} // Add a function to trigger updates to the cart on the server
+          productType={item.productType}
+          cartItemId={item.cartItemId}
+          onQuantityChange={handleQuantityChange}
+          onDeleteData={handleRemoveFromCart}
+          onDeleteFront={handleDeleteItem}
+          onSizeChange={handleSizeChange}
+          onColorChange={handleColorChange}
         />
       ))}
-
       <div className="flex flex-col justify-center items-center w-full mt-[42px] pl-[360px] mb-[72px]">
         <div className="flex w-[800px] mb-[32px]">
           <input
@@ -163,11 +196,16 @@ const Cart = () => {
         </div>
         <div className="grid grid-cols-2 w-[800px] pb-[12px]">
           <p className="font-semibold text-lg">Total</p>
-          <p className=" font-semibold text-lg text-right">{totalPrice}</p>
+          <p className=" font-semibold text-lg text-right">{totalPrice} THB</p>
         </div>
-        <button className="w-[800px] h-[56px] bg-black font-semibold text-white text-xl hover:scale-105 duration-300 hover:cursor-pointer">
-          Check Out
-        </button>
+        <Link to="/Checkout">
+          <button
+            onClick={handleCheckoutOrder}
+            className="w-[800px] h-[56px] bg-black font-semibold text-white text-xl hover:scale-105 duration-300 hover:cursor-pointer"
+          >
+            Check Out
+          </button>
+        </Link>
       </div>
       <div className="flex flex-col items-center">
         <h2 className="text-2xl font-bold mb-[32px] w-[1616px] text-start">Gift Cards</h2>
