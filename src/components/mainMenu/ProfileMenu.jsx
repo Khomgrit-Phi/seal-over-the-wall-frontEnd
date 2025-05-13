@@ -1,44 +1,55 @@
 import {
   Menubar,
-  MenubarCheckboxItem,
+  // MenubarCheckboxItem,
   MenubarContent,
   MenubarItem,
   MenubarMenu,
-  MenubarRadioGroup,
-  MenubarRadioItem,
+  // MenubarRadioGroup,
+  // MenubarRadioItem,
   MenubarSeparator,
-  MenubarShortcut,
-  MenubarSub,
-  MenubarSubContent,
-  MenubarSubTrigger,
+  // MenubarShortcut,
+  // MenubarSub,
+  // MenubarSubContent,
+  // MenubarSubTrigger,
   MenubarTrigger,
-} from "@/components/ui/menubar"
+} from "@/components/ui/menubar";
 
-import {BiUser } from "react-icons/bi";
+import { BiUser } from "react-icons/bi";
 import { useAuth } from "../../context/AuthContext";
 
-
 const ProfileMenu = () => {
-  const {user} = useAuth();
+
+  const { user } = useAuth();
+
   return (
     <div>
       <Menubar className="border-none">
-      <MenubarMenu  >
-        <MenubarTrigger ><BiUser className="w-6 h-6 hover:text-primary-blue-500 border-none" /></MenubarTrigger>
-        <MenubarContent className="border-1 border-gray-200 bg-white">
-        <MenubarItem inset className="text-lg ">Somchai Kitkardee</MenubarItem>
-        <MenubarItem inset >{user.email}</MenubarItem>
-        <MenubarSeparator className="border-1 border-gray-200" />
-        <MenubarItem inset className="text-lg cursor-pointer ">Dashboard</MenubarItem>
-        <MenubarItem inset className="text-lg cursor-pointer ">Order</MenubarItem>
-        <MenubarItem inset className="text-lg cursor-pointer ">Create Hub</MenubarItem>
-          <MenubarSeparator className="border-1 border-gray-200" />
-          <MenubarItem inset className="text-lg cursor-pointer ">Following</MenubarItem>
-          <MenubarItem inset className="text-lg cursor-pointer ">Account Setting</MenubarItem>
-          <MenubarSeparator className="border-1 border-gray-200" />
-          <MenubarItem inset className="text-lg cursor-pointer ">Sign out</MenubarItem>
-        </MenubarContent>
-      </MenubarMenu>
+        <MenubarMenu>
+
+          {/* อันนี้ปุ่ม User */}
+          <MenubarTrigger><BiUser className="w-6 h-6 border-none hover:text-primary-blue-500" /></MenubarTrigger>
+
+          {/* อันนี้ list ที่ต้องโชว์หลังจาก login แล้ว */}
+          <MenubarContent className="bg-white border-gray-200 border-1">
+
+            {/* TODO: ให้แก้ตรงนี้ให้ดึง firstName + lastName จากหลังบ้านมา (ต้องแก้ Controller ก่อน) */}
+            {/* <MenubarItem inset className="text-lg ">{user.firstName} {user.lastName}</MenubarItem> */}
+            <MenubarItem inset className="text-lg ">Somchai Kitkardee</MenubarItem>
+
+            {/* TODO: ให้แก้ตรงนี้ดึง user.email มาใช้ */}
+            <MenubarItem inset >{user.email}</MenubarItem>
+            <MenubarSeparator className="border-gray-200 border-1" />
+            <MenubarItem inset className="text-lg cursor-pointer ">Dashboard</MenubarItem>
+            <MenubarItem inset className="text-lg cursor-pointer ">Order</MenubarItem>
+            <MenubarItem inset className="text-lg cursor-pointer ">Create Hub</MenubarItem>
+            <MenubarSeparator className="border-gray-200 border-1" />
+            <MenubarItem inset className="text-lg cursor-pointer ">Following</MenubarItem>
+            <MenubarItem inset className="text-lg cursor-pointer ">Account Setting</MenubarItem>
+            <MenubarSeparator className="border-gray-200 border-1" />
+            <MenubarItem inset className="text-lg cursor-pointer ">Sign out</MenubarItem>
+          </MenubarContent>
+
+        </MenubarMenu>
       </Menubar>
     </div>
   )

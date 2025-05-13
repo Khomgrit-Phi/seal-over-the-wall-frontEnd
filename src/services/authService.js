@@ -2,7 +2,7 @@ import api from './api'; // Axios instance with withCredentials:true
 
 export const loginUser = async (email, password) => {
   try {
-    const response = await api.post('/user/signIn', {
+    const response = await api.post('/user/cookie/signIn', {
       email,
       password
     });
@@ -14,8 +14,12 @@ export const loginUser = async (email, password) => {
 };
 
 export const logoutUser = async () => {
-  const response = await api.post('/mongo/auth/logout');
-  return response.data;
+  try {
+    const response = await api.post('/user/auth/logout');
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
 };
 
 export const signupUser = async (userData) => {
