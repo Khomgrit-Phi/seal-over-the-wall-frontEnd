@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import NextStepButton from '../components/createDesignPage/NextStepButton';
@@ -22,9 +23,12 @@ import iconFb from '../assets/images/preview/icon-fb.svg';
 import iconShirtFrontArea from '../assets/images/preview/iconShirtFrontArea.svg';
 import iconShirtBackArea from '../assets/images/preview/iconShirtBackArea.svg';
 
+
+
 const Preview = ({ onNext, onBack }) => {
   return (
     <div className="flex flex-col items-center">
+
       <div className="w-full mb-10 pl-[288px]">
         <h1 className="text-4xl font-bold">Preview</h1>
         <p className="text-lg mt-4 mb-6">
@@ -81,6 +85,7 @@ const Preview = ({ onNext, onBack }) => {
                 </button>
                 <button className="cursor-pointer">
                   <img src={bagWhiteFront} alt="Bag" className="h-30 w-30 rounded-lg" />
+
                 </button>
                 <button className="cursor-pointer">
                   <img src={cupWhiteFront} alt="Cup" className="h-30 w-30 rounded-lg" />
@@ -209,6 +214,7 @@ const Preview = ({ onNext, onBack }) => {
             </div>
           </div>
         </div>
+
       </div>
       <Outlet />
     </div>
