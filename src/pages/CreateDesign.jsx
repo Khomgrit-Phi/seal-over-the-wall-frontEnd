@@ -12,6 +12,7 @@ import SaveButton from '../components/createDesignPage/SaveButton';
 import { createdProduct } from "../services/created";
 import { motion, AnimatePresence } from 'framer-motion';
 import html2canvas from 'html2canvas';
+import ModalAlert from '../components/createDesignPage/ModalAlert';
 
 function CreateDesign({ onNext, updateCreateData }) {
   const [selectedProduct, setSelectedProduct] = useState('tshirt');
@@ -97,13 +98,13 @@ function CreateDesign({ onNext, updateCreateData }) {
     }
 
     document.body.removeChild(tempContainer);
-    alert('All high-res previews saved!');
+    showModal('Design saved!');
     setIsSaved(true);
   };
 
   const handleSave = async () => {
     if (!designURL || selectedColors.length === 0 || !selectedProduct) {
-      alert("Please complete all steps before saving.");
+      showModal("Please complete all steps before saving.");
       return;
     }
 
@@ -119,7 +120,7 @@ function CreateDesign({ onNext, updateCreateData }) {
       };
 
       const result = await createdProduct(payload);
-      alert("Design saved successfully!");
+      showModal("Design saved successfully!");
       setIsSaved(true);
 
       if (updateCreateData) {
@@ -129,7 +130,7 @@ function CreateDesign({ onNext, updateCreateData }) {
       if (onNext) onNext();
     } catch (error) {
       console.error("Save failed:", error);
-      alert("Failed to save design.");
+      showModal("Failed to save design.");
     }
   };
 
@@ -166,6 +167,18 @@ function CreateDesign({ onNext, updateCreateData }) {
     e.preventDefault();
   };
 
+  // Modal Alert
+const [modal, setModal] = useState({ open: false, title: '', message: '' });
+
+const showModal = (title, message) => {
+  setModal({ open: true, title, message });
+};
+
+const closeModal = () => {
+  setModal({ open: false, title: '', message: '' });
+};
+
+
   return (
     <form onSubmit={handleSubmit}>
       {/* Product Selection */}
@@ -192,7 +205,7 @@ function CreateDesign({ onNext, updateCreateData }) {
             <NextStepButton
               onNext={() => {
                 if (!isSaved) {
-                  alert("Please save your design before going to the next step.");
+                  showModal("Please save your design before going to the next step.");
                   return;
                 }
                 onNext();
@@ -217,8 +230,13 @@ function CreateDesign({ onNext, updateCreateData }) {
           selectedColors={selectedColors}
           uploadedImage={designURL}
         />
+        <ModalAlert
+        isOpen={modal.open}
+        onClose={closeModal}
+        title={modal.title}
+        message={modal.message}
+        />
       </div>
-
       <Walkthrough />
     </form>
   );
