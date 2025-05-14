@@ -1,6 +1,6 @@
 // Walkthrough.js
-import Joyride, { STATUS } from 'react-joyride'
-import { useWalkthroughStore } from '../../stores/useWalkthroughStore'
+import Joyride, { STATUS } from 'react-joyride';
+import { useWalkthroughStore } from '../../stores/useWalkthroughStore';
 
 const WalkthroughTooltip = ({ step, index, stepIndex, backProps, skipProps, primaryProps, continuous, goToNext, steps }) => (
   <motion.div
@@ -14,10 +14,7 @@ const WalkthroughTooltip = ({ step, index, stepIndex, backProps, skipProps, prim
     {/* Indicators */}
     <div className="flex justify-center items-center gap-2">
       {steps.map((_, i) => (
-        <div
-          key={i}
-          className={`h-2 w-2 rounded-full ${i === stepIndex ? 'bg-blue-600' : 'bg-gray-300'}`}
-        />
+        <div key={i} className={`h-2 w-2 rounded-full ${i === stepIndex ? 'bg-blue-600' : 'bg-gray-300'}`} />
       ))}
     </div>
 
@@ -30,32 +27,28 @@ const WalkthroughTooltip = ({ step, index, stepIndex, backProps, skipProps, prim
         <button {...skipProps} className="text-gray-400 hover:text-gray-600 text-sm px-4 py-2">
           ข้าม
         </button>
-        <button
-          onClick={goToNext}
-          {...primaryProps}
-          className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-5 py-2 rounded-lg"
-        >
+        <button onClick={goToNext} {...primaryProps} className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-5 py-2 rounded-lg">
           {stepIndex === steps.length - 1 ? 'เริ่มใช้งาน' : 'ถัดไป'}
-
         </button>
       </div>
     </div>
   </motion.div>
-)
+);
 
 const Walkthrough = () => {
-  const { run, stepIndex, setStepIndex, stop } = useWalkthroughStore()
+  const { run, stepIndex, setStepIndex, stop } = useWalkthroughStore();
 
   const steps = [
     { target: '.step-1', content: 'Select product', disableBeacon: true },
     { target: '.step-2', content: 'Upload design' },
     { target: '.step-3', content: 'Select print areas' },
-    { target: '.step-4', content: 'Select colorways' },
-  ]
+    { target: '.step-4', content: 'Select colorways' }
+  ];
 
   return (
     <Joyride
-      steps={steps}h
+      steps={steps}
+      h
       run={run}
       stepIndex={stepIndex}
       continuous
@@ -63,15 +56,13 @@ const Walkthrough = () => {
       showSkipButton
       disableOverlayClose
       components={{
-        Tooltip: (props) => (
-          <WalkthroughTooltip {...props} stepIndex={stepIndex} steps={steps} />
-        ),
+        Tooltip: (props) => <WalkthroughTooltip {...props} stepIndex={stepIndex} steps={steps} />
       }}
       styles={{
         options: {
           arrowColor: 'rgba(255, 255, 255, 255)',
           overlayColor: 'rgba(255, 255, 255, 0.6)',
-          zIndex: 9999,
+          zIndex: 9999
         },
         tooltip: {
           backgroundColor: 'rgba(255, 255, 255, 255)',
@@ -83,14 +74,14 @@ const Walkthrough = () => {
           maxWidth: 200,
           fontWeight: 'bold',
           fontFamily: 'Poppins',
-          lineHeight: 1.5,
+          lineHeight: 1.5
         },
         overlay: {
-          backgroundColor: 'rgba(0,0,0,0.4)',
+          backgroundColor: 'rgba(0,0,0,0.4)'
         },
         buttonBack: {
-          color: 'rgb(55, 71, 216)',
-         },
+          color: 'rgb(55, 71, 216)'
+        },
         buttonNext: {
           backgroundColor: 'rgb(55, 71, 216)',
           color: 'white',
@@ -100,21 +91,20 @@ const Walkthrough = () => {
           borderRadius: 10,
           fontWeight: 'bold',
           fontFamily: 'Geist',
-          border: 'none',
+          border: 'none'
         }
-
       }}
       callback={(data) => {
-        const { status, index, action, type } = data
+        const { status, index, action, type } = data;
         if (type === 'step:after' && action === 'next') {
-          setStepIndex(index + 1)
+          setStepIndex(index + 1);
         }
         if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
-          stop()
+          stop();
         }
       }}
     />
-  )
-}
+  );
+};
 
 export default Walkthrough;

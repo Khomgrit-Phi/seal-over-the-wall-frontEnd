@@ -3,13 +3,10 @@ import ProtectedRoute from '../context/ProtectedRoute';
 import CreateDesignLayout from '../layouts/CreateDesignLayout';
 import Layout from '../layouts/Layout';
 import LayoutAdmin from '../layouts/LayoutAdmin';
-import Category from '../pages/admin/Category';
 import Dashboard from '../pages/admin/Dashboard';
-import Manage from '../pages/admin/Manage';
-import Product from '../pages/admin/Product';
 import Register from '../pages/auth/Register';
 import Cart from '../pages/Cart';
-import CheckOut from '../pages/checkout/Checkout';
+import CheckOut from '../pages/checkout/CheckOut';
 import Create from '../pages/Create';
 import ExpressYourself from '../pages/ExpressYourself';
 import Home from '../pages/Home';
@@ -54,12 +51,7 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element: <LayoutAdmin />,
-    children: [
-      { index: true, element: <Dashboard /> },
-      { path: 'category', element: <Category /> },
-      { path: 'product', element: <Product /> },
-      { path: 'manage', element: <Manage /> }
-    ]
+    children: [{ index: true, element: <Dashboard /> }]
   },
   {
     path: '/user',

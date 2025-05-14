@@ -5,10 +5,12 @@ import CheckoutPaymentCard from './CheckoutPaymentCard';
 import CheckoutSummary from './CheckoutSummary';
 import CheckoutSuccess from './CheckoutSuccess';
 import { useAuth } from '../../context/AuthContext';
-import { createOrder } from '../../services/order';
+import { createOrder, getOrder } from '../../services/order';
+import { set } from 'zod';
 
 function CheckOut() {
   const [step, setStep] = React.useState(0);
+  const [orderDetail, setOrderDetail] = React.useState();
 
   const { cart } = useAuth();
 
@@ -70,6 +72,15 @@ function CheckOut() {
 
     const res = await createOrder(items, shippingMethod, total, address, payment);
     console.log(res);
+    console.log('log res ID:', res.order._id);
+
+    handleFetchOrder(res.order._id);
+  };
+
+  const handleFetchOrder = async (orderId) => {
+    const orderDetail = getOrder(orderId);
+    console.log(orderDetail);
+    setOrderDetail(orderDetail);
   };
 
   const handleNext = () => setStep((prev) => prev + 1);
@@ -89,7 +100,7 @@ function CheckOut() {
       case 2:
         return <CheckoutSummary onNext={handleNext} onEdit={handleEdit} checkoutData={checkoutData} checkoutOrder={handleOrderCreate} />;
       case 3:
-        return <CheckoutSuccess onReset={handleReset} />;
+        return <CheckoutSuccess onReset={handleReset} orderDetail={orderDetail} />;
       default:
         return null;
     }

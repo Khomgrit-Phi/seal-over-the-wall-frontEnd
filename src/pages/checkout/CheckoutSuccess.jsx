@@ -4,10 +4,13 @@ import OrderStatusCard from '../../components/OrderStatusCard';
 import TotalCard from '../../components/TotalCard';
 import ProductDataStore from '../../stores/productDataStore';
 import SaleSlide from '../../components/HomePage/SaleSlide';
-import { getOrder } from '../../services/order';
 
-const Success = ({ orderId, onReset }) => {
+const Success = ({ orderId, onReset, orderDetail }) => {
+  const order = orderDetail;
+  console.log('This is in summary', order);
+
   const items = ProductDataStore((state) => state.orders);
+
   return (
     <div className="w-auto flex flex-col items-center">
       <div className="flex flex-col w-[1616px] content-center">
