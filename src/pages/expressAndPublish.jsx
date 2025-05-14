@@ -85,7 +85,7 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
                 </div>
               ))}
             </div>
-            <div className="flex justify-between mt-4">
+            <div className="z-10 flex justify-between mt-4">
               <button onClick={() => sliderInstances.current[type]?.prev()}>
                 <img src={iconArrowLeft} alt="Prev" className="cursor-pointer w-5 " />
               </button>
