@@ -14,7 +14,7 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { user } = useAuth();
+  const { user, setCart } = useAuth();
   const userId = user._id;
 
   // Fetch cart data
@@ -24,6 +24,7 @@ const Cart = () => {
       setError(null);
       try {
         const response = await getCart(userId);
+        setCart(response.data.cart);
         const fetchedCartData = response.data.cart;
         setCartData(fetchedCartData);
         setOrderItem(

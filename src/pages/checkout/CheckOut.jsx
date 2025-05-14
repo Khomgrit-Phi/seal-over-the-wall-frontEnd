@@ -8,12 +8,9 @@ import { useAuth } from '../../context/AuthContext';
 import { createOrder } from '../../services/order';
 
 function CheckOut() {
-  const [step, setStep] = React.useState(() => {
-    const saved = localStorage.getItem('checkout-step');
-    return saved ? parseInt(saved, 10) : 0;
-  });
+  const [step, setStep] = React.useState(0);
 
-  const { user, cart } = useAuth();
+  const { cart } = useAuth();
 
   console.log(cart);
 
@@ -30,7 +27,6 @@ function CheckOut() {
         ...newData
       }
     }));
-    console.log(checkoutData);
   };
 
   const updatePaymentInfo = (newData) => {
@@ -46,7 +42,7 @@ function CheckOut() {
 
   const handleOrderCreate = async () => {
     // const userId = user._id;
-    const items = [cart.items];
+    const items = cart.items;
     const shippingMethod = checkoutData.shippingInfo.shipping;
     const total = cart.total;
     const address = {
@@ -70,7 +66,7 @@ function CheckOut() {
       exp: checkoutData.paymentInfo.exp,
       cvv: checkoutData.paymentInfo.cvv
     };
-    console.log('The handleOrderCreate is called', userId, items, shippingMethod, total, address, payment);
+    console.log('The handleOrderCreate is called', items, shippingMethod, total, address, payment);
 
     const res = await createOrder(items, shippingMethod, total, address, payment);
     console.log(res);

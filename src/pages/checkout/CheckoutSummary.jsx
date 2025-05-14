@@ -5,8 +5,6 @@ import CheckoutCardCard from '../../components/CheckoutCardCard';
 import CheckoutButtonCard from '../../components/CheckoutButtonCard';
 
 const CheckoutSummary = ({ onNext, onEdit, checkoutData, checkoutOrder }) => {
-  console.log(checkoutData);
-
   return (
     <div id="summary" className="flex flex-col w-[1072px] gap-2 items-center mx-auto">
       <div
@@ -15,7 +13,7 @@ const CheckoutSummary = ({ onNext, onEdit, checkoutData, checkoutOrder }) => {
       >
         <CheckoutAddressCard
           name={`${checkoutData.shippingInfo.firstName} ${checkoutData.shippingInfo.lastName}`}
-          address={`${checkoutData.shippingInfo.street}, ${checkoutData.shippingInfo.specify}, ${checkoutData.shippingInfo.city}, ${checkoutData.shippingInfo.postal}, ${checkoutData.shippingInfo.state}, ${checkoutData.shippingInfo.country}`}
+          address={`${checkoutData.shippingInfo.address}, ${checkoutData.shippingInfo.specific}, ${checkoutData.shippingInfo.subDistrict}, ${checkoutData.shippingInfo.district}, ${checkoutData.shippingInfo.postal}, ${checkoutData.shippingInfo.city}`}
           tel={checkoutData.shippingInfo.phone}
         />
         <button onClick={onEdit} className="text-lg font-[500] items-center hover:cursor-pointer hover:scale-100 duration-300 p-4">

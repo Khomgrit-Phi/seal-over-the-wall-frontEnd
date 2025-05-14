@@ -6,9 +6,13 @@ export const getOrder = async (orderId) => {
     return request.data;
 }
 
-//Create an order after finishing the checkout
 export const createOrder = async (items, shippingMethod, total, address, payment) => {
-    let payload = {items, shippingMethod, total, address, payment};
-    const request = await api.post(`/order/createOrder`, payload);
-    return request.data;
-}
+    try {
+        let payload = { items, shippingMethod, total, address, payment };
+        const request = await api.post(`/order/createOrder`, payload);
+        return request.data;
+    } catch (error) {
+        console.error('Error in createOrder:', error.response?.data || error.message);
+        throw error;
+    }
+};

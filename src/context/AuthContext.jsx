@@ -12,8 +12,10 @@ export const AuthProvider = ({ children }) => {
 
   const fetchCart = async () => {
     try {
+      console.log('Get in Fetch Cart');
       const cartData = await api.get(`/cart/${user?._id}`);
       setCart(cartData);
+      console.log(cart);
     } catch (error) {
       console.error("Can not get user's cart: ", error);
     }
@@ -59,7 +61,7 @@ export const AuthProvider = ({ children }) => {
   const addItemToCart = async (itemObj) => {
     try {
       if (!user?._id) {
-        console.error("User not logged in.");
+        console.error('User not logged in.');
         return;
       }
       // Assuming addToCart service function exists and updates the cart on the backend
@@ -67,11 +69,13 @@ export const AuthProvider = ({ children }) => {
       console.log(updatedCart);
       setCart(updatedCart);
     } catch (error) {
-      console.error("Error adding item to cart: ", error);
+      console.error('Error adding item to cart: ', error);
     }
   };
 
-  return <AuthContext.Provider value={{ user, setUser, login, logout, loading, cart, addItemToCart }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, setUser, login, logout, loading, cart, setCart, addItemToCart }}>{children}</AuthContext.Provider>
+  );
 };
 
 export const useAuth = () => useContext(AuthContext);

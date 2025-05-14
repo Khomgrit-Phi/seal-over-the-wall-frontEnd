@@ -51,7 +51,7 @@ const CheckoutShipping = ({ onNext, updateData }) => {
     updateData(shippingData);
 
     setShippingData({
-      firstName: 'abctest',
+      firstName: '',
       lastName: '',
       address: '',
       specific: '',

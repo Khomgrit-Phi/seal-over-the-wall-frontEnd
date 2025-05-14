@@ -7,12 +7,6 @@ import SaleSlide from '../../components/HomePage/SaleSlide';
 import { getOrder } from '../../services/order';
 
 const Success = ({ orderId, onReset }) => {
-  const orderObjectId = '68220b9943db794d597c5af9';
-  const fetchData = async () => {
-    const orderData = await getOrder(orderObjectId);
-  };
-  console.log(fetchData);
-
   const items = ProductDataStore((state) => state.orders);
   return (
     <div className="w-auto flex flex-col items-center">
