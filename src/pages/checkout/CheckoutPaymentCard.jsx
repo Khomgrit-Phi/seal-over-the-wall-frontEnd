@@ -4,8 +4,8 @@ import CheckoutPaymentQR from './CheckoutPaymentQR';
 
 const CheckoutPaymentCard = ({ onNext, updateData }) => {
   const [cardData, setCardData] = useState({
-    firstName: '',
-    lastName: '',
+    firstName: 'd',
+    lastName: 'd',
     cardNumber: '',
     exp: '',
     cvv: '',

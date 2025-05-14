@@ -4,16 +4,16 @@ import { useState } from 'react';
 
 const CheckoutShipping = ({ onNext, updateData }) => {
   const [shippingData, setShippingData] = useState({
-    firstName: '',
-    lastName: '',
-    address: '',
-    specific: '',
-    district: '',
-    subDistrict: '',
-    city: '',
-    postal: '',
-    email: '',
-    phone: '',
+    firstName: 'd',
+    lastName: 'd',
+    address: 'd',
+    specific: 'd',
+    district: 'd',
+    subDistrict: 'd',
+    city: 'd',
+    postal: '12345',
+    email: 'd@mail.com',
+    phone: '0123456789',
     smsPromotion: false,
     emailPromotion: false,
     shipping: 'standard'
@@ -248,8 +248,8 @@ const CheckoutShipping = ({ onNext, updateData }) => {
                 <input
                   type="radio"
                   name="shipping"
-                  value="standard"
-                  checked={shippingData.shipping === 'standard'}
+                  value="Standard Delivery"
+                  checked={shippingData.shipping === 'Standard Delivery'}
                   onChange={handleOnchange}
                   className="delivery-checkbox appearance-none w-[24px] h-[24px] rounded-full border pb-4 border-[#A1A1AA] checked:bg-black"
                 />
@@ -270,8 +270,8 @@ const CheckoutShipping = ({ onNext, updateData }) => {
                 <input
                   type="radio"
                   name="shipping"
-                  value="fastest"
-                  checked={shippingData.shipping === 'fastest'}
+                  value="Fastest Deliver"
+                  checked={shippingData.shipping === 'Fastest Deliver'}
                   onChange={handleOnchange}
                   className="delivery-checkbox appearance-none w-[24px] h-[24px] rounded-full border border-[#A1A1AA] checked:bg-black"
                 />
@@ -292,8 +292,8 @@ const CheckoutShipping = ({ onNext, updateData }) => {
                 <input
                   type="radio"
                   name="shipping" // This should match your state key
-                  value="cod"
-                  checked={shippingData.shipping === 'cod'}
+                  value="Cash on Delivery"
+                  checked={shippingData.shipping === 'Cash on Delivery'}
                   onChange={handleOnchange}
                   className="delivery-checkbox appearance-none w-[24px] h-[24px] rounded-full border border-[#A1A1AA] checked:bg-black"
                 />

@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
   const fetchCart = async () => {
     try {
       console.log('Get in Fetch Cart');
-      const cartData = await api.get(`/cart/${user?._id}`);
+      const cartData = await api.get(`/populated/cart/${user?._id}`);
       setCart(cartData);
       console.log(cart);
     } catch (error) {
