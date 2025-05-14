@@ -2,17 +2,29 @@ import { useEffect, useMemo, useState } from "react"; // Import hooks
 import BreadcrumbTop from "../components/mainMenu/BreadcrumbTop";
 import FilterLeftSidebar from "../components/productPage/FilterLeftSidebar";
 import ProductList from "../components/productPage/ProductList";
+import { getProducts } from "../services/product";
 import productDataStore from "../stores/productDataStore"; // Import your Zustand store
 
 const Shop = () => {
   const allItems = productDataStore((state) => state.items); // Get all items from the store
+  const setItems = productDataStore((state) => state.setItems);
   const [selectedFilter, setSelectedFilter] = useState('all'); // 'all', 'shirt', 'cup', 'bag'
 
   useEffect(() => {
-    // This is just to see when the items from the store are available or change.
-    // The actual fetching is handled in ProductList.jsx
-    console.log("All items from store in Shop.jsx:", allItems);
-  }, [allItems]);
+    const fetchProducts = async () => {
+      const products = await getProducts();
+      if (Array.isArray(products)) {
+        setItems(products);
+      } else {
+        console.error("Fetched data is not an array:", products);
+        // Depending on the actual structure, you might need to access a property, e.g.:
+        // setItems(products.data);
+        // setItems(products.items);
+      }
+    };
+    fetchProducts();
+
+  }, []);
 
   const filteredItems = useMemo(() => {
     if (selectedFilter === 'all') {
@@ -32,7 +44,6 @@ const Shop = () => {
     }
     return `${baseClass} hover:text-white hover:bg-primary-blue-500`; // Inactive style
   };
-
 
   return (
     <>
