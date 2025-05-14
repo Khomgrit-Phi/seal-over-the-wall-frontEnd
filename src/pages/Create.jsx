@@ -24,17 +24,34 @@ function Create() {
     }));
   };
 
-  
+  const handleNext = (newData = {}) => {
+    updateCreateData(newData);
 
- const handleNext = (newData = {}) => {
-  updateCreateData(newData);
-  setStep((prev) => prev + 1);
-};
+    setStep((prev) => {
+      const nextStep = prev + 1;
+
+      if (nextStep > 3) {
+        // ✅ Reset when preview is done
+        localStorage.removeItem('create-step');
+        setCreateData({
+          createdesign: {},
+          collectdetails: {},
+          expressandpublish: {}
+        });
+        return 0; // back to first step
+      }
+
+      return nextStep;
+    });
+  };
+
   const handleBack = () => setStep((prev) => prev - 1);
+  
   const handleReset = () => {
-    localStorage.removeItem('create-step'); // ✅ consistent key
+    localStorage.removeItem('create-step');
     setStep(0);
   };
+
   const handleEdit = () => setStep(0);
 
   const renderStepContent = () => {
@@ -68,7 +85,7 @@ function Create() {
         return (
           <Preview
             createData={createData}
-            onNext={handleNext}  
+            onNext={handleNext}
             onReset={handleReset}
             onBack={handleBack}
             onEdit={handleEdit}
@@ -79,13 +96,12 @@ function Create() {
     }
   };
 
-
   React.useEffect(() => {
     localStorage.setItem('create-step', step.toString());
   }, [step]);
 
   return (
-    <div className='flex flex-col justify-center items-center mt-40'>
+    <div className="flex flex-col justify-center items-center mt-40">
       <CreateStepper step={step} setStep={setStep} />
       {renderStepContent()}
     </div>
@@ -93,5 +109,3 @@ function Create() {
 }
 
 export default Create;
-//  Products Data
-//  Creatros Data

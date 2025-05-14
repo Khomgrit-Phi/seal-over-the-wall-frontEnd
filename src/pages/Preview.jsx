@@ -11,7 +11,7 @@ import logoOrganic from "../assets/images/preview/Organic.svg";
 import iconIg from "../assets/images/preview/icon-ig.svg";
 import iconX from "../assets/images/preview/icon-x.svg";
 import iconFb from "../assets/images/preview/icon-fb.svg";
-import uploadProduct  from "../services/product";
+import  uploadProduct  from "../services/product";
 
 const Preview = ({ onNext, onBack, createData }) => {
   const products = Array.isArray(createData?.expressandpublish) ? createData.expressandpublish : [];
