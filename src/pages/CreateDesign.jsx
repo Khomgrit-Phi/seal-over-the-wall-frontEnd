@@ -13,6 +13,7 @@ import { createdProduct } from "../services/created";
 import { motion, AnimatePresence } from 'framer-motion';
 import html2canvas from 'html2canvas';
 import ModalAlert from '../components/createDesignPage/ModalAlert';
+import LoadingModal from '../components/createDesignPage/LoadingModal';
 
 function CreateDesign({ onNext, updateCreateData }) {
   const [selectedProduct, setSelectedProduct] = useState('tshirt');
@@ -22,6 +23,7 @@ function CreateDesign({ onNext, updateCreateData }) {
   const [selectedColors, setSelectedColors] = useState(['white']);
   const [isSaved, setIsSaved] = useState(false);
   const [modal, setModal] = useState({ open: false, title: '', message: '' });
+  const [loading, setLoading] = useState(false);
 
   const CLOUD_NAME = 'dvpnipb6g';
   const UPLOAD_PRESET = 'upload_designs';
@@ -45,6 +47,8 @@ function CreateDesign({ onNext, updateCreateData }) {
       showModal('No previews found.');
       return;
     }
+
+    setLoading(true);
 
     const upscale = 3;
     const tempContainer = document.createElement('div');
@@ -97,10 +101,7 @@ function CreateDesign({ onNext, updateCreateData }) {
 
         const data = await res.json();
         if (data.secure_url) {
-          console.log(`✅ Uploaded ${color}: ${data.secure_url}`);
           urls.push({ color, url: data.secure_url });
-        } else {
-          console.error(`❌ Failed to upload ${color}`);
         }
       } catch (err) {
         console.error(`Error uploading ${color}:`, err);
@@ -111,12 +112,11 @@ function CreateDesign({ onNext, updateCreateData }) {
 
     document.body.removeChild(tempContainer);
     setUploadedPreviews(urls);
-
-    // Save selected product type to the list
     if (!productTypes.includes(selectedProduct)) {
-      setProductTypes(prev => [...prev, selectedProduct]);
+      setProductTypes((prev) => [...prev, selectedProduct]);
     }
 
+    setLoading(false);
     showModal("Design saved!");
     setIsSaved(true);
   };
@@ -154,22 +154,14 @@ function CreateDesign({ onNext, updateCreateData }) {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  const handleSubmit = (e) => e.preventDefault();
 
   const renderProductTemplate = () => {
     let TemplateComponent;
     switch (selectedProduct) {
-      case 'bags':
-        TemplateComponent = <BagTemplate />;
-        break;
-      case 'cups':
-        TemplateComponent = <CupTemplate />;
-        break;
-      case 'tshirt':
-      default:
-        TemplateComponent = <TShirtTemplate />;
+      case 'bags': TemplateComponent = <BagTemplate />; break;
+      case 'cups': TemplateComponent = <CupTemplate />; break;
+      default: TemplateComponent = <TShirtTemplate />;
     }
 
     return (
@@ -190,10 +182,7 @@ function CreateDesign({ onNext, updateCreateData }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="step-1 flex justify-center mb-6">
-        <ProductSelection
-          selected={selectedProduct}
-          setSelected={setSelectedProduct}
-        />
+        <ProductSelection selected={selectedProduct} setSelected={setSelectedProduct} />
       </div>
 
       <div className="absolute w-[1615px] flex justify-center items-center">
@@ -206,7 +195,7 @@ function CreateDesign({ onNext, updateCreateData }) {
           <div className="flex justify-end items-center gap-4 mt-6">
             <SaveButton
               onSave={handleSaveDesign}
-              disabled={!designURL || selectedColors.length === 0 || !selectedProduct}
+              disabled={loading || !designURL || selectedColors.length === 0 || !selectedProduct}
             />
             <NextStepButton
               onNext={() => {
@@ -247,7 +236,6 @@ function CreateDesign({ onNext, updateCreateData }) {
         >
           <UploadDesignBox onUpload={setDesignURL} />
         </motion.div>
-
         <div className="relative">{renderProductTemplate()}</div>
       </motion.div>
 
@@ -270,6 +258,10 @@ function CreateDesign({ onNext, updateCreateData }) {
         title={modal.title}
         message={modal.message}
       />
+
+      <LoadingModal isOpen={loading} />
+
+
       <Walkthrough />
     </form>
   );
