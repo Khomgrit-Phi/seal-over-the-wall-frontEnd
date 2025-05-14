@@ -3,9 +3,9 @@ import shortline from "../../assets/images/collect-details-pages/short-line.svg"
 
 function TotalProfitTable({ entries }) {
   const productMap = {
-    tshirt: { label: 'T-Shirt', baseCost: 99 },
-    bags: { label: 'Bag', baseCost: 79 },
-    cups: { label: 'Cup', baseCost: 59 },
+    tshirt: { label: 'T-Shirt', baseCost: 150 },
+    bags: { label: 'Bag', baseCost: 120 },
+    cups: { label: 'Cup', baseCost: 100 },
   };
 
   const calculateProfit = (type, price) => {

@@ -4,7 +4,7 @@ import bags from '../../assets/images/Products/bag/prove/prove-bag-white-front.p
 import cups from '../../assets/images/Products/cup/prove/prove-cup-white-front.png';
 import line from '../../assets/images/collect-details-pages/Line.svg';
 
-function PriceAndStockTable({ createData, entries, setEntries }) {
+function PriceAndStockTable({ entries, setEntries }) {
   const productMap = {
     tshirt: { label: 'T-Shirt', fallback: tshirt, baseCost: 150 },
     bags: { label: 'Bags', fallback: bags, baseCost: 120 },
@@ -60,8 +60,11 @@ function PriceAndStockTable({ createData, entries, setEntries }) {
                   <p className="mb-1 text-xl font-medium">Quantity</p>
                   <input
                     type="number"
+                    min="0" // ⬅️ This prevents negative input
                     value={entry.quantity}
-                    onChange={(e) => handleInputChange(index, 'quantity', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange(index, 'quantity', e.target.value)
+                    }
                     className="bg-white border px-2 py-1 rounded-md w-[120px] h-[52px] font-semibold text-xl text-center"
                     placeholder="Qty"
                   />
