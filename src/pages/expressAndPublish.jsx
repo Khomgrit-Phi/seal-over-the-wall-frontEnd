@@ -20,6 +20,7 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
         images,
       };
     });
+
     setProducts(grouped);
   }, [createData]);
 
@@ -38,17 +39,24 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
         </p>
         <div className="flex justify-end items-center gap-4 pr-[128px] mt-1.5">
           <button><BackButton onBack={onBack} /></button>
-          <button><NextStepButton onNext={onNext} /></button>
+          <button><NextStepButton onNext={() => onNext(products)} /></button>
         </div>
       </div>
 
       <div className="w-full px-[152px] flex flex-col gap-20 mb-20">
         {products.map((product, idx) => (
           <div key={idx} className="flex gap-40">
-            {/* Image Preview */}
-            <div>
-              <img src={product.images[0]?.url} alt="Preview" className="w-150 h-150" />
-            </div>
+            {/* Preview all images */}
+            <div className="flex gap-4 overflow-x-auto max-w-[400px]">
+                {product.images.map((img, i) => (
+                  <img
+                    key={i}
+                    src={img.url}
+                    alt={`Preview ${i}`}
+                    className="min-w-[400px] h-[400px] object-contain"
+                  />
+                ))}
+              </div>
 
             {/* Form */}
             <div className="flex flex-col gap-8 grow">
@@ -82,7 +90,7 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
 
                 <label className="block mb-2 text-xl font-normal">Concept</label>
                 <textarea
-                  className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-166 h-50 resize-none"
+                  className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-166 min-h-[50px] resize-none"
                   placeholder="Concept"
                   value={product.concept}
                   onChange={(e) => handleProductChange(idx, 'concept', e.target.value)}
