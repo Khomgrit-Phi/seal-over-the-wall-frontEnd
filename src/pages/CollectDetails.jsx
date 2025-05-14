@@ -7,20 +7,33 @@ import TotalProfitTable from "../components/collectDetailsPage/TotalProfitTable"
 import PromotionCampaign from "../components/collectDetailsPage/PromotionCampaign";
 
 function CollectDetails({ createData, onNext, onBack, updateCreateData }) {
-  const [productEntries, setProductEntries] = React.useState(() => {
-    const previews = createData?.createdesign?.previewImages || [];
-    const initialized = previews.map((preview) => {
-      const typeMatch = ['tshirt', 'bags', 'cups'].find((t) => preview.url.includes(t));
+  const previews = createData?.createdesign?.previewImages || [];
+
+  const [productEntries, setProductEntries] = React.useState(
+    previews.map((p) => {
+      const typeMatch = ["tshirt", "bags", "cups"].find((type) => p.url.includes(type));
       return {
-        type: typeMatch || 'tshirt',
-        price: 199, // default
-        quantity: 0, // default
-        color: preview.color || 'white',
-        url: preview.url,
+        type: typeMatch,
+        color: p.color,
+        url: p.url,
+        price: 199,
+        quantity: 0
       };
-    });
-    return initialized;
-  });
+    })
+  );
+
+  const buildProductPayload = () => {
+    return productEntries.map((entry) => ({
+      styleName: "Custommike?",
+      productType: entry.type,
+      price: entry.price,
+      sizes: ["S", "M", "L"],
+      colors: [entry.color],
+      tag: [],
+      images: [entry.url],
+      description: ""
+    }));
+  };
 
   return (
     <form>
@@ -28,31 +41,32 @@ function CollectDetails({ createData, onNext, onBack, updateCreateData }) {
         <div className="w-full mb-10 pl-[288px]">
           <h1 className="text-4xl font-bold">Collect Details</h1>
           <p className="text-lg mt-4 mb-6">
-            Okay, let's get your product ready to shine! Tell us the price and how many you've got. Wanna do a sale? Set it up here! We'll even show your potential
-            <br />profit per item and the total after our small fee and your costs. Go ahead and fill it in!
+            Okay, let's get your product ready to shine! Tell us the price and how many you've got...
           </p>
-          <div className="flex justify-end items-center gap-4 pr-[152px] mt-1.5">
-            <button>
-              <BackButton onBack={onBack} />
-            </button>
-            <button>
-              <NextStepButton onNext={onNext} />
+          <div className="flex justify-end items-center gap-4 pr-[152px] mt-1.5 ">
+            <button><BackButton onBack={onBack} /></button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                const allProducts = buildProductPayload();
+                updateCreateData({ collectdetails: { productList: allProducts } });
+                onNext();
+              }}
+            >
+              <NextStepButton />
             </button>
           </div>
         </div>
 
         <div className="flex justify-center gap-15 mx-[152px] mt-3.5 p-1.5">
-          <PriceAndStockTable
-            createData={createData}
-            entries={productEntries}
-            setEntries={setProductEntries}
-          />
+          <PriceAndStockTable entries={productEntries} setEntries={setProductEntries} />
           <TotalProfitTable entries={productEntries} />
         </div>
 
         <div className="w-full flex justify-center items-center mt-10 mb-10">
           <PromotionCampaign />
         </div>
+
         <Outlet />
       </div>
     </form>

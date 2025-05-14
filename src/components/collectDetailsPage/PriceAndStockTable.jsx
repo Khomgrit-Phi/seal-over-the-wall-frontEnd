@@ -22,7 +22,7 @@ function PriceAndStockTable({ entries, setEntries }) {
 
   return (
     <div className="w-[1000px] bg-white rounded-lg shadow-xl p-4 items-center">
-      <h1 className="text-xl font-semibold mb-2">Price and Stock</h1>
+      <h1 className="text-xl font-semibold mb-2">Price and Quantity</h1>
 
       {entries.map((entry, index) => {
         const product = productMap[entry.type];
