@@ -152,11 +152,11 @@ export default function CartBox({
                 <select
                   id="sizes"
                   name="sizes"
-                  value="one size"
+                  value="one-size"
                   className="appearance-none pr-8 pl-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring focus:border-primary-500"
                   disabled
                 >
-                  <option value="one size">One Size</option>
+                  <option value="one-size">One Size</option>
                 </select>
               )}
             </div>

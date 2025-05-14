@@ -5,6 +5,7 @@ import CheckoutPaymentCard from './CheckoutPaymentCard';
 import CheckoutSummary from './CheckoutSummary';
 import CheckoutSuccess from './CheckoutSuccess';
 import { useAuth } from '../../context/AuthContext';
+import { createOrder } from '../../services/order';
 
 function CheckOut() {
   const [step, setStep] = React.useState(() => {
@@ -12,7 +13,9 @@ function CheckOut() {
     return saved ? parseInt(saved, 10) : 0;
   });
 
-  const { cart } = useAuth();
+  const { user, cart } = useAuth();
+
+  console.log(cart);
 
   const [checkoutData, setCheckoutData] = React.useState({
     shippingInfo: {},
@@ -41,6 +44,38 @@ function CheckOut() {
     console.log(checkoutData);
   };
 
+  const handleOrderCreate = async () => {
+    // const userId = user._id;
+    const items = [cart.items];
+    const shippingMethod = checkoutData.shippingInfo.shipping;
+    const total = cart.total;
+    const address = {
+      firstName: checkoutData.shippingInfo.firstName,
+      lastName: checkoutData.shippingInfo.lastName,
+      address: checkoutData.shippingInfo.address,
+      specific: checkoutData.shippingInfo.specific,
+      district: checkoutData.shippingInfo.district,
+      subDistrict: checkoutData.shippingInfo.subDistrict,
+      city: checkoutData.shippingInfo.city,
+      postal: checkoutData.shippingInfo.postal,
+      email: checkoutData.shippingInfo.email,
+      phone: checkoutData.shippingInfo.phone,
+      smsPromotion: checkoutData.shippingInfo.smsPromotion,
+      emailPromotion: checkoutData.shippingInfo.emailPromotion
+    };
+    const payment = {
+      firstName: checkoutData.paymentInfo.firstName,
+      lastName: checkoutData.paymentInfo.lastName,
+      cardNumber: checkoutData.paymentInfo.cardNumber,
+      exp: checkoutData.paymentInfo.exp,
+      cvv: checkoutData.paymentInfo.cvv
+    };
+    console.log('The handleOrderCreate is called', userId, items, shippingMethod, total, address, payment);
+
+    const res = await createOrder(items, shippingMethod, total, address, payment);
+    console.log(res);
+  };
+
   const handleNext = () => setStep((prev) => prev + 1);
   const handleBack = () => setStep((prev) => prev - 1);
   const handleReset = () => {
@@ -56,7 +91,7 @@ function CheckOut() {
       case 1:
         return <CheckoutPaymentCard onNext={handleNext} onBack={handleBack} updateData={updatePaymentInfo} />;
       case 2:
-        return <CheckoutSummary onNext={handleNext} onEdit={handleEdit} checkoutData={checkoutData} />;
+        return <CheckoutSummary onNext={handleNext} onEdit={handleEdit} checkoutData={checkoutData} checkoutOrder={handleOrderCreate} />;
       case 3:
         return <CheckoutSuccess onReset={handleReset} />;
       default:
@@ -105,7 +140,6 @@ function CheckOut() {
       {renderTitle()}
       <CheckoutStepper step={step} setStep={setStep} />
       {renderStepContent()}
-      <p></p>
     </div>
   );
 }

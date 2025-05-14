@@ -4,7 +4,7 @@ import CheckoutShippingCard from '../../components/CheckoutShippingCard';
 import CheckoutCardCard from '../../components/CheckoutCardCard';
 import CheckoutButtonCard from '../../components/CheckoutButtonCard';
 
-const CheckoutSummary = ({ onNext, onEdit, checkoutData }) => {
+const CheckoutSummary = ({ onNext, onEdit, checkoutData, checkoutOrder }) => {
   console.log(checkoutData);
 
   return (
@@ -46,7 +46,13 @@ const CheckoutSummary = ({ onNext, onEdit, checkoutData }) => {
         <CheckoutCardCard cardNumber={`${checkoutData.paymentInfo.cardNumber}`} expire={`${checkoutData.paymentInfo.expDate}`} />
       </div>
 
-      <button onClick={onNext} className="w-full">
+      <button
+        onClick={() => {
+          onNext();
+          checkoutOrder();
+        }}
+        className="w-full"
+      >
         <CheckoutButtonCard currentStep="summary" />
       </button>
 

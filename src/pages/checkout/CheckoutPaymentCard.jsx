@@ -7,7 +7,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
     firstName: '',
     lastName: '',
     cardNumber: '',
-    expDate: '',
+    exp: '',
     cvv: '',
     saveDetail: false
   });
@@ -20,7 +20,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
 
     if (name === 'cardNumber') {
       formattedValue = newValue.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
-    } else if (name === 'expDate') {
+    } else if (name === 'exp') {
       formattedValue = newValue.replace(/\D/g, '').substring(0, 4);
       if (formattedValue.length >= 2) {
         formattedValue = formattedValue.slice(0, 2) + '/' + formattedValue.slice(2);
@@ -38,7 +38,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!cardData.firstName || !cardData.lastName || !cardData.cardNumber || !cardData.expDate || !cardData.cvv) {
+    if (!cardData.firstName || !cardData.lastName || !cardData.cardNumber || !cardData.exp || !cardData.cvv) {
       alert('Please fill out all required fields before continuing.');
       return;
     }
@@ -50,7 +50,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
       firstName: '',
       lastName: '',
       cardNumber: '',
-      expDate: '',
+      exp: '',
       cvv: '',
       saveDetail: false
     });
@@ -143,8 +143,8 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
                   <input
                     type="text"
                     placeholder="Expiration date (MM/YY)"
-                    name="expDate"
-                    value={cardData.expDate}
+                    name="exp"
+                    value={cardData.exp}
                     onChange={handleOnchange}
                     className="w-full h-[56px] border-secondary-light-gray-500 border-[1.25px] p-[20px]"
                     maxLength="5"
