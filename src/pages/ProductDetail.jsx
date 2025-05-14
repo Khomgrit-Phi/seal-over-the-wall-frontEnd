@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { useParams } from 'react-router-dom';
-import backIcon from '../assets/images/productDetail/back.svg';
+import backIcon from '../assets/images/productDetail/Back.svg';
 import fast from '../assets/images/productDetail/fast.svg';
 import logoFrontShirt from '../assets/images/productDetail/front.svg';
 import park from '../assets/images/productDetail/park.svg';
