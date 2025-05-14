@@ -2,5 +2,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "jsx": "react-jsx", // Add this to support JSX with React 17+
+    "module": "ESNext", // Recommended for modern React projects
+    "target": "ESNext", // Use the latest JavaScript features
+    "strict": true, // Enable strict type checking
+    "esModuleInterop": true, // Ensure compatibility with CommonJS modules
+    "skipLibCheck": true, // Skip type checking for node_modules
+    "moduleResolution": "node" // Use Node.js-style module resolution
   }}
