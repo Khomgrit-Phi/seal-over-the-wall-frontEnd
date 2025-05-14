@@ -28,6 +28,8 @@ function CreateDesign({ onNext, updateCreateData }) {
   const CLOUD_NAME = 'dvpnipb6g';
   const UPLOAD_PRESET = 'upload_designs';
 
+  
+
   const showModal = (message) => {
     setModal({ open: true, title: "Alert", message });
   };
