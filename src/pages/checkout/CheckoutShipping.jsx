@@ -14,9 +14,9 @@ const CheckoutShipping = ({ onNext, updateData }) => {
     postal: '',
     email: '',
     phone: '',
-    smsPromotion: '',
-    emailPromotion: '',
-    shipping: ''
+    smsPromotion: false,
+    emailPromotion: false,
+    shipping: 'standard'
   });
 
   const handleOnchange = (e) => {
@@ -51,7 +51,7 @@ const CheckoutShipping = ({ onNext, updateData }) => {
     updateData(shippingData);
 
     setShippingData({
-      firstName: 'abctest',
+      firstName: '',
       lastName: '',
       address: '',
       specific: '',

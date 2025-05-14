@@ -24,7 +24,7 @@ export default function Carousel({
   return (
     <div className="overflow-hidden relative bg-[#ECEFE8] w-full h-full ">
       <div className="flex w-full h-full justify-center items-center">
-        <div className="flex w-[462px] h-[462px] gap-57 transition-transform ease-out duration-500"
+        <div className="flex w-full gap-90 transition-transform ease-out duration-500"
         style={{ transform: `translateX(-${curr * 150}%)`}}
         >{slides}</div>
       </div>

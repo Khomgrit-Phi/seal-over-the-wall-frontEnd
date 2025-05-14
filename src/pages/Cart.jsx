@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useCallback } from 'react'; // Import useCallback
+import { useCallback, useEffect, useState } from 'react'; // Import useCallback
+import { Link } from 'react-router';
+import AdBox from '../components/AdBox';
 import CartBox from '../components/CartBox';
 import GiftCard from '../components/GiftCard';
 import Questions from '../components/Questions';
-import AdBox from '../components/AdBox';
-import { getCart, deleteCartItem } from '../services/cart.js';
+import { useAuth } from '../context/AuthContext.jsx';
+import { deleteCartItem, getCart } from '../services/cart.js';
 import { createOrder } from '../services/order.js';
-import { Link } from 'react-router';
 
 const Cart = () => {
   const [orderItem, setOrderItem] = useState([]);
@@ -13,7 +14,8 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const userId = '6821de629f107d6ad0c88355';
+  const { user, setCart } = useAuth();
+  const userId = user._id;
 
   // Fetch cart data
   useEffect(() => {
@@ -22,6 +24,7 @@ const Cart = () => {
       setError(null);
       try {
         const response = await getCart(userId);
+        setCart(response.data.cart);
         const fetchedCartData = response.data.cart;
         setCartData(fetchedCartData);
         setOrderItem(
@@ -78,7 +81,6 @@ const Cart = () => {
         console.error('Cart ID is not available.  Cannot delete.');
         return;
       }
-
       // call DELETE method
       try {
         const cartId = cartData._id;
@@ -114,6 +116,8 @@ const Cart = () => {
     [cartData?._id, userId]
   );
 
+  // Re-update the DB everytime use select a new color, size, quantity
+
   // Submitting the finalized Cart and convert it to order
   const handleCheckoutOrder = async () => {
     const formattedOrderItems = orderItem.map((item) => ({
@@ -122,7 +126,8 @@ const Cart = () => {
       selectedColor: item.color,
       selectedImage: item.productImage,
       quantity: item.quantity,
-      unitPrice: item.price
+      unitPrice: item.price,
+      totalItemPrice: item.price * item.quantity
     }));
     console.log('Formatted order items:', formattedOrderItems);
     try {
