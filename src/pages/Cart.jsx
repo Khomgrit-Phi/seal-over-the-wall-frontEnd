@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useCallback } from 'react'; // Import useCallback
+import { useCallback, useEffect, useState } from 'react'; // Import useCallback
+import { Link } from 'react-router';
+import AdBox from '../components/AdBox';
 import CartBox from '../components/CartBox';
 import GiftCard from '../components/GiftCard';
 import Questions from '../components/Questions';
-import AdBox from '../components/AdBox';
-import { getCart, deleteCartItem } from '../services/cart.js';
+import { useAuth } from '../context/AuthContext.jsx';
+import { deleteCartItem, getCart } from '../services/cart.js';
 import { createOrder } from '../services/order.js';
-import { Link } from 'react-router';
 
 const Cart = () => {
   const [orderItem, setOrderItem] = useState([]);
@@ -13,7 +14,8 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const userId = '6821de629f107d6ad0c88355';
+  const { user } = useAuth();
+  const userId = user._id;
 
   // Fetch cart data
   useEffect(() => {

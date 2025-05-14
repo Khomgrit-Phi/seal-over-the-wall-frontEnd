@@ -1,14 +1,20 @@
+import { useAuth } from "@/context/AuthContext";
 import AddToCart from "./AddToCart";
 import FavoriteMenu from "./FavoriteMenu";
 
 const ProductCard = ({ item }) => {
+  const { addItemToCart } = useAuth();
+
+  if (!item) {
+    return null;
+  }
   return (
     <>
 
       <div className="relative w-[248px] h-auto bg-white hover:shadow-lg hover:scale-105 hover:transition duration-300 cursor-pointer ">
         <div className="relative overflow-hidden ">
           <img
-            src={item.images[Math.floor(Math.random() * item.images.length)]}
+            src={item.images?.[Math.floor(Math.random() * item.images.length)]}
             alt={item.title}
             className="w-full h-auto object-cover"
           />
@@ -26,9 +32,9 @@ const ProductCard = ({ item }) => {
               {[...Array(5)].map((_, i) => (
                 <i
                   key={i}
-                  className={`${i + 1 <= Math.floor(item.reviews)
+                  className={`${i + 1 <= Math.floor(item.reviews || 0)
                     ? "fa-solid fa-star text-[#334DD8]"
-                    : i < item.reviews
+                    : i < (item.reviews || 0)
                       ? "fa-solid fa-star-half-stroke text-[#334DD8]"
                       : "fa-regular fa-star text-gray-300"
                     }`}
@@ -38,10 +44,10 @@ const ProductCard = ({ item }) => {
                   {item.reviews} / 5
                 </span> */}
             </div>
-            <p className="">( {item.reviewCount} )</p>
+            <p className="">( {item.reviewCount || 0} )</p>
           </div>
 
-          <AddToCart item={item} />
+          <AddToCart item={item} addItemToCart={addItemToCart} />
         </div>
       </div>
     </>
