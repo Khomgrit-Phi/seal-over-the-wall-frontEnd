@@ -50,7 +50,8 @@ const Cart = () => {
       }
     };
     fetchCartData();
-  }, [userId]);
+  }, [userId, setCart]);
+
 
   // Update quantity
   const handleQuantityChange = (cartItemId, newQuantity) => {

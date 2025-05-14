@@ -4,19 +4,19 @@ import { useState } from 'react';
 
 const CheckoutShipping = ({ onNext, updateData }) => {
   const [shippingData, setShippingData] = useState({
-    firstName: 'd',
-    lastName: 'd',
-    address: 'd',
-    specific: 'd',
-    district: 'd',
-    subDistrict: 'd',
-    city: 'd',
-    postal: '12345',
-    email: 'd@mail.com',
-    phone: '0123456789',
+    firstName: '',
+    lastName: '',
+    address: '',
+    specific: '',
+    district: '',
+    subDistrict: '',
+    city: '',
+    postal: '',
+    email: '',
+    phone: '',
     smsPromotion: false,
     emailPromotion: false,
-    shipping: 'standard'
+    shipping: ''
   });
 
   const handleOnchange = (e) => {

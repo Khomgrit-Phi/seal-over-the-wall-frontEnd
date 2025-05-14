@@ -9,12 +9,11 @@ import { createOrder, getOrder } from '../../services/order';
 import { set } from 'zod';
 
 function CheckOut() {
-  const [step, setStep] = React.useState(0);
+  const [step, setStep] = React.useState(1);
   const [orderDetail, setOrderDetail] = React.useState(null);
 
   const { cart } = useAuth();
 
-  console.log(cart);
 
   const [checkoutData, setCheckoutData] = React.useState({
     shippingInfo: {},

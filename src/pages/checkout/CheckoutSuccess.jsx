@@ -56,7 +56,10 @@ const Success = ({ onReset, orderDetail }) => {
                         {/* Color circle div */}
                         <div className="flex items-center gap-2 mr-4"> 
                           <span className="text-lg font-normal">color:</span>
-                          <div className={`w-6 h-6 outline-1 rounded-full bg-#${colorArray[colorMap[product.selectedColor]]}`}></div>
+                          <div
+                              className="w-6 h-6 outline-1 rounded-full"
+                              style={{ backgroundColor: `#${colorArray[colorMap[product.selectedColor]]}` }}
+                            ></div>
                           <i className="fa-solid fa-angle-down w-4 h-4"></i>
                         </div>
                         {/* Size div */}
