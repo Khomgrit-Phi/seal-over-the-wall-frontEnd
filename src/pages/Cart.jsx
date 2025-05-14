@@ -123,7 +123,8 @@ const Cart = () => {
       selectedColor: item.color,
       selectedImage: item.productImage,
       quantity: item.quantity,
-      unitPrice: item.price
+      unitPrice: item.price,
+      totalItemPrice: item.price * item.quantity
     }));
     console.log('Formatted order items:', formattedOrderItems);
     try {

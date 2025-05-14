@@ -14,9 +14,9 @@ const CheckoutShipping = ({ onNext, updateData }) => {
     postal: '',
     email: '',
     phone: '',
-    smsPromotion: '',
-    emailPromotion: '',
-    shipping: ''
+    smsPromotion: false,
+    emailPromotion: false,
+    shipping: 'standard'
   });
 
   const handleOnchange = (e) => {

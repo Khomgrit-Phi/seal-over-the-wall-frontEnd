@@ -4,12 +4,15 @@ import CheckoutShipping from './CheckoutShipping';
 import CheckoutPaymentCard from './CheckoutPaymentCard';
 import CheckoutSummary from './CheckoutSummary';
 import CheckoutSuccess from './CheckoutSuccess';
+import { useAuth } from '../../context/AuthContext';
 
 function CheckOut() {
   const [step, setStep] = React.useState(() => {
     const saved = localStorage.getItem('checkout-step');
     return saved ? parseInt(saved, 10) : 0;
   });
+
+  const { cart } = useAuth();
 
   const [checkoutData, setCheckoutData] = React.useState({
     shippingInfo: {},

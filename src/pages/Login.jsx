@@ -28,7 +28,6 @@ export default function Login() {
     try {
       const data = await loginUser(email, password);
       setUser(data.user);
-      createCart();
       navigate('/');
     } catch (err) {
       console.error(err);
