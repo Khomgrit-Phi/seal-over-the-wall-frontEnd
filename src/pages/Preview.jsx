@@ -11,8 +11,7 @@ import logoOrganic from "../assets/images/preview/Organic.svg";
 import iconIg from "../assets/images/preview/icon-ig.svg";
 import iconX from "../assets/images/preview/icon-x.svg";
 import iconFb from "../assets/images/preview/icon-fb.svg";
-import iconShirtFrontArea from "../assets/images/preview/iconShirtFrontArea.svg";
-import iconShirtBackArea from "../assets/images/preview/iconShirtBackArea.svg";
+import uploadProduct  from "../services/product";
 
 const Preview = ({ onNext, onBack, createData }) => {
   const products = Array.isArray(createData?.expressandpublish) ? createData.expressandpublish : [];
@@ -28,6 +27,30 @@ const Preview = ({ onNext, onBack, createData }) => {
   const firstProduct = products[0] || {};
   const price = pricesByType[firstProduct.type] || "N/A";
 
+  const handleNext = async () => {
+    const payload = {
+      styleName: firstProduct.productName || "Untitled",
+      productType: firstProduct.type || "unknown",
+      description: firstProduct.concept || "No concept provided",
+      price,
+      sizes: ['S', 'M', 'L'],
+      colors: ['#ffffff', '#5A5959', '#202020', '#334DD8'],
+      tag: collectionTags,
+      images: firstProduct.images?.map(img => img.url) || []
+    };
+
+  
+
+    try {
+      const response = await uploadProduct(payload);
+      console.log("✅ Product created:", response.product);
+      onNext();
+    } catch (err) {
+      console.error("❌ Error submitting product:", err.response?.data || err.message);
+      alert("Product submission failed. Check console.");
+    }
+  };
+
   return (
     <div className="flex flex-col items-center">
       <div className="w-full mb-10 pl-[288px]">
@@ -42,7 +65,7 @@ const Preview = ({ onNext, onBack, createData }) => {
             <BackButton onBack={onBack} />
           </button>
           <button>
-            <NextStepButton onNext={onNext} />
+            <NextStepButton onNext={handleNext} />
           </button>
         </div>
       </div>
@@ -50,8 +73,7 @@ const Preview = ({ onNext, onBack, createData }) => {
       <div className="w-full px-[152px]">
         <div className="mb-33">
           <div className="mt-2 flex items-center">
-            <div className="flex flex-col gap-4 ml-34 mr-72">
-            </div>
+            <div className="flex flex-col gap-4 ml-34 mr-72" />
             <img src={firstProduct.images?.[0]?.url} alt={firstProduct.productName} className="w-185 h-185" />
           </div>
 
@@ -98,9 +120,6 @@ const Preview = ({ onNext, onBack, createData }) => {
               <p className="text-xl mt-6 w-190 wrap-text">
                 {firstProduct.concept || "No concept description provided."}
               </p>
-              {/* <p className="text-xl ">
-                Playful lines, dreamy vibes. {artistName} creates illustrations that spark joy and imagination one doodle at a time.
-              </p> */}
               <div className="flex gap-5 mt-4 text-xl font-semibold">
                 <p className="flex items-center gap-2">
                   <img src={iconIg} alt="Instagram Icon" /> {artistName}
@@ -139,10 +158,6 @@ const Preview = ({ onNext, onBack, createData }) => {
 
             <div className="w-1/2">
               <h5 className="text-2xl font-semibold">Print areas</h5>
-              {/* <div className="flex gap-8">
-                <img src={iconShirtFrontArea} alt="Icon shirt front" className="h-[72px]" />
-                <img src={iconShirtBackArea} alt="Icon shirt back" className="h-[72px]" />
-              </div> */}
               <div className="flex flex-wrap gap-4 mt-6">
                 {collectionTags.map((tag, idx) => (
                   <button

@@ -68,6 +68,7 @@ function Create() {
         return (
           <Preview
             createData={createData}
+            onNext={handleNext}  
             onReset={handleReset}
             onBack={handleBack}
             onEdit={handleEdit}
