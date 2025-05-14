@@ -17,8 +17,8 @@ const itemVariants1 = {
   },
 };
 
-const ProductList = () => {
-  const items = productDataStore((state) => state.items);
+const ProductList = ({ items }) => {
+  const allItemsFromStore = productDataStore((state) => state.items);
   const setItems = productDataStore((state) => state.setItems);
 
   useEffect(() => {
@@ -34,13 +34,15 @@ const ProductList = () => {
       }
     };
 
-    fetchProducts();
-  }, []);
+    if (allItemsFromStore.length === 0) {
+      fetchProducts();
+    }
+  }, [allItemsFromStore.length, setItems]);
 
   return (
     <section className="p-10 mx-auto my-8 w-404">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-x-52 gap-y-25">
-        {items.map((item, index) => (
+        {items && items.map((item, index) => (
           <React.Fragment key={item._id}>
             <motion.div
               custom={index}
