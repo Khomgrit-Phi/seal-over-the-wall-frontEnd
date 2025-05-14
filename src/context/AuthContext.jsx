@@ -6,8 +6,17 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null); // Store user information
   const [loading, setLoading] = useState(true); // Track loading state
+  const [cart, setCart] = useState(null);
   // const navigate = useNavigate();
 
+  const fetchCart = async () => {
+    try {
+      const cartData = await api.get(`/cart/${user?._id}`);
+      setCart(cartData);
+    } catch (error) {
+      console.error("Can not get user's cart: ", error);
+    }
+  };
   // Fetch the user's profile on app load
   useEffect(() => {
     const fetchProfile = async () => {
@@ -24,6 +33,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     fetchProfile();
+    fetchCart();
   }, []);
 
   const login = (userData) => {
@@ -45,9 +55,7 @@ export const AuthProvider = ({ children }) => {
     return <div>Loading...</div>; // Show loading indicator while restoring session
   }
 
-  return <AuthContext.Provider value={{ user, setUser, login, logout, loading }}>
-    {children}
-  </AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, setUser, login, logout, loading, cart }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => useContext(AuthContext);

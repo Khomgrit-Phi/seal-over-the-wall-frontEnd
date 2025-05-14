@@ -34,8 +34,12 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
           Ready to showcase your creation? Fill in your product details and click to present your work to buyers!
         </p>
         <div className="flex justify-end items-center gap-4 pr-[128px] mt-1.5">
-          <button><BackButton onBack={onBack} /></button>
-          <button><NextStepButton onNext={onNext} /></button>
+          <button>
+            <BackButton onBack={onBack} />
+          </button>
+          <button>
+            <NextStepButton onNext={onNext} />
+          </button>
         </div>
       </div>
 
@@ -53,7 +57,7 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
 
         <div className="mt-4 flex flex-row overflow-x-auto items-center">
           <div className="gap-4 flex flex-row">
-            <div className='bg-white w-98 h-58 rounded-lg border border-[#DBDBDC] shadow-md flex items-center justify-center'></div>
+            <div className="bg-white w-98 h-58 rounded-lg border border-[#DBDBDC] shadow-md flex items-center justify-center"></div>
             <button onClick={() => handleChildImageClick(productPreviewChild1)} className="preview-thumb">
               <img src={iconArrowLeft} alt="arrow left" className="icon-left" />
               <img src={productPreviewChild1} alt="Child 1" className="thumb-img" />
@@ -72,9 +76,15 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
               <p className="text-2xl font-semibold">Upload your image</p>
               <p className="text-lg font-medium">Drag & Drop it here</p>
               <img src={iconUplodeFile} alt="upload icon" className="w-10 h-10" />
-              <p className="text-xl font-medium text-[#91919B]">or <span className="underline text-[#334DD8]">Choose file</span></p>
-              <p className="text-base text-[#91919B]">Max file size : <span className="font-medium">25 MB</span></p>
-              <p className="text-base text-[#91919B]">Supported file types : <span className="font-medium">JPG, PNG</span></p>
+              <p className="text-xl font-medium text-[#91919B]">
+                or <span className="underline text-[#334DD8]">Choose file</span>
+              </p>
+              <p className="text-base text-[#91919B]">
+                Max file size : <span className="font-medium">25 MB</span>
+              </p>
+              <p className="text-base text-[#91919B]">
+                Supported file types : <span className="font-medium">JPG, PNG</span>
+              </p>
             </div>
           </div>
         </div>
@@ -91,10 +101,13 @@ const ExpressAndPublish = ({ onNext, onBack }) => {
           <div className="grow">
             <h3 className="text-2xl font-semibold">Product Tags</h3>
             <div className="mt-3 flex flex-wrap gap-4">
-              {["custom", "t-shirt", "collection", "Artists Lalala"].map(tag => (
-                <button key={tag} className="tag-button">{tag}</button>
+              {['custom', 't-shirt', 'collection', 'Artists Lalala'].map((tag) => (
+                <button key={tag} className="tag-button">
+                  {tag}
+                </button>
               ))}
-              <button className="tag-button border-dashed border-2 flex gap-2 items-center">Add
+              <button className="tag-button border-dashed border-2 flex gap-2 items-center">
+                Add
                 <img src={iconAdd} alt="add icon" className="h-6 w-6" />
               </button>
             </div>

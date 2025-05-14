@@ -6,3 +6,9 @@ export const createOrder = async (userId, items, total) => {
     const request = await api.post("/order", payload);
     return request.data;
 }
+
+//Get an order from last created cart
+export const getOrder = async (orderId) => {
+    const request = await api.get(`order/${orderId}`);
+    return request.data;
+}

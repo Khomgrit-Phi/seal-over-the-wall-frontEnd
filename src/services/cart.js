@@ -2,8 +2,8 @@ import api from '../services/api.js';
 
 
 //create an cart along when user is registered
-export const createCart = async () => {
-    const response = await api.post("/cart");
+export const createCart = async (userId) => {
+    const response = await api.post("/cart", userId);
     return response.data;
 }
 
@@ -35,4 +35,17 @@ export const updateCart = async () => {
     const response = await api.patch("/cart/:userId");
     return response.data;
 }
+
+//to Update cart items color / size / quantity
+export const updateDetail = async ( itemId, color, size, quantity, image) => {
+  try {
+  const payload = {selectedColor:color, selectedSize:size, quantity:quantity, selectedImage:image}
+  const request = await api.patch(`/cart/items/${itemId}`, payload)
+  return console.log(payload, request)
+  } catch (error) {
+    console.log("error updating cart item: ", error )
+    throw error;
+  }
+}
+
 

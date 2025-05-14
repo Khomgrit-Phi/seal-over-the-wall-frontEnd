@@ -78,7 +78,6 @@ const Cart = () => {
         console.error('Cart ID is not available.  Cannot delete.');
         return;
       }
-
       // call DELETE method
       try {
         const cartId = cartData._id;
@@ -114,6 +113,8 @@ const Cart = () => {
     [cartData?._id, userId]
   );
 
+  // Re-update the DB everytime use select a new color, size, quantity
+
   // Submitting the finalized Cart and convert it to order
   const handleCheckoutOrder = async () => {
     const formattedOrderItems = orderItem.map((item) => ({
@@ -122,7 +123,8 @@ const Cart = () => {
       selectedColor: item.color,
       selectedImage: item.productImage,
       quantity: item.quantity,
-      unitPrice: item.price
+      unitPrice: item.price,
+      totalItemPrice: item.price * item.quantity
     }));
     console.log('Formatted order items:', formattedOrderItems);
     try {
