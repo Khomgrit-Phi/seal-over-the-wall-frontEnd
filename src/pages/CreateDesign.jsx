@@ -17,14 +17,23 @@ import ModalAlert from '../components/createDesignPage/ModalAlert';
 function CreateDesign({ onNext, updateCreateData }) {
   const [selectedProduct, setSelectedProduct] = useState('tshirt');
   const [designURL, setDesignURL] = useState('');
+  const [uploadedPreviews, setUploadedPreviews] = useState([]);
+  const [productTypes, setProductTypes] = useState([]);
   const [selectedColors, setSelectedColors] = useState(['white']);
   const [isSaved, setIsSaved] = useState(false);
+  const [modal, setModal] = useState({ open: false, title: '', message: '' });
 
   const CLOUD_NAME = 'dvpnipb6g';
   const UPLOAD_PRESET = 'upload_designs';
 
+  const showModal = (message) => {
+    setModal({ open: true, title: "Alert", message });
+  };
 
-  //  Save design
+  const closeModal = () => {
+    setModal({ open: false, title: '', message: '' });
+  };
+
   const handleSaveDesign = async () => {
     if (!designURL || selectedColors.length === 0 || !selectedProduct) {
       showModal("Please complete all steps before saving your design.");
@@ -44,6 +53,8 @@ function CreateDesign({ onNext, updateCreateData }) {
     tempContainer.style.left = '-9999px';
     document.body.appendChild(tempContainer);
 
+    const urls = [];
+
     for (let i = 0; i < originalElements.length; i++) {
       const el = originalElements[i];
       const color = el.getAttribute('data-color') || `color_${i + 1}`;
@@ -55,7 +66,6 @@ function CreateDesign({ onNext, updateCreateData }) {
       clone.style.transformOrigin = 'top left';
       clone.style.width = `${origWidth}px`;
       clone.style.height = `${origHeight}px`;
-
       tempContainer.appendChild(clone);
 
       try {
@@ -68,7 +78,6 @@ function CreateDesign({ onNext, updateCreateData }) {
         const finalCanvas = document.createElement('canvas');
         finalCanvas.width = origWidth * upscale;
         finalCanvas.height = origHeight * upscale;
-
         const ctx = finalCanvas.getContext('2d');
         ctx.drawImage(canvas, 0, 0);
 
@@ -89,6 +98,7 @@ function CreateDesign({ onNext, updateCreateData }) {
         const data = await res.json();
         if (data.secure_url) {
           console.log(`✅ Uploaded ${color}: ${data.secure_url}`);
+          urls.push({ color, url: data.secure_url });
         } else {
           console.error(`❌ Failed to upload ${color}`);
         }
@@ -100,6 +110,13 @@ function CreateDesign({ onNext, updateCreateData }) {
     }
 
     document.body.removeChild(tempContainer);
+    setUploadedPreviews(urls);
+
+    // Save selected product type to the list
+    if (!productTypes.includes(selectedProduct)) {
+      setProductTypes(prev => [...prev, selectedProduct]);
+    }
+
     showModal("Design saved!");
     setIsSaved(true);
   };
@@ -112,9 +129,10 @@ function CreateDesign({ onNext, updateCreateData }) {
 
     try {
       const payload = {
-        productType: selectedProduct,
+        productTypes,
         selectedColors,
         designUrl: designURL,
+        previewImages: uploadedPreviews,
         title: "",
         description: "",
         price: 0,
@@ -126,7 +144,7 @@ function CreateDesign({ onNext, updateCreateData }) {
       setIsSaved(true);
 
       if (updateCreateData) {
-        updateCreateData({ createdesign: result.design });
+        updateCreateData({ createdesign: payload });
       }
 
       if (onNext) onNext();
@@ -134,6 +152,10 @@ function CreateDesign({ onNext, updateCreateData }) {
       console.error("Save failed:", error);
       showModal("Failed to save design.");
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   const renderProductTemplate = () => {
@@ -165,24 +187,8 @@ function CreateDesign({ onNext, updateCreateData }) {
     );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  // Modal Alert State
-  const [modal, setModal] = useState({ open: false, title: '', message: '' });
-
-  const showModal = (message) => {
-    setModal({ open: true, title: "Alert", message });
-  };
-
-  const closeModal = () => {
-    setModal({ open: false, title: '', message: '' });
-  };
-
   return (
     <form onSubmit={handleSubmit}>
-      {/* Product Selection */}
       <div className="step-1 flex justify-center mb-6">
         <ProductSelection
           selected={selectedProduct}
@@ -190,7 +196,6 @@ function CreateDesign({ onNext, updateCreateData }) {
         />
       </div>
 
-      {/* Color Selection + Save/Next Buttons */}
       <div className="absolute w-[1615px] flex justify-center items-center">
         <div className="w-full flex justify-between items-start pr-[127px]">
           <ColorSelection
@@ -209,6 +214,18 @@ function CreateDesign({ onNext, updateCreateData }) {
                   showModal("Please save your design before going to the next step.");
                   return;
                 }
+
+                if (updateCreateData) {
+                  updateCreateData({
+                    createdesign: {
+                      productTypes,
+                      selectedColors,
+                      designUrl: designURL,
+                      previewImages: uploadedPreviews,
+                    },
+                  });
+                }
+
                 onNext();
               }}
             />
@@ -216,7 +233,6 @@ function CreateDesign({ onNext, updateCreateData }) {
         </div>
       </div>
 
-      {/* Upload Design & Mockup Template */}
       <motion.div
         className="w-full flex flex-col items-center gap-8 px-4 my-10"
         initial={{ opacity: 0, y: 30 }}
@@ -235,7 +251,6 @@ function CreateDesign({ onNext, updateCreateData }) {
         <div className="relative">{renderProductTemplate()}</div>
       </motion.div>
 
-      {/* Preview Section */}
       <motion.div
         className="flex justify-center mt-10"
         initial={{ opacity: 0, y: 20 }}
@@ -249,7 +264,6 @@ function CreateDesign({ onNext, updateCreateData }) {
         />
       </motion.div>
 
-      {/* Modal + Walkthrough */}
       <ModalAlert
         isOpen={modal.open}
         onClose={closeModal}

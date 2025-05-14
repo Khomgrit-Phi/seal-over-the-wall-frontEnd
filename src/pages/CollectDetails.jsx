@@ -8,7 +8,8 @@ import PromotionCampaign from "../components/collectDetailsPage/PromotionCampaig
 
 
 
-const CollectDetails = ({ onNext, onBack }) => {
+
+function CollectDetails({ createData, onNext, onBack, updateCreateData }) {
   return (
   <form>
     <div className="flex flex-col items-center">
@@ -29,7 +30,7 @@ const CollectDetails = ({ onNext, onBack }) => {
                 </div>
         </div>
         <div className="flex justify-center gap-15 mx-[152px] mt-3.5 p-1.5">
-            <PriceAndStockTable />
+            <PriceAndStockTable createData={createData} />
             <TotalProfitTable />
         </div>
         <div className="w-full flex justify-center items-center mt-10 mb-10">
