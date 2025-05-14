@@ -16,7 +16,7 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
       return {
         type,
         productName: `Custommike ${type}`,
-        concept: '',
+        concept: "",
         images,
       };
     });
@@ -30,6 +30,10 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
     setProducts(updated);
   };
 
+  const isFormValid = products.every(
+    (p) => p.productName.trim() !== "" && p.concept.trim() !== ""
+  );
+
   return (
     <div className="flex flex-col items-center">
       <div className="w-full mb-10 pl-[288px]">
@@ -39,7 +43,9 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
         </p>
         <div className="flex justify-end items-center gap-4 pr-[128px] mt-1.5">
           <button><BackButton onBack={onBack} /></button>
-          <button><NextStepButton onNext={() => onNext(products)} /></button>
+          <button disabled={!isFormValid} className={!isFormValid ? 'opacity-50 cursor-not-allowed' : ''}>
+            <NextStepButton onNext={() => onNext({ expressandpublish: products })} />
+          </button>
         </div>
       </div>
 
@@ -47,16 +53,16 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
         {products.map((product, idx) => (
           <div key={idx} className="flex gap-40">
             {/* Preview all images */}
-            <div className="flex gap-4 overflow-x-auto max-w-[400px]">
-                {product.images.map((img, i) => (
-                  <img
-                    key={i}
-                    src={img.url}
-                    alt={`Preview ${i}`}
-                    className="min-w-[400px] h-[400px] object-contain"
-                  />
-                ))}
-              </div>
+            <div className="flex gap-4 overflow-x-auto max-w-[450px]">
+              {product.images.map((img, i) => (
+                <img
+                  key={i}
+                  src={img.url}
+                  alt={`Preview ${i}`}
+                  className="min-w-[450px] h-[450px] object-contain"
+                />
+              ))}
+            </div>
 
             {/* Form */}
             <div className="flex flex-col gap-8 grow">
@@ -67,7 +73,7 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
                   type="text"
                   className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-132"
                   value={product.productName}
-                  onChange={(e) => handleProductChange(idx, 'productName', e.target.value)}
+                  onChange={(e) => handleProductChange(idx, "productName", e.target.value)}
                 />
 
                 <label className="block mb-2 text-xl font-normal mt-6">Category</label>
@@ -85,7 +91,9 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
                   <button className="bg-[#E1E1E4] text-[#202020] text-xl font-medium px-2 py-2 rounded-sm">custom</button>
                   <button className="bg-[#E1E1E4] text-[#202020] text-xl font-medium px-2 py-2 rounded-sm">{product.type}</button>
                   <button className="bg-[#E1E1E4] text-[#202020] text-xl font-medium px-2 py-2 rounded-sm">collection</button>
-                  <button className="bg-[#fff] text-[#91919B] text-xl font-medium px-2 py-2 rounded-sm flex items-center gap-2 border border-dashed border-[#E1E1E4]">Add <img src={iconAdd} alt="add" className='h-6 w-6' /></button>
+                  <button className="bg-[#fff] text-[#91919B] text-xl font-medium px-2 py-2 rounded-sm flex items-center gap-2 border border-dashed border-[#E1E1E4]">
+                    Add <img src={iconAdd} alt="add" className="h-6 w-6" />
+                  </button>
                 </div>
 
                 <label className="block mb-2 text-xl font-normal">Concept</label>
@@ -93,9 +101,9 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
                   className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-166 min-h-[50px] resize-none"
                   placeholder="Concept"
                   value={product.concept}
-                  onChange={(e) => handleProductChange(idx, 'concept', e.target.value)}
+                  onChange={(e) => handleProductChange(idx, "concept", e.target.value)}
                   onInput={(e) => {
-                    e.target.style.height = 'auto';
+                    e.target.style.height = "auto";
                     e.target.style.height = `${e.target.scrollHeight}px`;
                   }}
                 />

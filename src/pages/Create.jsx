@@ -26,7 +26,10 @@ function Create() {
 
   
 
-  const handleNext = () => setStep((prev) => prev + 1);
+ const handleNext = (newData = {}) => {
+  updateCreateData(newData);
+  setStep((prev) => prev + 1);
+};
   const handleBack = () => setStep((prev) => prev - 1);
   const handleReset = () => {
     localStorage.removeItem('create-step'); // ✅ consistent key
@@ -62,11 +65,14 @@ function Create() {
           />
         );
       case 3:
-        return <Preview 
-        onReset={handleReset}
-        onBack={handleBack}
-        onEdit={handleEdit} 
-        />;
+        return (
+          <Preview
+            createData={createData}
+            onReset={handleReset}
+            onBack={handleBack}
+            onEdit={handleEdit}
+          />
+        );
       default:
         return null;
     }
