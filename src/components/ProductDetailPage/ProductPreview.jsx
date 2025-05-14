@@ -1,10 +1,3 @@
-import previewProduct1 from "../../assets/images/productDetail/doubt-front.jpg";
-import previewProduct2 from "../../assets/images/productDetail/doubt-back.jpg";
-import previewProduct3 from "../../assets/images/productDetail/doubt-front-female.jpg";
-import previewProduct4 from "../../assets/images/productDetail/doubt-back-male.jpg";
-import previewProduct5 from "../../assets/images/productDetail/doubt-back-male-2.jpg";
-
-import React, { useState, useEffect, useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -14,19 +7,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
+import { useCallback, useEffect, useState } from "react";
 
-const ProductPreview = () => {
+const ProductPreview = ({ images }) => {
   const [api, setApi] = useState(null);
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
-
-  const images = [
-    previewProduct1,
-    previewProduct2,
-    previewProduct3,
-    previewProduct4,
-    previewProduct5,
-  ];
 
   useEffect(() => {
     if (!api) return;
@@ -56,25 +42,22 @@ const ProductPreview = () => {
     <div className=" flex mx-auto w-full flex-col items-center justify-center ">
       <Carousel setApi={setApi} className="w-150 max-w-400 mx-auto">
         <CarouselContent>
-          {images.map((src, index) => (
+          {images.map((imageSrc, index) => (
             <CarouselItem key={index}>
               <Card className="border-none shadow-none w-150 h-150">
-                <CardContent className="flex aspect-video items-center justify-center p-0 ">
-                  <img
-                    src={src}
-                    alt={`Slide ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
+                <CardContent className="flex aspect-video items-center justify-center p-0 object-cover">
+                  <img src={`/${imageSrc}`} alt={`Slide ${index + 1}`} className="w-full h-full" />
                 </CardContent>
               </Card>
             </CarouselItem>
-          ))}
+          )
+          )}
         </CarouselContent>
       </Carousel>
 
       <Carousel className="mt-4 w-full max-w-400">
         <CarouselContent className="flex my-1">
-          {images.map((src, index) => (
+          {images.map((imageSrc, index) => (
             <CarouselItem
               key={index}
               className={cn(
@@ -84,16 +67,13 @@ const ProductPreview = () => {
               onClick={() => handleThumbClick(index)}
             >
               <Card className="border-none shadow-none">
-                <CardContent className="h-44 shadow-lg border-1 border-gray-200 bg-white rounded-xl cursor-pointer mx-">
-                  <img
-                    src={src}
-                    alt={`Thumbnail ${index + 1}`}
-                    className="h-44 w-full object-contain"
-                  />
+                <CardContent className="h-44 shadow-lg border-1 border-gray-200 bg-white rounded-xl cursor-pointer px-0">
+                  <img src={`/${imageSrc}`} alt={`Thumbnail ${index + 1}`} className="h-44 w-full object-cover" />
                 </CardContent>
               </Card>
             </CarouselItem>
-          ))}
+          )
+          )}
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />

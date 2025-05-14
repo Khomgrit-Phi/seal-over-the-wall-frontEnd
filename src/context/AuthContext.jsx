@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import api from '../services/api';
+import { addToCart } from '../services/cart';
 
 export const AuthContext = createContext();
 
@@ -55,7 +56,22 @@ export const AuthProvider = ({ children }) => {
     return <div>Loading...</div>; // Show loading indicator while restoring session
   }
 
-  return <AuthContext.Provider value={{ user, setUser, login, logout, loading, cart }}>{children}</AuthContext.Provider>;
+  const addItemToCart = async (itemObj) => {
+    try {
+      if (!user?._id) {
+        console.error("User not logged in.");
+        return;
+      }
+      // Assuming addToCart service function exists and updates the cart on the backend
+      const updatedCart = await addToCart(user._id, itemObj);
+      console.log(updatedCart);
+      setCart(updatedCart);
+    } catch (error) {
+      console.error("Error adding item to cart: ", error);
+    }
+  };
+
+  return <AuthContext.Provider value={{ user, setUser, login, logout, loading, cart, addItemToCart }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => useContext(AuthContext);

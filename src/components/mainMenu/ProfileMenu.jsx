@@ -41,25 +41,25 @@ const ProfileMenu = () => {
 
           {/* อันนี้ปุ่ม User */}
           {!user ?
-            (<Link to="/login"><BiUser className="w-6 h-6 border-none hover:text-primary-blue-500" /></Link>)
-            : (<MenubarTrigger><BiUser className="w-6 h-6 border-none hover:text-primary-blue-500" /></MenubarTrigger>)}
+            (<Link to="/login"><BiUser className="w-6 h-6 border-none hover:text-primary-blue-500 cursor-pointer" /></Link>)
+            : (<MenubarTrigger><BiUser className="w-6 h-6 border-none hover:text-primary-blue-500 cursor-pointer" /></MenubarTrigger>)}
 
           {user && !loading && (
             <MenubarContent className="bg-white border-gray-200 border-1">
 
               {/* TODO: ให้แก้ตรงนี้ให้ดึง firstName + lastName จากหลังบ้านมา (ต้องแก้ Controller ก่อน) */}
               {/* <MenubarItem inset className="text-lg ">{user.firstName} {user.lastName}</MenubarItem> */}
-              <MenubarItem inset className="text-lg ">{user.firstName} {user.lastName}</MenubarItem>
+              <MenubarItem inset className="text-lg">{user.firstName} {user.lastName}</MenubarItem>
               <MenubarItem inset >{user.email}</MenubarItem>
               <MenubarSeparator className="border-gray-200 border-1" />
-              <MenubarItem inset className="text-lg cursor-pointer ">Dashboard</MenubarItem>
-              <MenubarItem inset asChild className="text-lg cursor-pointer"><Link to="/cart">Order</Link></MenubarItem>
-              <MenubarItem inset className="text-lg cursor-pointer ">Create Hub</MenubarItem>
+              <MenubarItem inset className="text-lg cursor-pointer hover:bg-primary-blue-500 hover:text-secondary-dark-gray-200">Dashboard</MenubarItem>
+              <MenubarItem inset asChild className="text-lg cursor-pointer hover:bg-primary-blue-500 hover:text-secondary-dark-gray-200"><Link to="/cart">Order</Link></MenubarItem>
+              <MenubarItem inset className="text-lg cursor-pointer hover:bg-primary-blue-500 hover:text-secondary-dark-gray-200">Create Hub</MenubarItem>
               <MenubarSeparator className="border-gray-200 border-1" />
-              <MenubarItem inset className="text-lg cursor-pointer ">Following</MenubarItem>
-              <MenubarItem inset className="text-lg cursor-pointer ">Account Setting</MenubarItem>
+              <MenubarItem inset className="text-lg cursor-pointer hover:bg-primary-blue-500 hover:text-secondary-dark-gray-200">Following</MenubarItem>
+              <MenubarItem inset className="text-lg cursor-pointer hover:bg-primary-blue-500 hover:text-secondary-dark-gray-200">Account Setting</MenubarItem>
               <MenubarSeparator className="border-gray-200 border-1" />
-              <MenubarItem inset onSelect={() => handleSignOut()} className="text-lg cursor-pointer ">Sign out</MenubarItem>
+              <MenubarItem inset onSelect={() => handleSignOut()} className="text-lg cursor-pointer hover:bg-primary-blue-500 hover:text-secondary-dark-gray-200">Sign out</MenubarItem>
             </MenubarContent>
           )}
 
