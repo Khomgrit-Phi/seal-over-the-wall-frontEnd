@@ -4,86 +4,90 @@ import bags from '../../assets/images/Products/bag/prove/prove-bag-white-front.p
 import cups from '../../assets/images/Products/cup/prove/prove-cup-white-front.png';
 import line from '../../assets/images/collect-details-pages/Line.svg';
 
+function PriceAndStockTable({ entries, setEntries }) {
+  const productMap = {
+    tshirt: { label: 'T-Shirt', fallback: tshirt, baseCost: 150 },
+    bags: { label: 'Bags', fallback: bags, baseCost: 120 },
+    cups: { label: 'Cup', fallback: cups, baseCost: 100 },
+  };
 
-function PriceAndStockTable() {
+  const handleInputChange = (index, field, value) => {
+    const updated = [...entries];
+    updated[index][field] = field === 'price' || field === 'quantity' ? parseInt(value) || 0 : value;
+    setEntries(updated);
+  };
+
+  const calculateProfitPerUnit = (type, price) =>
+    price - (productMap[type]?.baseCost || 0);
+
   return (
-    <div className="w-[1000px] h-[600px] bg-white rounded-lg shadow-xl p-4 items-center">
-      <h1 className="text-xl font-semibold mb-2">Price and Stock</h1>
+    <div className="w-[1000px] bg-white rounded-lg shadow-xl p-4 items-center">
+      <h1 className="text-xl font-semibold mb-2">Price and Quantity</h1>
 
-      {/* first line */}
-      <div className=" h-[166px] flex justify-between">
-        <img src={tshirt} alt="T-shirt" />
-        <div className="flex flex-col justify-center items-start w-[320px]">
-          <h2 className="font-semibold text-xl">Custommike?</h2>
-          <p>T-Shirt</p>
-        </div>
-        <div className="flex justify-between w-[392px] mr-10">
-          <div className="flex flex-col justify-center items-center w-[120px]">
-            <p>Price</p>
-            <p>APH</p>
-          </div>
-          <div className="flex flex-col justify-center items-center w-[120px]">
-            <p className="mb-0.5">Add Quantity</p>
-            <input type="text" className="bg-white outline-1 outline-secondary-dark-gray-300 rounded-md w-[120px] h-[52px] mt-0.5" />
-          </div>
-          <div className="flex flex-col justify-center items-center w-[120px]">
-            <p>Profit/Unit</p>
-            <p>56 THB</p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <img src={line} alt="Line" />
-      </div>
+      {entries.map((entry, index) => {
+        const product = productMap[entry.type];
+        const profit = calculateProfitPerUnit(entry.type, entry.price);
 
-      {/* second line */}
-      <div className=" h-[166px] flex justify-between">
-        <img src={bags} alt="Bags" />
-        <div className="flex flex-col justify-center items-start w-[320px]">
-          <h2 className="font-semibold text-xl">Custommike?</h2>
-          <p>Bags</p>
-        </div>
-        <div className="flex justify-between w-[392px] mr-10">
-          <div className="flex flex-col justify-center items-center w-[120px]">
-            <p>Price</p>
-            <p>APH</p>
-          </div>
-          <div className="flex flex-col justify-center items-center w-[120px]">
-            <p className="mb-0.5">Add Quantity</p>
-            <input type="text" className="bg-white outline-1 outline-secondary-dark-gray-300 rounded-md w-[120px] h-[52px] mt-0.5" />
-          </div>
-          <div className="flex flex-col justify-center items-center w-[120px]">
-            <p>Profit/Unit</p>
-            <p>56 THB</p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <img src={line} alt="Line" />
-      </div>
+        return (
+          <React.Fragment key={`${entry.type}-${entry.color}`}>
+            <div className="h-[166px] flex justify-between">
+              <img
+                src={entry.url || product.fallback}
+                alt={`${product.label} - ${entry.color}`}
+              />
+              <div className="flex flex-col justify-center items-start w-[320px]">
+                <h2 className="font-semibold text-xl">Custommike?</h2>
+                <p>{product.label} ({entry.color})</p>
+              </div>
 
-      {/* third line */}
-      <div className=" h-[166px] flex justify-between">
-        <img src={cups} alt="Cup" />
-        <div className="flex flex-col justify-center items-start w-[320px]">
-          <h2 className="font-semibold text-xl">Custommike?</h2>
-          <p>Cup</p>
-        </div>
-        <div className="flex justify-between w-[392px] mr-10">
-          <div className="flex flex-col justify-center items-center w-[120px]">
-            <p>Price</p>
-            <p>APH</p>
-          </div>
-          <div className="flex flex-col justify-center items-center w-[120px]">
-            <p className="mb-0.5">Add Quantity</p>
-            <input type="text" className="bg-white outline-1 outline-secondary-dark-gray-300 rounded-md w-[120px] h-[52px] mt-0.5" />
-          </div>
-          <div className="flex flex-col justify-center items-center w-[120px]">
-            <p>Profit/Unit</p>
-            <p>56 THB</p>
-          </div>
-        </div>
-      </div>
+              <div className="flex justify-between w-[392px] mr-10">
+                {/* Price */}
+                <div className="flex flex-col justify-center items-center w-[120px]">
+                  <p className="mb-1 text-xl font-medium">Price</p>
+                  <select
+                    value={entry.price}
+                    onChange={(e) => handleInputChange(index, 'price', e.target.value)}
+                    className="bg-white border px-2 py-1 rounded-md w-[120px] h-[52px] font-semibold text-xl text-center"
+                  >
+                    {[199, 299, 399, 499].map((price) => (
+                      <option key={price} value={price}>{price} THB</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Quantity */}
+                <div className="flex flex-col justify-center items-center w-[120px]">
+                  <p className="mb-1 text-xl font-medium">Quantity</p>
+                  <input
+                    type="number"
+                    min="0" // ⬅️ This prevents negative input
+                    value={entry.quantity}
+                    onChange={(e) =>
+                      handleInputChange(index, 'quantity', e.target.value)
+                    }
+                    className="bg-white border px-2 py-1 rounded-md w-[120px] h-[52px] font-semibold text-xl text-center"
+                    placeholder="Qty"
+                  />
+                </div>
+
+                {/* Profit */}
+                <div className="flex flex-col justify-center items-center w-[120px]">
+                  <p className="mb-1 text-xl font-medium">Profit/Unit</p>
+                  <p className="font-bold text-2xl text-primary-blue-500">
+                    {profit > 0 ? `${profit} THB` : '0 THB'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {index !== entries.length - 1 && (
+              <div className='mt-2'>
+                <img src={line} alt="Divider" />
+              </div>
+            )}
+          </React.Fragment>
+        );
+      })}
     </div>
   );
 }

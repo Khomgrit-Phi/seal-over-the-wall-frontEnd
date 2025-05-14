@@ -13,17 +13,22 @@ import { createdProduct } from "../services/created";
 import { motion, AnimatePresence } from 'framer-motion';
 import html2canvas from 'html2canvas';
 import ModalAlert from '../components/createDesignPage/ModalAlert';
+import LoadingModal from '../components/createDesignPage/LoadingModal';
 
 function CreateDesign({ onNext, updateCreateData }) {
   const [selectedProduct, setSelectedProduct] = useState('tshirt');
   const [designURL, setDesignURL] = useState('');
+  const [uploadedPreviews, setUploadedPreviews] = useState([]);
+  const [productTypes, setProductTypes] = useState([]);
   const [selectedColors, setSelectedColors] = useState(['white']);
   const [isSaved, setIsSaved] = useState(false);
   const [modal, setModal] = useState({ open: false, title: '', message: '' });
-  const [showLoadingModal, setShowLoadingModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const CLOUD_NAME = 'dvpnipb6g';
   const UPLOAD_PRESET = 'upload_designs';
+
+  
 
   const showModal = (message) => {
     setModal({ open: true, title: "Alert", message });
@@ -45,7 +50,7 @@ function CreateDesign({ onNext, updateCreateData }) {
       return;
     }
 
-    setShowLoadingModal(true);
+    setLoading(true);
 
     const upscale = 3;
     const tempContainer = document.createElement('div');
@@ -54,21 +59,22 @@ function CreateDesign({ onNext, updateCreateData }) {
     tempContainer.style.left = '-9999px';
     document.body.appendChild(tempContainer);
 
-    try {
-      for (let i = 0; i < originalElements.length; i++) {
-        const el = originalElements[i];
-        const color = el.getAttribute('data-color') || `color_${i + 1}`;
-        const clone = el.cloneNode(true);
-        const origWidth = el.offsetWidth;
-        const origHeight = el.offsetHeight;
+    const urls = [];
 
-        clone.style.transform = `scale(${upscale})`;
-        clone.style.transformOrigin = 'top left';
-        clone.style.width = `${origWidth}px`;
-        clone.style.height = `${origHeight}px`;
+    for (let i = 0; i < originalElements.length; i++) {
+      const el = originalElements[i];
+      const color = el.getAttribute('data-color') || `color_${i + 1}`;
+      const clone = el.cloneNode(true);
+      const origWidth = el.offsetWidth;
+      const origHeight = el.offsetHeight;
 
-        tempContainer.appendChild(clone);
+      clone.style.transform = `scale(${upscale})`;
+      clone.style.transformOrigin = 'top left';
+      clone.style.width = `${origWidth}px`;
+      clone.style.height = `${origHeight}px`;
+      tempContainer.appendChild(clone);
 
+      try {
         const canvas = await html2canvas(clone, {
           backgroundColor: null,
           useCORS: true,
@@ -78,7 +84,6 @@ function CreateDesign({ onNext, updateCreateData }) {
         const finalCanvas = document.createElement('canvas');
         finalCanvas.width = origWidth * upscale;
         finalCanvas.height = origHeight * upscale;
-
         const ctx = finalCanvas.getContext('2d');
         ctx.drawImage(canvas, 0, 0);
 
@@ -98,24 +103,24 @@ function CreateDesign({ onNext, updateCreateData }) {
 
         const data = await res.json();
         if (data.secure_url) {
-          console.log(`✅ Uploaded ${color}: ${data.secure_url}`);
-        } else {
-          console.error(`❌ Failed to upload ${color}`);
+          urls.push({ color, url: data.secure_url });
         }
-
-        tempContainer.removeChild(clone);
+      } catch (err) {
+        console.error(`Error uploading ${color}:`, err);
       }
 
-      document.body.removeChild(tempContainer);
-      showModal("Design saved!");
-      setIsSaved(true);
-
-    } catch (err) {
-      console.error("Upload error:", err);
-      showModal("Something went wrong.");
-    } finally {
-      setShowLoadingModal(false);
+      tempContainer.removeChild(clone);
     }
+
+    document.body.removeChild(tempContainer);
+    setUploadedPreviews(urls);
+    if (!productTypes.includes(selectedProduct)) {
+      setProductTypes((prev) => [...prev, selectedProduct]);
+    }
+
+    setLoading(false);
+    showModal("Design saved!");
+    setIsSaved(true);
   };
 
   const handleSave = async () => {
@@ -124,13 +129,12 @@ function CreateDesign({ onNext, updateCreateData }) {
       return;
     }
 
-    setShowLoadingModal(true);
-
     try {
       const payload = {
-        productType: selectedProduct,
+        productTypes,
         selectedColors,
         designUrl: designURL,
+        previewImages: uploadedPreviews,
         title: "",
         description: "",
         price: 0,
@@ -141,14 +145,14 @@ function CreateDesign({ onNext, updateCreateData }) {
       showModal("Design saved successfully!");
       setIsSaved(true);
 
-      if (updateCreateData) updateCreateData({ createdesign: result.design });
-      if (onNext) onNext();
+      if (updateCreateData) {
+        updateCreateData({ createdesign: payload });
+      }
 
+      if (onNext) onNext();
     } catch (error) {
       console.error("Save failed:", error);
       showModal("Failed to save design.");
-    } finally {
-      setShowLoadingModal(false);
     }
   };
 
@@ -159,7 +163,6 @@ function CreateDesign({ onNext, updateCreateData }) {
     switch (selectedProduct) {
       case 'bags': TemplateComponent = <BagTemplate />; break;
       case 'cups': TemplateComponent = <CupTemplate />; break;
-      case 'tshirt':
       default: TemplateComponent = <TShirtTemplate />;
     }
 
@@ -167,9 +170,9 @@ function CreateDesign({ onNext, updateCreateData }) {
       <AnimatePresence mode="wait">
         <motion.div
           key={selectedProduct}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={{ opacity: 0, x: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, x: -10 }}
           transition={{ duration: 0.2 }}
         >
           {TemplateComponent}
@@ -194,7 +197,7 @@ function CreateDesign({ onNext, updateCreateData }) {
           <div className="flex justify-end items-center gap-4 mt-6">
             <SaveButton
               onSave={handleSaveDesign}
-              disabled={!designURL || selectedColors.length === 0 || !selectedProduct}
+              disabled={loading || !designURL || selectedColors.length === 0 || !selectedProduct}
             />
             <NextStepButton
               onNext={() => {
@@ -202,6 +205,18 @@ function CreateDesign({ onNext, updateCreateData }) {
                   showModal("Please save your design before going to the next step.");
                   return;
                 }
+
+                if (updateCreateData) {
+                  updateCreateData({
+                    createdesign: {
+                      productTypes,
+                      selectedColors,
+                      designUrl: designURL,
+                      previewImages: uploadedPreviews,
+                    },
+                  });
+                }
+
                 onNext();
               }}
             />
@@ -223,7 +238,6 @@ function CreateDesign({ onNext, updateCreateData }) {
         >
           <UploadDesignBox onUpload={setDesignURL} />
         </motion.div>
-
         <div className="relative">{renderProductTemplate()}</div>
       </motion.div>
 
@@ -247,19 +261,8 @@ function CreateDesign({ onNext, updateCreateData }) {
         message={modal.message}
       />
 
-      <ModalAlert
-        isOpen={showLoadingModal}
-        onClose={() => {}}
-        title="Saving your design..."
-        message={
-          <div className="flex flex-col items-center gap-4">
-            <div className="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full" />
-            <p className="text-gray-600 text-sm">Please wait while we process and upload your design...</p>
-          </div>
-        }
-        hideActions={true}
-        disableClose={true}
-      />
+      <LoadingModal isOpen={loading} />
+
 
       <Walkthrough />
     </form>

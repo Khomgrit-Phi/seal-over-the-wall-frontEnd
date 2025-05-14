@@ -24,6 +24,8 @@ function Create() {
     }));
   };
 
+  
+
   const handleNext = () => setStep((prev) => prev + 1);
   const handleBack = () => setStep((prev) => prev - 1);
   const handleReset = () => {
@@ -44,6 +46,7 @@ function Create() {
       case 1:
         return (
           <CollectDetails
+            createData={createData}
             onNext={handleNext}
             onBack={handleBack}
             updateCreateData={updateCreateData}
