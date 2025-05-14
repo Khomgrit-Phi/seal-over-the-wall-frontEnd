@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
-import React, { useEffect } from "react";
-import { getProducts } from "../../services/product";
-import productDataStore from "../../stores/productDataStore";
+import React from "react";
 import AdsBanner from "./AdsBanner";
 import ProductCard from "./ProductCard";
 
@@ -18,27 +16,6 @@ const itemVariants1 = {
 };
 
 const ProductList = ({ items }) => {
-  const allItemsFromStore = productDataStore((state) => state.items);
-  const setItems = productDataStore((state) => state.setItems);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const products = await getProducts();
-      if (Array.isArray(products)) {
-        setItems(products);
-      } else {
-        console.error("Fetched data is not an array:", products);
-        // Depending on the actual structure, you might need to access a property, e.g.:
-        // setItems(products.data);
-        // setItems(products.items);
-      }
-    };
-
-    if (allItemsFromStore.length === 0) {
-      fetchProducts();
-    }
-  }, [allItemsFromStore.length, setItems]);
-
   return (
     <section className="p-10 mx-auto my-8 w-404">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-x-52 gap-y-25">
