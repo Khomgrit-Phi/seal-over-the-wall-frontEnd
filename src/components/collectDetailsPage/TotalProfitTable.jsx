@@ -19,7 +19,7 @@ function TotalProfitTable({ entries }) {
   }, 0);
 
   return (
-    <div className='w-[560px] h-[600px] bg-white rounded-lg shadow-xl p-4 items-center'>
+    <div className='w-[560px] h-[750px] bg-white rounded-lg shadow-xl p-4 items-center'>
       <h1 className='text-xl font-semibold mb-2'>Total Profit</h1>
 
       <div className='flex flex-col justify-center w-[512px] h-[104px]'>
@@ -33,7 +33,7 @@ function TotalProfitTable({ entries }) {
 
       <h2 className='font-semibold text-xl my-2'>Profit by Item</h2>
 
-      <div className='flex flex-col justify-center items-center w-[512px] h-[350px] overflow-y-auto'>
+      <div className='flex flex-col justify-center items-center w-[550px] h-[450px] overflow-y-auto'>
         {(entries || []).map((item, index) => {
           const product = productMap[item.type];
           const profitPerUnit = calculateProfit(item.type, item.price || 0);

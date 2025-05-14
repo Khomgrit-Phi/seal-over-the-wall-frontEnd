@@ -78,7 +78,7 @@ function PriceAndStockTable({ createData, entries, setEntries }) {
             </div>
 
             {index !== entries.length - 1 && (
-              <div>
+              <div className='mt-2'>
                 <img src={line} alt="Divider" />
               </div>
             )}
