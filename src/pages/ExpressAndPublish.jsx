@@ -16,10 +16,11 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
       return {
         type,
         productName: `Custommike ${type}`,
-        concept: '',
+        concept: "",
         images,
       };
     });
+
     setProducts(grouped);
   }, [createData]);
 
@@ -28,6 +29,10 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
     updated[index][field] = value;
     setProducts(updated);
   };
+
+  const isFormValid = products.every(
+    (p) => p.productName.trim() !== "" && p.concept.trim() !== ""
+  );
 
   return (
     <div className="flex flex-col items-center">
@@ -38,16 +43,25 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
         </p>
         <div className="flex justify-end items-center gap-4 pr-[128px] mt-1.5">
           <button><BackButton onBack={onBack} /></button>
-          <button><NextStepButton onNext={onNext} /></button>
+          <button disabled={!isFormValid} className={!isFormValid ? 'opacity-50 cursor-not-allowed' : ''}>
+            <NextStepButton onNext={() => onNext({ expressandpublish: products })} />
+          </button>
         </div>
       </div>
 
       <div className="w-full px-[152px] flex flex-col gap-20 mb-20">
         {products.map((product, idx) => (
           <div key={idx} className="flex gap-40">
-            {/* Image Preview */}
-            <div>
-              <img src={product.images[0]?.url} alt="Preview" className="w-150 h-150" />
+            {/* Preview all images */}
+            <div className="flex gap-4 overflow-x-auto max-w-[450px]">
+              {product.images.map((img, i) => (
+                <img
+                  key={i}
+                  src={img.url}
+                  alt={`Preview ${i}`}
+                  className="min-w-[450px] h-[450px] object-contain"
+                />
+              ))}
             </div>
 
             {/* Form */}
@@ -59,7 +73,7 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
                   type="text"
                   className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-132"
                   value={product.productName}
-                  onChange={(e) => handleProductChange(idx, 'productName', e.target.value)}
+                  onChange={(e) => handleProductChange(idx, "productName", e.target.value)}
                 />
 
                 <label className="block mb-2 text-xl font-normal mt-6">Category</label>
@@ -77,17 +91,19 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
                   <button className="bg-[#E1E1E4] text-[#202020] text-xl font-medium px-2 py-2 rounded-sm">custom</button>
                   <button className="bg-[#E1E1E4] text-[#202020] text-xl font-medium px-2 py-2 rounded-sm">{product.type}</button>
                   <button className="bg-[#E1E1E4] text-[#202020] text-xl font-medium px-2 py-2 rounded-sm">collection</button>
-                  <button className="bg-[#fff] text-[#91919B] text-xl font-medium px-2 py-2 rounded-sm flex items-center gap-2 border border-dashed border-[#E1E1E4]">Add <img src={iconAdd} alt="add" className='h-6 w-6' /></button>
+                  <button className="bg-[#fff] text-[#91919B] text-xl font-medium px-2 py-2 rounded-sm flex items-center gap-2 border border-dashed border-[#E1E1E4]">
+                    Add <img src={iconAdd} alt="add" className="h-6 w-6" />
+                  </button>
                 </div>
 
                 <label className="block mb-2 text-xl font-normal">Concept</label>
                 <textarea
-                  className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-166 h-50 resize-none"
+                  className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-166 min-h-[50px] resize-none"
                   placeholder="Concept"
                   value={product.concept}
-                  onChange={(e) => handleProductChange(idx, 'concept', e.target.value)}
+                  onChange={(e) => handleProductChange(idx, "concept", e.target.value)}
                   onInput={(e) => {
-                    e.target.style.height = 'auto';
+                    e.target.style.height = "auto";
                     e.target.style.height = `${e.target.scrollHeight}px`;
                   }}
                 />
