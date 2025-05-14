@@ -11,3 +11,8 @@ export const getProducts = async () => {
   console.log(response.data.products);
   return response.data.products;
 };
+
+export const getProductById = async (productId) => {
+  const response = await api.get(`/product/${productId}`);
+  return response.data.product;
+};

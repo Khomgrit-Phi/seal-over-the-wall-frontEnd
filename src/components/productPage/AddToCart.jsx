@@ -12,17 +12,19 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { OctagonAlert } from "lucide-react";
-const AddToCart = ({ item, addItemToCart }) => {
+const AddToCart = ({ item, addItemToCart, random }) => {
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
     addItemToCart({
       productId: item._id,
       name: item.title,
       unitPrice: item.price,
-      selectedColor: item.colors[0],
+      selectedColor: item.colors[random],
       selectedSize: item.sizes[0],
-      selectedImage: item.images[0],
-      image: item.images?.[0], // Assuming the first image is the main one
+      selectedImage: item.images[random],
+      image: item.images?.[random], // Assuming the first image is the main one
       quantity: 1,
     });
   };
