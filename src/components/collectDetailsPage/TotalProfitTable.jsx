@@ -48,7 +48,7 @@ function TotalProfitTable({ entries }) {
                   <p>{item.price || 0} THB</p>
                 </div>
                 <p>{item.quantity || 0} items</p>
-                <p className='font-semibold text-xl text-green-600'>
+                <p className='font-bold text-xl text-primary-blue-500'>
                   {itemTotal.toLocaleString()} THB
                 </p>
               </div>
