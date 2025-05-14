@@ -23,7 +23,7 @@ const ProductCard = ({ item }) => {
     <Link to={`/shop/${item._id}`} className="relative w-[248px] h-auto bg-white hover:shadow-lg hover:scale-105 hover:transition duration-300 cursor-pointer">
       <div className="relative overflow-hidden ">
         <img
-          src={`/${item.images?.[randomIndex]}`}
+          src={`${item.images?.[randomIndex]}`}
           alt={item.title}
           className="w-full h-auto object-cover"
         />
