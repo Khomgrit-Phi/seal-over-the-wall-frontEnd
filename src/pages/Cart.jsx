@@ -214,10 +214,10 @@ const Cart = () => {
       <div className="flex flex-col items-center">
         <h2 className="text-2xl font-bold mb-[32px] w-[1616px] text-start">Gift Cards</h2>
         <div className="flex mb-[160px] gap-[16px]">
-          <GiftCard giftImage="src/assets/images/GFC-500.png" giftName="500" giftPrize="500" />
-          <GiftCard giftImage="src/assets/images/GFC-1000.png" giftName="1,000" giftPrize="1,000" />
-          <GiftCard giftImage="src/assets/images/GFC-1500.png" giftName="1,500" giftPrize="1,500" />
-          <GiftCard giftImage="src/assets/images/GFC-2000.png" giftName="2,000" giftPrize="2,000" />
+          <GiftCard giftImage="/assets/images/GFC-500.png" giftName="500" giftPrize="500" />
+          <GiftCard giftImage="/assets/images/GFC-1000.png" giftName="1,000" giftPrize="1,000" />
+          <GiftCard giftImage="/assets/images/GFC-1500.png" giftName="1,500" giftPrize="1,500" />
+          <GiftCard giftImage="/assets/images/GFC-2000.png" giftName="2,000" giftPrize="2,000" />
         </div>
       </div>
       <AdBox />

@@ -4,9 +4,9 @@ import Carousel from '../components/Carousel';
 import { useAuth } from '../context/AuthContext';
 import { loginUser } from '../services/authService';
 
-import bag from '../assets/images/login-bag.svg';
-import cup from '../assets/images/login-cup.svg';
-import shirt from '../assets/images/login-shirt.svg';
+import bag from '/assets/images/login-bag.svg';
+import cup from '/assets/images/login-cup.svg';
+import shirt from '/assets/images/login-shirt.svg';
 
 const slides = [shirt, bag, cup];
 

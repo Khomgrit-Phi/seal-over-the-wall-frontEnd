@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import arrowright from "../assets/images/preview/iconArrowRight.png"; // update path if needed
+import arrowright from "/assets/images/preview/iconArrowRight.png"; // update path if needed
 
 function PublishButton({ onClick }) {
   return (

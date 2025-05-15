@@ -18,7 +18,7 @@ export const variants = [
           color,
           size,
           stock: 10,
-          image: `src/assets/images/Products/t-shirt/${styleFolder}/${styleFolder}-front-${color}.png`
+          image: `/assets/images/Products/t-shirt/${styleFolder}/${styleFolder}-front-${color}.png`
         }))
       );
     }),
@@ -41,7 +41,7 @@ export const variants = [
         color,
         size: "one-size",
         stock: 10,
-        image: `src/assets/images/Products/cup/${styleFolder}/${styleFolder}-${color}.png`
+        image: `/assets/images/Products/cup/${styleFolder}/${styleFolder}-${color}.png`
       }));
     }),
   
@@ -63,7 +63,7 @@ export const variants = [
         color,
         size: "one-size",
         stock: 10,
-        image: `src/assets/images/Products/bags/${styleFolder}/${styleFolder}-${color}.png`
+        image: `/assets/images/Products/bags/${styleFolder}/${styleFolder}-${color}.png`
       }));
     })
   ];

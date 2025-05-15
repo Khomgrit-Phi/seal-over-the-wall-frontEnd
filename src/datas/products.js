@@ -4,7 +4,7 @@ export const ProductsJet = [
   "productId": 1,
   "productType": "shirt",
   "styleName": "more-espresso",
-  "img": "src/assets/images/Products/t-shirt/more-espresso/more-espresso-back-black.png",
+  "img": "/assets/images/Products/t-shirt/more-espresso/more-espresso-back-black.png",
   "detail": "",
 },
 
@@ -12,7 +12,7 @@ export const ProductsJet = [
   "productId": 2,
   "productType": "bag",
   "styleName": "don't-kill",
-  "img": "src/assets/images/Products/bags/don't-kill/don't-kill-white.png",
+  "img": "/assets/images/Products/bags/don't-kill/don't-kill-white.png",
   "detail": "",
 },
 
@@ -20,7 +20,7 @@ export const ProductsJet = [
   "productId": 3,
   "productType": "cup",
   "styleName": "fetch-this",
-  "img": "src/assets/images/Products/cup/fetch-this/fetch-this-blue.png",
+  "img": "/assets/images/Products/cup/fetch-this/fetch-this-blue.png",
   "detail": "",
 },
 
@@ -28,7 +28,7 @@ export const ProductsJet = [
   "productId": 4,
   "productType": "shirt",
   "styleName": "just-keep-running",
-  "img": "src/assets/images/Products/t-shirt/just-keep-running/just-keep-running-front-white.png",
+  "img": "/assets/images/Products/t-shirt/just-keep-running/just-keep-running-front-white.png",
   "detail": "",
 },
 
@@ -36,7 +36,7 @@ export const ProductsJet = [
   "productId": 5,
   "productType": "shirt",
   "styleName": "fetch-this",
-  "img": "src/assets/images/Products/t-shirt/fetch-this/fetch-front-blue.png",
+  "img": "/assets/images/Products/t-shirt/fetch-this/fetch-front-blue.png",
   "detail": "",
 },
 
@@ -44,7 +44,7 @@ export const ProductsJet = [
   "productId": 6,
   "productType": "shirt",
   "styleName": "own-lane",
-  "img": "src/assets/images/Products/t-shirt/own-lane/own-lane-front-gray.png",
+  "img": "/assets/images/Products/t-shirt/own-lane/own-lane-front-gray.png",
   "detail": "",
 },
 
@@ -52,21 +52,21 @@ export const ProductsJet = [
   "productId": 7,
   "productType": "bag",
   "styleName": "prove-them",
-  "img": "src/assets/images/Products/bags/prove-them/prove-them-black.png",
+  "img": "/assets/images/Products/bags/prove-them/prove-them-black.png",
   "detail": "",
 },
   {
   "productId": 8,
   "productType": "cup",
   "styleName": "screaming",
-  "img": "src/assets/images/Products/cup/screaming/screaming-white.png",
+  "img": "/assets/images/Products/cup/screaming/screaming-white.png",
   "detail": "",
 },
   {
   "productId": 9,
   "productType": "bag",
   "styleName": "fetch-this",
-  "img": "src/assets/images/Products/bags/fetch/fetch-black.png",
+  "img": "/assets/images/Products/bags/fetch/fetch-black.png",
   "detail": "",
 },
 
@@ -74,7 +74,7 @@ export const ProductsJet = [
   "productId": 10,
   "productType": "cup",
   "styleName": "own-lane",
-  "img": "src/assets/images/Products/cup/own-lane/own-lane-blue.png",
+  "img": "/assets/images/Products/cup/own-lane/own-lane-blue.png",
   "detail": "",
 },
 
@@ -82,42 +82,42 @@ export const ProductsJet = [
   "productId": 11,
   "productType": "cup",
   "styleName": "prove-them",
-  "img": "src/assets/images/Products/cup/prove them/prove-them-gray.png",
+  "img": "/assets/images/Products/cup/prove them/prove-them-gray.png",
   "detail": "",
 },
   {
   "productId": 12,
   "productType": "shirt",
   "styleName": "just-keep-running",
-  "img": "src/assets/images/Products/t-shirt/just-keep-running/just-keep-running-front-black.png",
+  "img": "/assets/images/Products/t-shirt/just-keep-running/just-keep-running-front-black.png",
   "detail": "",
 },
   {
   "productId": 13,
   "productType": "shirt",
   "styleName": "own-lane",
-  "img": "src/assets/images/Products/t-shirt/just-keep-running/just-keep-running-front-white.png",
+  "img": "/assets/images/Products/t-shirt/just-keep-running/just-keep-running-front-white.png",
   "detail": "",
 },
   {
   "productId": 14,
   "productType": "cup",
   "styleName": "screaming",
-  "img": "src/assets/images/Products/cup/screaming/screaming-black.png",
+  "img": "/assets/images/Products/cup/screaming/screaming-black.png",
   "detail": "",
 },
   {
   "productId": 15,
   "productType": "shirt",
   "styleName": "think-out-side-the-box",
-  "img": "src/assets/images/Products/t-shirt/think-out-side-the-box/think-out-side-the-box-front-black.png",
+  "img": "/assets/images/Products/t-shirt/think-out-side-the-box/think-out-side-the-box-front-black.png",
   "detail": "",
 },
   {
   "productId": 16,
   "productType": "cup",
   "styleName": "fetch-this",
-  "img": "src/assets/images/Products/cup/fetch-this/fetch-this-white.png",
+  "img": "/assets/images/Products/cup/fetch-this/fetch-this-white.png",
   "detail": "",
 },
 
@@ -125,22 +125,22 @@ export const ProductsJet = [
 
 ]
 
-import  product1 from '../assets/images/shop/More_Espresso_shirt_gray.png';
-import  product2 from '../assets/images/shop/Don’t_kill_my_vibe_bag_white.png';
-import  product3 from '../assets/images/shop/Fetch_this_cup_blue.png';
-import  product4 from '../assets/images/shop/Just_keep_running_shirt_white.png';
-import  product5 from '../assets/images/shop/Fetch_this_shirt_blue.png';
-import  product6 from '../assets/images/shop/Own_lane_shirt_gray.png';
-import  product7 from '../assets/images/shop/Prove_them_wrong_bag_black.png';
-import  product8 from '../assets/images/shop/Screaming_cup_white.png';
-import  product9 from '../assets/images/shop/Fetch_this_bag_black.png';
-import  product10 from '../assets/images/shop/Own_lane_cup_blue.png';
-import  product11 from '../assets/images/shop/Prove_them_wrong_cup_gray.png';
-import  product12 from '../assets/images/shop/Just_keep_running_shirt_black.png';
-import  product13 from '../assets/images/shop/Own_lane_shirt_white.png';
-import  product14 from '../assets/images/shop/Screaming_cup_black.png';
-import  product15 from '../assets/images/shop/Think_out_side_box_shirt.png';
-import  product16 from '../assets/images/shop/Fetch_this_cup_white.png';
+import  product1 from '/assets/images/shop/More_Espresso_shirt_gray.png';
+import  product2 from '/assets/images/shop/Don’t_kill_my_vibe_bag_white.png';
+import  product3 from '/assets/images/shop/Fetch_this_cup_blue.png';
+import  product4 from '/assets/images/shop/Just_keep_running_shirt_white.png';
+import  product5 from '/assets/images/shop/Fetch_this_shirt_blue.png';
+import  product6 from '/assets/images/shop/Own_lane_shirt_gray.png';
+import  product7 from '/assets/images/shop/Prove_them_wrong_bag_black.png';
+import  product8 from '/assets/images/shop/Screaming_cup_white.png';
+import  product9 from '/assets/images/shop/Fetch_this_bag_black.png';
+import  product10 from '/assets/images/shop/Own_lane_cup_blue.png';
+import  product11 from '/assets/images/shop/Prove_them_wrong_cup_gray.png';
+import  product12 from '/assets/images/shop/Just_keep_running_shirt_black.png';
+import  product13 from '/assets/images/shop/Own_lane_shirt_white.png';
+import  product14 from '/assets/images/shop/Screaming_cup_black.png';
+import  product15 from '/assets/images/shop/Think_out_side_box_shirt.png';
+import  product16 from '/assets/images/shop/Fetch_this_cup_white.png';
 
 export const products = [
   {

@@ -1,10 +1,10 @@
 import React from 'react'
-import spark from "../../assets/images/collect-details-pages/iconoir_spark.svg"
-import sparkblack from "../../assets/images/collect-details-pages/spark-balck.svg"
-import logo from "../../assets/images/custommike-navbar-logo.svg"
-import check from "../../assets/images/collect-details-pages/icon-park-solid_check-one.svg"
-import shortline from "../../assets/images/collect-details-pages/short-line.svg"
-import dot from "../../assets/images/collect-details-pages/mingcute_dots-line.svg"
+import spark from "/assets/images/collect-details-pages/iconoir_spark.svg"
+import sparkblack from "/assets/images/collect-details-pages/spark-balck.svg"
+import logo from "/assets/images/custommike-navbar-logo.svg"
+import check from "/assets/images/collect-details-pages/icon-park-solid_check-one.svg"
+import shortline from "/assets/images/collect-details-pages/short-line.svg"
+import dot from "/assets/images/collect-details-pages/mingcute_dots-line.svg"
 import { Switch } from '@mui/material'
 
 

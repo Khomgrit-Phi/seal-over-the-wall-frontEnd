@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import shirtProvWhiteFront from "../../assets/images/Products/shirt/prove/prove-shirt-white-front.png";
-import bagWhiteFront from "../../assets/images/Products/bag/prove/prove-bag-white-front.png";
-import cupWhiteFront from "../../assets/images/Products/cup/prove/prove-cup-white-front.png";
-import shirtProveBlueFront from "../../assets/images/Products/shirt/prove/prove-shirt-blue-front.png";
-import shirtProveGrayFront from "../../assets/images/Products/shirt/prove/prove-shirt-gray-front.png";
-import shirtProveBlackFront from "../../assets/images/Products/shirt/prove/prove-shirt-black-front.png";
-import bagProveBlue from "../../assets/images/Products/bag/prove/prove-bag-blue-front.png";
-import bagProveGray from "../../assets/images/Products/bag/prove/prove-bag-gray-front.png";
-import bagProveBlack from "../../assets/images/Products/bag/prove/prove-bag-black-front.png";
-import cupProveBlue from "../../assets/images/Products/cup/prove/prove-cup-blue-front.png";
-import cupProveGray from "../../assets/images/Products/cup/prove/prove-cup-gray-front.png";
-import cupProveBlack from "../../assets/images/Products/cup/prove/prove-cup-black-front.png";
+import shirtProvWhiteFront from "/assets/images/Products/shirt/prove/prove-shirt-white-front.png";
+import bagWhiteFront from "/assets/images/Products/bag/prove/prove-bag-white-front.png";
+import cupWhiteFront from "/assets/images/Products/cup/prove/prove-cup-white-front.png";
+import shirtProveBlueFront from "/assets/images/Products/shirt/prove/prove-shirt-blue-front.png";
+import shirtProveGrayFront from "/assets/images/Products/shirt/prove/prove-shirt-gray-front.png";
+import shirtProveBlackFront from "/assets/images/Products/shirt/prove/prove-shirt-black-front.png";
+import bagProveBlue from "/assets/images/Products/bag/prove/prove-bag-blue-front.png";
+import bagProveGray from "/assets/images/Products/bag/prove/prove-bag-gray-front.png";
+import bagProveBlack from "/assets/images/Products/bag/prove/prove-bag-black-front.png";
+import cupProveBlue from "/assets/images/Products/cup/prove/prove-cup-blue-front.png";
+import cupProveGray from "/assets/images/Products/cup/prove/prove-cup-gray-front.png";
+import cupProveBlack from "/assets/images/Products/cup/prove/prove-cup-black-front.png";
 
 function ProductType({ sendImage, sendChild1, sendChild2, sendChild3, onCategoryChange }) {
   const [selectedProductType, setSelectedProductType] = useState('shirt');

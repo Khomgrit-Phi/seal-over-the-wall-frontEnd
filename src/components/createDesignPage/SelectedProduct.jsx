@@ -2,20 +2,20 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Mockup images
-import shirtblack from "../../assets/images/Products/shirt/empty/empty-shirt-black-front.png";
-import shirtwhite from "../../assets/images/Products/shirt/empty/empty-shirt-white-front.png";
-import shirtblue from "../../assets/images/Products/shirt/empty/empty-shirt-blue-front.png";
-import shirtgray from "../../assets/images/Products/shirt/empty/empty-shirt-gray-front.png";
+import shirtblack from "/assets/images/Products/shirt/empty/empty-shirt-black-front.png";
+import shirtwhite from "/assets/images/Products/shirt/empty/empty-shirt-white-front.png";
+import shirtblue from "/assets/images/Products/shirt/empty/empty-shirt-blue-front.png";
+import shirtgray from "/assets/images/Products/shirt/empty/empty-shirt-gray-front.png";
 
-import bagblack from "../../assets/images/Products/bag/empty/empty-bag-black-front.png";
-import bagwhite from "../../assets/images/Products/bag/empty/empty-bag-white-front.png";
-import bagblue from "../../assets/images/Products/bag/empty/empty-bag-blue-front.png";
-import baggray from "../../assets/images/Products/bag/empty/empty-bag-gray-front.png";
+import bagblack from "/assets/images/Products/bag/empty/empty-bag-black-front.png";
+import bagwhite from "/assets/images/Products/bag/empty/empty-bag-white-front.png";
+import bagblue from "/assets/images/Products/bag/empty/empty-bag-blue-front.png";
+import baggray from "/assets/images/Products/bag/empty/empty-bag-gray-front.png";
 
-import cupblack from "../../assets/images/Products/cup/empty/empty-cup-black-front.png";
-import cupwhite from "../../assets/images/Products/cup/empty/empty-cup-white-front.png";
-import cupblue from "../../assets/images/Products/cup/empty/empty-cup-blue-front.png";
-import cupgray from "../../assets/images/Products/cup/empty/empty-cup-gray-front.png";
+import cupblack from "/assets/images/Products/cup/empty/empty-cup-black-front.png";
+import cupwhite from "/assets/images/Products/cup/empty/empty-cup-white-front.png";
+import cupblue from "/assets/images/Products/cup/empty/empty-cup-blue-front.png";
+import cupgray from "/assets/images/Products/cup/empty/empty-cup-gray-front.png";
 
 // Print area positions
 const printAreas = {

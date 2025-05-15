@@ -1,4 +1,4 @@
-import animation from "../../assets/images/videos/hero-section_1920x900.mp4"
+import animation from "/assets/images/videos/hero-section_1920x900.mp4"
 
 const Hero = () => {
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from "../../assets/images/custommike-navbar-logo.svg";
-import chaticon from "../../assets/images/create-design-pages/ChatsTeardrop-d.svg"
-import profilepics from "../../assets/images/create-design-pages/profile-pics.svg"
+import logo from "/assets/images/custommike-navbar-logo.svg";
+import chaticon from "/assets/images/create-design-pages/ChatsTeardrop-d.svg"
+import profilepics from "/assets/images/create-design-pages/profile-pics.svg"
 
 const CreateDesignNav = () => {
   const [scrolled, setScrolled] = useState(false);

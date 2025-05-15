@@ -1,6 +1,6 @@
-import bluecup from "../../assets/images/home/cup-blue.png";
-import whitebag from "../../assets/images/home/bag-white.png";
-import grayshirt from "../../assets/images/home/t-shirt-gray.png";
+import bluecup from "/assets/images/home/cup-blue.png";
+import whitebag from "/assets/images/home/bag-white.png";
+import grayshirt from "/assets/images/home/t-shirt-gray.png";
 
 import { Link } from 'react-router';
 

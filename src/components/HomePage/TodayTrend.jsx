@@ -1,6 +1,6 @@
-import staffpick from "../../assets/images/home/staff-pick.png";
-import artistsportlight from "../../assets/images/home/artist-sportlight.png";
-import trendy from "../../assets/images/home/trendy.png";
+import staffpick from "/assets/images/home/staff-pick.png";
+import artistsportlight from "/assets/images/home/artist-sportlight.png";
+import trendy from "/assets/images/home/trendy.png";
 const TodayTrend = () => {
   return (
     <>
