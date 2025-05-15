@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import logo from '../../assets/images/custommike-navbar-logo.svg';
-import { BiHeart, BiUser, BiCartAlt, BiGlobe } from 'react-icons/bi';
-import ExpandingSearch from './ExpandingSearch';
+import { BiCartAlt, BiGlobe, BiHeart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/images/custommike-navbar-logo.svg';
+import { useAuth } from '../../context/AuthContext';
 import DropdownMenu from './DropdownMenu';
+import ExpandingSearch from './ExpandingSearch';
 import ProfileMenu from './ProfileMenu';
 
 const MainNav = () => {
   const [scrolled, setScrolled] = useState(false);
-
+  const { cart } = useAuth();
+  const cartItemCount = cart?.items?.length || 0;
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -51,8 +53,16 @@ const MainNav = () => {
                 <ProfileMenu />
               </li>
               <li>
-                <Link to="/cart">
+                <Link to="/cart" className='relative'>
                   <BiCartAlt className="w-6 h-6 hover:text-primary-blue-500" />
+                  {cartItemCount > 0 && (
+                    <span
+                      className="absolute -top-2 -right-2 bg-primary-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                      aria-label="Cart items count"
+                    >
+                      {cartItemCount}
+                    </span>
+                  )}
                 </Link>
               </li>
               <li>

@@ -50,27 +50,32 @@ const Cart = () => {
       }
     };
     fetchCartData();
-  }, [userId]);
+  }, [userId, setCart]);
+
 
   // Update quantity
   const handleQuantityChange = (cartItemId, newQuantity) => {
     setOrderItem((prevItems) => prevItems.map((item) => (item.cartItemId === cartItemId ? { ...item, quantity: newQuantity } : item)));
+    setCart(cartData)
   };
 
   // Delete item and prepare for order convertion (Front End)
   const handleDeleteItem = (itemIdToDelete) => {
     setOrderItem((prevItems) => prevItems.filter((item) => item._id !== itemIdToDelete));
+    setCart(cartData)
   };
 
   // Update color
   const handleColorChange = (cartItemId, newColor, newImage) => {
     setOrderItem((prevItems) =>
       prevItems.map((item) => (item.cartItemId === cartItemId ? { ...item, color: newColor, productImage: newImage } : item))
-    );
+  );
+  setCart(cartData)
   };
 
   const handleSizeChange = (cartItemId, newSize) => {
     setOrderItem((prevItems) => prevItems.map((item) => (item.cartItemId === cartItemId ? { ...item, size: newSize } : item)));
+    setCart(cartData)
   };
 
   // Delete item in DB and and re-render the Cart
@@ -130,11 +135,6 @@ const Cart = () => {
       totalItemPrice: item.price * item.quantity
     }));
     console.log('Formatted order items:', formattedOrderItems);
-    try {
-      await createOrder(userId, formattedOrderItems, cartData.total);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   // Recalculate total price
