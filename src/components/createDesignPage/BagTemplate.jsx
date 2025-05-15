@@ -1,5 +1,5 @@
 import React from 'react';
-import bagTemplate from "../../assets/images/create-design-pages/bags-template.svg";
+import bagTemplate from "/assets/images/create-design-pages/bags-template.svg";
 
 function BagTemplate() {
 

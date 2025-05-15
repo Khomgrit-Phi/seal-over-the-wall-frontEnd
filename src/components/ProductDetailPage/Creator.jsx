@@ -1,10 +1,10 @@
-import iconIg from "../../assets/images/productDetail/icon-ig.svg";
-import iconFb from "../../assets/images/productDetail/icon-fb.svg";
-import iconX from "../../assets/images/productDetail/icon-x.svg";
-import logoCustommike from "../../assets/images/productDetail/custommike-navbar-logo.svg";
-import logoEco from "../../assets/images/productDetail/ECO.svg";
-import logoResponsible from "../../assets/images/productDetail/Responsible.svg";
-import logoOrganic from "../../assets/images/productDetail/Organic.svg";
+import iconIg from "/assets/images/productDetail/icon-ig.svg";
+import iconFb from "/assets/images/productDetail/icon-fb.svg";
+import iconX from "/assets/images/productDetail/icon-x.svg";
+import logoCustommike from "/assets/images/productDetail/custommike-navbar-logo.svg";
+import logoEco from "/assets/images/productDetail/ECO.svg";
+import logoResponsible from "/assets/images/productDetail/Responsible.svg";
+import logoOrganic from "/assets/images/productDetail/Organic.svg";
 const Creator = () => {
   return (
     <div>

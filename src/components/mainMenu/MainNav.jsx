@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BiCartAlt, BiGlobe, BiHeart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/images/custommike-navbar-logo.svg';
+import logo from '/assets/images/custommike-navbar-logo.svg';
 import { useAuth } from '../../context/AuthContext';
 import DropdownMenu from './DropdownMenu';
 import ExpandingSearch from './ExpandingSearch';

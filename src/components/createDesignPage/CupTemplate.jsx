@@ -1,5 +1,5 @@
 import React from 'react';
-import cupTemplate from "../../assets/images/create-design-pages/selection-cups.svg";
+import cupTemplate from "/assets/images/create-design-pages/selection-cups.svg";
 
 function CupTemplate() {
 

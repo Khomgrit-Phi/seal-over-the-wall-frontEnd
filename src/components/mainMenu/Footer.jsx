@@ -1,9 +1,9 @@
-import facebook from '../../assets/images/facebook-icon.svg';
-import twitter from '../../assets/images/x-twitter-icon.svg';
-import instagram from '../../assets/images/instagram-icon.svg';
-import youtube from '../../assets/images/youtube-icon.svg';
-import tiktok from '../../assets/images/tiktok-icon.svg';
-import footerlogo from '../../assets/images/custommike-footer-logo.svg';
+import facebook from '/assets/images/facebook-icon.svg';
+import twitter from '/assets/images/x-twitter-icon.svg';
+import instagram from '/assets/images/instagram-icon.svg';
+import youtube from '/assets/images/youtube-icon.svg';
+import tiktok from '/assets/images/tiktok-icon.svg';
+import footerlogo from '/assets/images/custommike-footer-logo.svg';
 
 import { Link } from "react-router-dom";
 

@@ -1,7 +1,7 @@
-import ads1 from "../../assets/images/shop/ads/ads-1.png";
-import ads2 from "../../assets/images/shop/ads/ads-2.png";
-import ads3 from "../../assets/images/shop/ads/ads-3.png";
-import artist from "../../assets/images/videos/Artist.mp4"
+import ads1 from "/assets/images/shop/ads/ads-1.png";
+import ads2 from "/assets/images/shop/ads/ads-2.png";
+import ads3 from "/assets/images/shop/ads/ads-3.png";
+import artist from "/assets/images/videos/Artist.mp4"
 
 const AdsBanner = () => {
   return (

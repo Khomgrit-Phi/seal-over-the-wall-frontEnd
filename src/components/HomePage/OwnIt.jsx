@@ -1,6 +1,6 @@
-import ownshirt from "../../assets/images/home/own-shirt.png";
-import owncup from "../../assets/images/home/own-cup.png";
-import ownbag from "../../assets/images/home/own-bag.png";
+import ownshirt from "/assets/images/home/own-shirt.png";
+import owncup from "/assets/images/home/own-cup.png";
+import ownbag from "/assets/images/home/own-bag.png";
 
 import { BiRightArrowAlt } from "react-icons/bi";
 

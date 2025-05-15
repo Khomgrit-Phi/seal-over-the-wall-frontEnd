@@ -11,32 +11,32 @@ export const products = [
               colorName: "black",
               colorCode: "#202020",
               image: [
-                "src/assets/images/Products/t-shirt/prove/prove-shirt-black-front.png",
-                "src/assets/images/Products/t-shirt/prove/prove-shirt-black-back.png",
+                "/assets/images/Products/t-shirt/prove/prove-shirt-black-front.png",
+                "/assets/images/Products/t-shirt/prove/prove-shirt-black-back.png",
               ],
               },
               {
               colorName: "blue",
               colorCode: "#1A2C8B",
               image: [
-                "src/assets/images/Products/t-shirt/prove/prove-shirt-blue-front.png",
-                "src/assets/images/Products/t-shirt/prove/prove-shirt-blue-back.png",
+                "/assets/images/Products/t-shirt/prove/prove-shirt-blue-front.png",
+                "/assets/images/Products/t-shirt/prove/prove-shirt-blue-back.png",
               ],
               },
               {
               colorName: "gray",
               colorCode: "#5A5959",
               image: [
-                "src/assets/images/Products/t-shirt/prove/prove-shirt-gray-front.png",
-                "src/assets/images/Products/t-shirt/prove/prove-shirt-gray-back.png",
+                "/assets/images/Products/t-shirt/prove/prove-shirt-gray-front.png",
+                "/assets/images/Products/t-shirt/prove/prove-shirt-gray-back.png",
               ],
               },
               {
               colorName: "white",
               colorCode: "#FFFDFD",
               image: [
-                "src/assets/images/Products/t-shirt/prove/prove-shirt-white-front.png",
-                "src/assets/images/Products/t-shirt/prove/prove-shirt-white-back.png",
+                "/assets/images/Products/t-shirt/prove/prove-shirt-white-front.png",
+                "/assets/images/Products/t-shirt/prove/prove-shirt-white-back.png",
               ],
               },
             ]
@@ -54,28 +54,28 @@ export const products = [
               colorName: "black",
               colorCode: "#202020",
               image: [
-                "src/assets/images/Products/bag/prove/prove-bag-black-front.png",
+                "/assets/images/Products/bag/prove/prove-bag-black-front.png",
               ],
               },
               {
               colorName: "blue",
               colorCode: "#1A2C8B",
               image: [
-                "src/assets/images/Products/bag/prove/prove-bag-blue-front.png",
+                "/assets/images/Products/bag/prove/prove-bag-blue-front.png",
               ],
               },
               {
               colorName: "gray",
               colorCode: "#5A5959",
               image: [
-                "src/assets/images/Products/bag/prove/prove-bag-gray-front.png",
+                "/assets/images/Products/bag/prove/prove-bag-gray-front.png",
               ],
               },
               {
               colorName: "white",
               colorCode: "#FFFDFD",
               image: [
-                "src/assets/images/Products/bag/prove/prove-bag-white-front.png",
+                "/assets/images/Products/bag/prove/prove-bag-white-front.png",
               ],
               },
               ],
@@ -93,28 +93,28 @@ export const products = [
               colorName: "black",
               colorCode: "#202020",
               image: [
-                "src/assets/images/Products/cup/prove/prove-cup-black-front.png",
+                "/assets/images/Products/cup/prove/prove-cup-black-front.png",
               ],
               },
               {
               colorName: "blue",
               colorCode: "#1A2C8B",
               image: [
-                "src/assets/images/Products/cup/prove/prove-cup-blue-front.png",
+                "/assets/images/Products/cup/prove/prove-cup-blue-front.png",
               ],
               },
               {
               colorName: "gray",
               colorCode: "#5A5959",
               image: [
-                "src/assets/images/Products/cup/prove/prove-cup-gray-front.png",
+                "/assets/images/Products/cup/prove/prove-cup-gray-front.png",
               ],
               },
               {
               colorName: "white",
               colorCode: "#FFFDFD",
               image: [
-                "src/assets/images/Products/cup/prove/prove-cup-white-front.png",
+                "/assets/images/Products/cup/prove/prove-cup-white-front.png",
               ],
               },
       ],
@@ -132,32 +132,32 @@ export const products = [
           colorName: "black",
           colorCode: "#202020",
           image: [
-            "src/assets/images/Products/t-shirt/dont/dont-shirt-black-front.png",
-            "src/assets/images/Products/t-shirt/dont/dont-shirt-black-back.png",
+            "/assets/images/Products/t-shirt/dont/dont-shirt-black-front.png",
+            "/assets/images/Products/t-shirt/dont/dont-shirt-black-back.png",
           ],
         },
         {
           colorName: "blue",
           colorCode: "#1A2C8B",
           image: [
-            "src/assets/images/Products/t-shirt/dont/dont-shirt-blue-front.png",
-            "src/assets/images/Products/t-shirt/dont/dont-shirt-blue-back.png",
+            "/assets/images/Products/t-shirt/dont/dont-shirt-blue-front.png",
+            "/assets/images/Products/t-shirt/dont/dont-shirt-blue-back.png",
           ],
         },
         {
           colorName: "gray",
           colorCode: "#5A5959",
           image: [
-            "src/assets/images/Products/t-shirt/dont/dont-shirt-gray-front.png",
-            "src/assets/images/Products/t-shirt/dont/dont-shirt-gray-back.png",
+            "/assets/images/Products/t-shirt/dont/dont-shirt-gray-front.png",
+            "/assets/images/Products/t-shirt/dont/dont-shirt-gray-back.png",
           ],
         },
         {
           colorName: "white",
           colorCode: "#FFFDFD",
           image: [
-            "src/assets/images/Products/t-shirt/dont/dont-shirt-white-front.png",
-            "src/assets/images/Products/t-shirt/dont/dont-shirt-white-back.png",
+            "/assets/images/Products/t-shirt/dont/dont-shirt-white-front.png",
+            "/assets/images/Products/t-shirt/dont/dont-shirt-white-back.png",
           ],
         },
       ],
@@ -175,28 +175,28 @@ export const products = [
           colorName: "black",
           colorCode: "#202020",
           image: [
-            "src/assets/images/Products/bag/dont/dont-bag-black-front.png",
+            "/assets/images/Products/bag/dont/dont-bag-black-front.png",
           ],
         },
         {
           colorName: "blue",
           colorCode: "#1A2C8B",
           image: [
-            "src/assets/images/Products/bag/dont/dont-bag-blue-front.png",
+            "/assets/images/Products/bag/dont/dont-bag-blue-front.png",
           ],
         },
         {
           colorName: "gray",
           colorCode: "#5A5959",
           image: [
-            "src/assets/images/Products/bag/dont/dont-bag-gray-front.png",
+            "/assets/images/Products/bag/dont/dont-bag-gray-front.png",
           ],
         },
         {
           colorName: "white",
           colorCode: "#FFFDFD",
           image: [
-            "src/assets/images/Products/bag/dont/dont-bag-white-front.png",
+            "/assets/images/Products/bag/dont/dont-bag-white-front.png",
           ],
         },
       ],
@@ -215,28 +215,28 @@ export const products = [
           colorName: "black",
           colorCode: "#202020",
           image: [
-            "src/assets/images/Products/cup/dont/dont-cup-black-front.png",
+            "/assets/images/Products/cup/dont/dont-cup-black-front.png",
           ],
         },
         {
           colorName: "blue",
           colorCode: "#1A2C8B",
           image: [
-            "src/assets/images/Products/cup/dont/dont-cup-blue-front.png",
+            "/assets/images/Products/cup/dont/dont-cup-blue-front.png",
           ],
         },
         {
           colorName: "gray",
           colorCode: "#5A5959",
           image: [
-            "src/assets/images/Products/cup/dont/dont-cup-gray-front.png",
+            "/assets/images/Products/cup/dont/dont-cup-gray-front.png",
           ],
         },
         {
           colorName: "white",
           colorCode: "#FFFDFD",
           image: [
-            "src/assets/images/Products/cup/dont/dont-cup-white-front.png",
+            "/assets/images/Products/cup/dont/dont-cup-white-front.png",
           ],
         },
       ],
@@ -255,8 +255,8 @@ export const products = [
           colorName: "black",
           colorCode: "#202020",
           image: [
-            "src/assets/images/Products/t-shirt/fetch/fetch-shirt-black-front.png",
-            "src/assets/images/Products/t-shirt/fetch/fetch-shirt-black-back.png",
+            "/assets/images/Products/t-shirt/fetch/fetch-shirt-black-front.png",
+            "/assets/images/Products/t-shirt/fetch/fetch-shirt-black-back.png",
             
           ],
         },
@@ -264,24 +264,24 @@ export const products = [
           colorName: "blue",
           colorCode: "#1A2C8B",
           image: [
-            "src/assets/images/Products/t-shirt/fetch/fetch-shirt-blue-front.png",
-            "src/assets/images/Products/t-shirt/fetch/fetch-shirt-blue-back.png",
+            "/assets/images/Products/t-shirt/fetch/fetch-shirt-blue-front.png",
+            "/assets/images/Products/t-shirt/fetch/fetch-shirt-blue-back.png",
           ],
         },
         {
           colorName: "gray",
           colorCode: "#5A5959",
           image: [
-            "src/assets/images/Products/t-shirt/fetch/fetch-shirt-gray-front.png",
-            "src/assets/images/Products/t-shirt/fetch/fetch-shirt-gray-back.png",
+            "/assets/images/Products/t-shirt/fetch/fetch-shirt-gray-front.png",
+            "/assets/images/Products/t-shirt/fetch/fetch-shirt-gray-back.png",
           ],
         },
         {
           colorName: "white",
           colorCode: "#FFFDFD",
           image: [
-            "src/assets/images/Products/t-shirt/fetch/fetch-shirt-white-front.png",
-            "src/assets/images/Products/t-shirt/fetch/fetch-shirt-white-back.png",
+            "/assets/images/Products/t-shirt/fetch/fetch-shirt-white-front.png",
+            "/assets/images/Products/t-shirt/fetch/fetch-shirt-white-back.png",
           ],
         },
       ],
@@ -300,28 +300,28 @@ export const products = [
           colorName: "black",
           colorCode: "#202020",
           image: [
-            "src/assets/images/Products/bag/fetch/fetch-bag-black-front.png",
+            "/assets/images/Products/bag/fetch/fetch-bag-black-front.png",
           ],
         },
         {
           colorName: "blue",
           colorCode: "#1A2C8B",
           image: [
-            "src/assets/images/Products/bag/fetch/fetch-bag-blue-front.png",
+            "/assets/images/Products/bag/fetch/fetch-bag-blue-front.png",
           ],
         },
         {
           colorName: "gray",
           colorCode: "#5A5959",
           image: [
-            "src/assets/images/Products/bag/fetch/fetch-bag-gray-front.png",
+            "/assets/images/Products/bag/fetch/fetch-bag-gray-front.png",
           ],
         },
         {
           colorName: "white",
           colorCode: "#FFFDFD",
           image: [
-            "src/assets/images/Products/bag/fetch/fetch-bag-white-front.png",
+            "/assets/images/Products/bag/fetch/fetch-bag-white-front.png",
           ],
         },
       ],
@@ -339,28 +339,28 @@ export const products = [
           colorName: "black",
           colorCode: "#202020",
           image: [
-            "src/assets/images/Products/cup/fetch/fetch-cup-black-front.png",
+            "/assets/images/Products/cup/fetch/fetch-cup-black-front.png",
           ],
         },
         {
           colorName: "blue",
           colorCode: "#1A2C8B",
           image: [
-            "src/assets/images/Products/cup/fetch/fetch-cup-blue-front.png",
+            "/assets/images/Products/cup/fetch/fetch-cup-blue-front.png",
           ],
         },
         {
           colorName: "gray",
           colorCode: "#5A5959",
           image: [
-            "src/assets/images/Products/cup/fetch/fetch-cup-gray-front.png",
+            "/assets/images/Products/cup/fetch/fetch-cup-gray-front.png",
           ],
         },
         {
           colorName: "white",
           colorCode: "#FFFDFD",
           image: [
-            "src/assets/images/Products/cup/fetch/fetch-cup-white-front.png",
+            "/assets/images/Products/cup/fetch/fetch-cup-white-front.png",
           ],
         },
       ],
@@ -378,32 +378,32 @@ export const products = [
           colorName: "black",
           colorCode: "#202020",
           image: [
-            "src/assets/images/Products/t-shirt/espresso/espresso-shirt-black-front.png",
-            "src/assets/images/Products/t-shirt/espresso/espresso-shirt-black-back.png",
+            "/assets/images/Products/t-shirt/espresso/espresso-shirt-black-front.png",
+            "/assets/images/Products/t-shirt/espresso/espresso-shirt-black-back.png",
           ],
         },
         {
           colorName: "blue",
           colorCode: "#1A2C8B",
           image: [
-            "src/assets/images/Products/t-shirt/espresso/espresso-shirt-blue-front.png",
-            "src/assets/images/Products/t-shirt/espresso/espresso-shirt-blue-back.png",
+            "/assets/images/Products/t-shirt/espresso/espresso-shirt-blue-front.png",
+            "/assets/images/Products/t-shirt/espresso/espresso-shirt-blue-back.png",
           ],
         },
         {
           colorName: "gray",
           colorCode: "#5A5959",
           image: [
-            "src/assets/images/Products/t-shirt/espresso/espresso-shirt-gray-front.png",
-            "src/assets/images/Products/t-shirt/espresso/espresso-shirt-gray-back.png",
+            "/assets/images/Products/t-shirt/espresso/espresso-shirt-gray-front.png",
+            "/assets/images/Products/t-shirt/espresso/espresso-shirt-gray-back.png",
           ],
         },
         {
           colorName: "white",
           colorCode: "#FFFDFD",
           image: [
-            "src/assets/images/Products/t-shirt/espresso/espresso-shirt-white-front.png",
-            "src/assets/images/Products/t-shirt/espresso/espresso-shirt-white-back.png",
+            "/assets/images/Products/t-shirt/espresso/espresso-shirt-white-front.png",
+            "/assets/images/Products/t-shirt/espresso/espresso-shirt-white-back.png",
           ],
         },
       ],
@@ -421,22 +421,22 @@ export const products = [
     color: [{
         colorName: "black",
         colorCode: "#202020",
-        image: ["src/assets/images/Products/bag/espresso/espresso-bag-black-front.png"],
+        image: ["/assets/images/Products/bag/espresso/espresso-bag-black-front.png"],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
-        image: ["src/assets/images/Products/bag/espresso/espresso-bag-blue-front.png"],
+        image: ["/assets/images/Products/bag/espresso/espresso-bag-blue-front.png"],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
-        image: ["src/assets/images/Products/bag/espresso/espresso-bag-gray-front.png"],
+        image: ["/assets/images/Products/bag/espresso/espresso-bag-gray-front.png"],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
-        image: ["src/assets/images/Products/bag/espresso/espresso-bag-white-front.png"],
+        image: ["/assets/images/Products/bag/espresso/espresso-bag-white-front.png"],
       },
     ],
   },
@@ -452,22 +452,22 @@ export const products = [
     color: [{
         colorName: "black",
         colorCode: "#202020",
-        image: ["src/assets/images/Products/cup/espresso/espresso-cup-black-front.png"],
+        image: ["/assets/images/Products/cup/espresso/espresso-cup-black-front.png"],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
-        image: ["src/assets/images/Products/cup/espresso/espresso-cup-blue-front.png"],
+        image: ["/assets/images/Products/cup/espresso/espresso-cup-blue-front.png"],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
-        image: ["src/assets/images/Products/cup/espresso/espresso-cup-gray-front.png"],
+        image: ["/assets/images/Products/cup/espresso/espresso-cup-gray-front.png"],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
-        image: ["src/assets/images/Products/cup/espresso/espresso-cup-white-front.png"],
+        image: ["/assets/images/Products/cup/espresso/espresso-cup-white-front.png"],
       },
     ],
   },
@@ -485,32 +485,32 @@ export const products = [
         colorName: "black",
         colorCode: "#202020",
         image: [
-          "src/assets/images/Products/t-shirt/think/think-shirt-black-front.png",
-          "src/assets/images/Products/t-shirt/think/think-shirt-black-back.png",
+          "/assets/images/Products/t-shirt/think/think-shirt-black-front.png",
+          "/assets/images/Products/t-shirt/think/think-shirt-black-back.png",
         ],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
         image: [
-          "src/assets/images/Products/t-shirt/think/think-shirt-blue-front.png",
-          "src/assets/images/Products/t-shirt/think/think-shirt-blue-back.png",
+          "/assets/images/Products/t-shirt/think/think-shirt-blue-front.png",
+          "/assets/images/Products/t-shirt/think/think-shirt-blue-back.png",
         ],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
         image: [
-          "src/assets/images/Products/t-shirt/think/think-shirt-gray-front.png",
-          "src/assets/images/Products/t-shirt/think/think-shirt-gray-back.png",
+          "/assets/images/Products/t-shirt/think/think-shirt-gray-front.png",
+          "/assets/images/Products/t-shirt/think/think-shirt-gray-back.png",
         ],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
         image: [
-          "src/assets/images/Products/t-shirt/think/think-shirt-white-front.png",
-          "src/assets/images/Products/t-shirt/think/think-shirt-white-back.png",
+          "/assets/images/Products/t-shirt/think/think-shirt-white-front.png",
+          "/assets/images/Products/t-shirt/think/think-shirt-white-back.png",
         ],
       },
     ],
@@ -527,22 +527,22 @@ export const products = [
     color: [{
         colorName: "black",
         colorCode: "#202020",
-        image: ["src/assets/images/Products/bag/think/think-bag-black-front.png"],
+        image: ["/assets/images/Products/bag/think/think-bag-black-front.png"],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
-        image: ["src/assets/images/Products/bag/think/think-bag-blue-front.png"],
+        image: ["/assets/images/Products/bag/think/think-bag-blue-front.png"],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
-        image: ["src/assets/images/Products/bag/think/think-bag-gray-front.png"],
+        image: ["/assets/images/Products/bag/think/think-bag-gray-front.png"],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
-        image: ["src/assets/images/Products/bag/think/think-bag-white-front.png"],
+        image: ["/assets/images/Products/bag/think/think-bag-white-front.png"],
       },
     ],
   },
@@ -558,22 +558,22 @@ export const products = [
     color: [{
         colorName: "black",
         colorCode: "#202020",
-        image: ["src/assets/images/Products/cup/think/think-cup-black-front.png"],
+        image: ["/assets/images/Products/cup/think/think-cup-black-front.png"],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
-        image: ["src/assets/images/Products/cup/think/think-cup-blue-front.png"],
+        image: ["/assets/images/Products/cup/think/think-cup-blue-front.png"],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
-        image: ["src/assets/images/Products/cup/think/think-cup-gray-front.png"],
+        image: ["/assets/images/Products/cup/think/think-cup-gray-front.png"],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
-        image: ["src/assets/images/Products/cup/think/think-cup-white-front.png"],
+        image: ["/assets/images/Products/cup/think/think-cup-white-front.png"],
       },
     ],
   },
@@ -590,32 +590,32 @@ export const products = [
         colorName: "black",
         colorCode: "#202020",
         image: [
-          "src/assets/images/Products/t-shirt/screaming/screaming-shirt-black-front.png",
-          "src/assets/images/Products/t-shirt/screaming/screaming-shirt-black-back.png",
+          "/assets/images/Products/t-shirt/screaming/screaming-shirt-black-front.png",
+          "/assets/images/Products/t-shirt/screaming/screaming-shirt-black-back.png",
         ],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
         image: [
-          "src/assets/images/Products/t-shirt/screaming/screaming-shirt-blue-front.png",
-          "src/assets/images/Products/t-shirt/screaming/screaming-shirt-blue-back.png",
+          "/assets/images/Products/t-shirt/screaming/screaming-shirt-blue-front.png",
+          "/assets/images/Products/t-shirt/screaming/screaming-shirt-blue-back.png",
         ],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
         image: [
-          "src/assets/images/Products/t-shirt/screaming/screaming-shirt-gray-front.png",
-          "src/assets/images/Products/t-shirt/screaming/screaming-shirt-gray-back.png",
+          "/assets/images/Products/t-shirt/screaming/screaming-shirt-gray-front.png",
+          "/assets/images/Products/t-shirt/screaming/screaming-shirt-gray-back.png",
         ],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
         image: [
-          "src/assets/images/Products/t-shirt/screaming/screaming-shirt-white-front.png",
-          "src/assets/images/Products/t-shirt/screaming/screaming-shirt-white-back.png",
+          "/assets/images/Products/t-shirt/screaming/screaming-shirt-white-front.png",
+          "/assets/images/Products/t-shirt/screaming/screaming-shirt-white-back.png",
         ],
       },
     ],
@@ -632,22 +632,22 @@ export const products = [
     color: [{
         colorName: "black",
         colorCode: "#202020",
-        image: ["src/assets/images/Products/bag/screaming/screaming-bag-black-front.png"],
+        image: ["/assets/images/Products/bag/screaming/screaming-bag-black-front.png"],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
-        image: ["src/assets/images/Products/bag/screaming/screaming-bag-blue-front.png"],
+        image: ["/assets/images/Products/bag/screaming/screaming-bag-blue-front.png"],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
-        image: ["src/assets/images/Products/bag/screaming/screaming-bag-gray-front.png"],
+        image: ["/assets/images/Products/bag/screaming/screaming-bag-gray-front.png"],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
-        image: ["src/assets/images/Products/bag/screaming/screaming-bag-white-front.png"],
+        image: ["/assets/images/Products/bag/screaming/screaming-bag-white-front.png"],
       },
     ],
   },
@@ -664,22 +664,22 @@ export const products = [
     color: [{
         colorName: "black",
         colorCode: "#202020",
-        image: ["src/assets/images/Products/cup/screaming/screaming-cup-black-front.png"],
+        image: ["/assets/images/Products/cup/screaming/screaming-cup-black-front.png"],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
-        image: ["src/assets/images/Products/cup/screaming/screaming-cup-blue-front.png"],
+        image: ["/assets/images/Products/cup/screaming/screaming-cup-blue-front.png"],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
-        image: ["src/assets/images/Products/cup/screaming/screaming-cup-gray-front.png"],
+        image: ["/assets/images/Products/cup/screaming/screaming-cup-gray-front.png"],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
-        image: ["src/assets/images/Products/cup/screaming/screaming-cup-white-front.png"],
+        image: ["/assets/images/Products/cup/screaming/screaming-cup-white-front.png"],
       },
     ],
   },
@@ -697,32 +697,32 @@ export const products = [
         colorName: "black",
         colorCode: "#202020",
         image: [
-          "src/assets/images/Products/t-shirt/own/own-shirt-black-front.png",
-          "src/assets/images/Products/t-shirt/own/own-shirt-black-back.png",
+          "/assets/images/Products/t-shirt/own/own-shirt-black-front.png",
+          "/assets/images/Products/t-shirt/own/own-shirt-black-back.png",
         ],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
         image: [
-          "src/assets/images/Products/t-shirt/own/own-shirt-blue-front.png",
-          "src/assets/images/Products/t-shirt/own/own-shirt-blue-back.png",
+          "/assets/images/Products/t-shirt/own/own-shirt-blue-front.png",
+          "/assets/images/Products/t-shirt/own/own-shirt-blue-back.png",
         ],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
         image: [
-          "src/assets/images/Products/t-shirt/own/own-shirt-gray-front.png",
-          "src/assets/images/Products/t-shirt/own/own-shirt-gray-back.png",
+          "/assets/images/Products/t-shirt/own/own-shirt-gray-front.png",
+          "/assets/images/Products/t-shirt/own/own-shirt-gray-back.png",
         ],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
         image: [
-          "src/assets/images/Products/t-shirt/own/own-shirt-white-front.png",
-          "src/assets/images/Products/t-shirt/own/own-shirt-white-back.png",
+          "/assets/images/Products/t-shirt/own/own-shirt-white-front.png",
+          "/assets/images/Products/t-shirt/own/own-shirt-white-back.png",
         ],
       },
     ],
@@ -740,22 +740,22 @@ export const products = [
     color: [{
         colorName: "black",
         colorCode: "#202020",
-        image: ["src/assets/images/Products/bag/own/own-bag-black-front.png"],
+        image: ["/assets/images/Products/bag/own/own-bag-black-front.png"],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
-        image: ["src/assets/images/Products/bag/own/own-bag-blue-front.png"],
+        image: ["/assets/images/Products/bag/own/own-bag-blue-front.png"],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
-        image: ["src/assets/images/Products/bag/own/own-bag-gray-front.png"],
+        image: ["/assets/images/Products/bag/own/own-bag-gray-front.png"],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
-        image: ["src/assets/images/Products/bag/own/own-bag-white-front.png"],
+        image: ["/assets/images/Products/bag/own/own-bag-white-front.png"],
       },
     ],
   },
@@ -772,22 +772,22 @@ export const products = [
     color: [{
         colorName: "black",
         colorCode: "#202020",
-        image: ["src/assets/images/Products/cup/own/own-cup-black-front.png"],
+        image: ["/assets/images/Products/cup/own/own-cup-black-front.png"],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
-        image: ["src/assets/images/Products/cup/own/own-cup-blue-front.png"],
+        image: ["/assets/images/Products/cup/own/own-cup-blue-front.png"],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
-        image: ["src/assets/images/Products/cup/own/own-cup-gray-front.png"],
+        image: ["/assets/images/Products/cup/own/own-cup-gray-front.png"],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
-        image: ["src/assets/images/Products/cup/own/own-cup-white-front.png"],
+        image: ["/assets/images/Products/cup/own/own-cup-white-front.png"],
       },
     ],
   },
@@ -805,32 +805,32 @@ export const products = [
         colorName: "black",
         colorCode: "#202020",
         image: [
-          "src/assets/images/Products/t-shirt/just/just-shirt-black-front.png",
-          "src/assets/images/Products/t-shirt/just/just-shirt-black-back.png",
+          "/assets/images/Products/t-shirt/just/just-shirt-black-front.png",
+          "/assets/images/Products/t-shirt/just/just-shirt-black-back.png",
         ],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
         image: [
-          "src/assets/images/Products/t-shirt/just/just-shirt-blue-front.png",
-          "src/assets/images/Products/t-shirt/just/just-shirt-blue-back.png",
+          "/assets/images/Products/t-shirt/just/just-shirt-blue-front.png",
+          "/assets/images/Products/t-shirt/just/just-shirt-blue-back.png",
         ],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
         image: [
-          "src/assets/images/Products/t-shirt/just/just-shirt-gray-front.png",
-          "src/assets/images/Products/t-shirt/just/just-shirt-gray-back.png",
+          "/assets/images/Products/t-shirt/just/just-shirt-gray-front.png",
+          "/assets/images/Products/t-shirt/just/just-shirt-gray-back.png",
         ],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
         image: [
-          "src/assets/images/Products/t-shirt/just/just-shirt-white-front.png",
-          "src/assets/images/Products/t-shirt/just/just-shirt-white-back.png",
+          "/assets/images/Products/t-shirt/just/just-shirt-white-front.png",
+          "/assets/images/Products/t-shirt/just/just-shirt-white-back.png",
         ],
       },
     ],
@@ -848,22 +848,22 @@ export const products = [
     color: [{
         colorName: "black",
         colorCode: "#202020",
-        image: ["src/assets/images/Products/bag/just/just-bag-black-front.png"],
+        image: ["/assets/images/Products/bag/just/just-bag-black-front.png"],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
-        image: ["src/assets/images/Products/bag/just/just-bag-blue-front.png"],
+        image: ["/assets/images/Products/bag/just/just-bag-blue-front.png"],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
-        image: ["src/assets/images/Products/bag/just/just-bag-gray-front.png"],
+        image: ["/assets/images/Products/bag/just/just-bag-gray-front.png"],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
-        image: ["src/assets/images/Products/bag/just/just-bag-white-front.png"],
+        image: ["/assets/images/Products/bag/just/just-bag-white-front.png"],
       },
     ],
   },
@@ -880,22 +880,22 @@ export const products = [
     color: [{
         colorName: "black",
         colorCode: "#202020",
-        image: ["src/assets/images/Products/cup/just/just-cup-black-front.png"],
+        image: ["/assets/images/Products/cup/just/just-cup-black-front.png"],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
-        image: ["src/assets/images/Products/cup/just/just-cup-blue-front.png"],
+        image: ["/assets/images/Products/cup/just/just-cup-blue-front.png"],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
-        image: ["src/assets/images/Products/cup/just/just-cup-gray-front.png"],
+        image: ["/assets/images/Products/cup/just/just-cup-gray-front.png"],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
-        image: ["src/assets/images/Products/cup/just/just-cup-white-front.png"],
+        image: ["/assets/images/Products/cup/just/just-cup-white-front.png"],
       },
     ],
   },
@@ -913,32 +913,32 @@ export const products = [
         colorName: "black",
         colorCode: "#202020",
         image: [
-          "src/assets/images/Products/t-shirt/custom/custom-shirt-black-front.png",
-          "src/assets/images/Products/t-shirt/custom/custom-shirt-black-back.png",
+          "/assets/images/Products/t-shirt/custom/custom-shirt-black-front.png",
+          "/assets/images/Products/t-shirt/custom/custom-shirt-black-back.png",
         ],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
         image: [
-          "src/assets/images/Products/t-shirt/custom/custom-shirt-blue-front.png",
-          "src/assets/images/Products/t-shirt/custom/custom-shirt-blue-back.png",
+          "/assets/images/Products/t-shirt/custom/custom-shirt-blue-front.png",
+          "/assets/images/Products/t-shirt/custom/custom-shirt-blue-back.png",
         ],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
         image: [
-          "src/assets/images/Products/t-shirt/custom/custom-shirt-gray-front.png",
-          "src/assets/images/Products/t-shirt/custom/custom-shirt-gray-back.png",
+          "/assets/images/Products/t-shirt/custom/custom-shirt-gray-front.png",
+          "/assets/images/Products/t-shirt/custom/custom-shirt-gray-back.png",
         ],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
         image: [
-          "src/assets/images/Products/t-shirt/custom/custom-shirt-white-front.png",
-          "src/assets/images/Products/t-shirt/custom/custom-shirt-white-back.png",
+          "/assets/images/Products/t-shirt/custom/custom-shirt-white-front.png",
+          "/assets/images/Products/t-shirt/custom/custom-shirt-white-back.png",
         ],
       },
     ],
@@ -956,22 +956,22 @@ export const products = [
     color: [{
         colorName: "black",
         colorCode: "#202020",
-        image: ["src/assets/images/Products/bag/custom/custom-bag-black-front.png"],
+        image: ["/assets/images/Products/bag/custom/custom-bag-black-front.png"],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
-        image: ["src/assets/images/Products/bag/custom/custom-bag-blue-front.png"],
+        image: ["/assets/images/Products/bag/custom/custom-bag-blue-front.png"],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
-        image: ["src/assets/images/Products/bag/custom/custom-bag-gray-front.png"],
+        image: ["/assets/images/Products/bag/custom/custom-bag-gray-front.png"],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
-        image: ["src/assets/images/Products/bag/custom/custom-bag-white-front.png"],
+        image: ["/assets/images/Products/bag/custom/custom-bag-white-front.png"],
       },
     ],
   },
@@ -988,22 +988,22 @@ export const products = [
     color: [{
         colorName: "black",
         colorCode: "#202020",
-        image: ["src/assets/images/Products/cup/custom/custom-cup-black-front.png"],
+        image: ["/assets/images/Products/cup/custom/custom-cup-black-front.png"],
       },
       {
         colorName: "blue",
         colorCode: "#1A2C8B",
-        image: ["src/assets/images/Products/cup/custom/custom-cup-blue-front.png"],
+        image: ["/assets/images/Products/cup/custom/custom-cup-blue-front.png"],
       },
       {
         colorName: "gray",
         colorCode: "#5A5959",
-        image: ["src/assets/images/Products/cup/custom/custom-cup-gray-front.png"],
+        image: ["/assets/images/Products/cup/custom/custom-cup-gray-front.png"],
       },
       {
         colorName: "white",
         colorCode: "#FFFDFD",
-        image: ["src/assets/images/Products/cup/custom/custom-cup-white-front.png"],
+        image: ["/assets/images/Products/cup/custom/custom-cup-white-front.png"],
       },
     ],
   }

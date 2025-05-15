@@ -1,7 +1,7 @@
 import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import CaretLeft from "../../assets/images/collect-details-pages/CaretLeft.svg";
+import CaretLeft from "/assets/images/collect-details-pages/CaretLeft.svg";
 
 function BackButton({ onBack }) {
   return (

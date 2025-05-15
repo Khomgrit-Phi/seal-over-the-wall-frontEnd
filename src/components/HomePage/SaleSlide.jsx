@@ -1,13 +1,13 @@
-import product1 from "../../assets/images/home/slide/don_t-kill-gray.png";
-import product2 from "../../assets/images/home/slide/fetch-this-black.png";
-import product3 from "../../assets/images/home/slide/more-espresso-white.png";
-import product4 from "../../assets/images/home/slide/prove-them-back-gray.png";
-import product5 from "../../assets/images/home/slide/prove-them-back-white.png";
-import product6 from "../../assets/images/home/slide/prove-them-white.png";
-import product7 from "../../assets/images/home/slide/screaming-blue.png";
-import product8 from "../../assets/images/home/slide/think-out-side-the-box-back-white.png";
-import product9 from "../../assets/images/home/slide/think-out-side-the-box-backt-black.png";
-import logoads from "../../assets/images/home/slide/logo-ads.svg";
+import product1 from "/assets/images/home/slide/don_t-kill-gray.png";
+import product2 from "/assets/images/home/slide/fetch-this-black.png";
+import product3 from "/assets/images/home/slide/more-espresso-white.png";
+import product4 from "/assets/images/home/slide/prove-them-back-gray.png";
+import product5 from "/assets/images/home/slide/prove-them-back-white.png";
+import product6 from "/assets/images/home/slide/prove-them-white.png";
+import product7 from "/assets/images/home/slide/screaming-blue.png";
+import product8 from "/assets/images/home/slide/think-out-side-the-box-back-white.png";
+import product9 from "/assets/images/home/slide/think-out-side-the-box-backt-black.png";
+import logoads from "/assets/images/home/slide/logo-ads.svg";
 import { Link } from "react-router";
 
 import { useInView } from "react-intersection-observer"

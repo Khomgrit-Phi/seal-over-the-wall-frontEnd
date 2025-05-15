@@ -1,5 +1,5 @@
 import React from 'react';
-import shortline from "../../assets/images/collect-details-pages/short-line.svg";
+import shortline from "/assets/images/collect-details-pages/short-line.svg";
 
 function TotalProfitTable({ entries }) {
   const productMap = {

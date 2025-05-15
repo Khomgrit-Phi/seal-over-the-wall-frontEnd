@@ -16,8 +16,8 @@ const oldProducts = [
               {
                 colorName: "black",
                 shirtImage: [
-                  "src/assets/images/Products/t-shirt/prove/prove-shirt-black-front.png",
-                  "src/assets/images/Products/t-shirt/prove/prove-shirt-black-back.png",
+                  "/assets/images/Products/t-shirt/prove/prove-shirt-black-front.png",
+                  "/assets/images/Products/t-shirt/prove/prove-shirt-black-back.png",
                 ],
                 colorCode: "#202020",
               },
@@ -28,8 +28,8 @@ const oldProducts = [
               {
                 colorName: "white",
                 shirtImage: [
-                  "src/assets/images/Products/t-shirt/prove/prove-shirt-white-front.png",
-                  "src/assets/images/Products/t-shirt/prove/prove-shirt-white-back.png",
+                  "/assets/images/Products/t-shirt/prove/prove-shirt-white-front.png",
+                  "/assets/images/Products/t-shirt/prove/prove-shirt-white-back.png",
                 ],
                 colorCode: "#FFFDFD",
               },
@@ -40,8 +40,8 @@ const oldProducts = [
               {
                 colorName: "gray",
                 shirtImage: [
-                  "src/assets/images/Products/t-shirt/prove/prove-shirt-gray-front.png",
-                  "src/assets/images/Products/t-shirt/prove/prove-shirt-gray-back.png",
+                  "/assets/images/Products/t-shirt/prove/prove-shirt-gray-front.png",
+                  "/assets/images/Products/t-shirt/prove/prove-shirt-gray-back.png",
                 ],
                 colorCode: "#5A5959",
               },
@@ -52,8 +52,8 @@ const oldProducts = [
               {
                 colorName: "blue",
                 shirtImage: [
-                  "src/assets/images/Products/t-shirt/prove/prove-shirt-blue-front.png",
-                  "src/assets/images/Products/t-shirt/prove/prove-shirt-blue-back.png",
+                  "/assets/images/Products/t-shirt/prove/prove-shirt-blue-front.png",
+                  "/assets/images/Products/t-shirt/prove/prove-shirt-blue-back.png",
                 ],
                 colorCode: "#1A2C8B",
               },

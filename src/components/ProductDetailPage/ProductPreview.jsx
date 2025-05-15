@@ -46,7 +46,7 @@ const ProductPreview = ({ images }) => {
             <CarouselItem key={index}>
               <Card className="border-none shadow-none w-150 h-150">
                 <CardContent className="flex aspect-video items-center justify-center p-0 object-cover">
-                  <img src={`/${imageSrc}`} alt={`Slide ${index + 1}`} className="w-full h-full" />
+                  <img src={`${imageSrc}`} alt={`Slide ${index + 1}`} className="w-full h-full" />
                 </CardContent>
               </Card>
             </CarouselItem>
@@ -68,7 +68,7 @@ const ProductPreview = ({ images }) => {
             >
               <Card className="border-none shadow-none">
                 <CardContent className="h-44 shadow-lg border-1 border-gray-200 bg-white rounded-xl cursor-pointer px-0">
-                  <img src={`/${imageSrc}`} alt={`Thumbnail ${index + 1}`} className="h-44 w-full object-cover" />
+                  <img src={`${imageSrc}`} alt={`Thumbnail ${index + 1}`} className="h-44 w-full object-cover" />
                 </CardContent>
               </Card>
             </CarouselItem>

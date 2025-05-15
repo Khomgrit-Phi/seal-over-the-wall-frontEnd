@@ -1,4 +1,4 @@
-import banneranimation from "../../assets/images/home/banner-animation.gif";
+import banneranimation from "/assets/images/home/banner-animation.gif";
 
 const Banner = () => {
   return (
