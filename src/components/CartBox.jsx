@@ -124,7 +124,7 @@ export default function CartBox({
                                     </option>
                                 ))}
                             </select>
-                            <img src="src\assets\images\arrow-down.svg" className="w-[16px] h-[16px] ml-2" alt="arrow down" />
+                            <img src="/assets/images/arrow-down.svg" className="w-[16px] h-[16px] ml-2" alt="arrow down" />
                         </div>
 
                         {/* size selection */}
@@ -147,7 +147,7 @@ export default function CartBox({
                                             </option>
                                         ))}
                                     </select>
-                                    <img src="src\assets\images\arrow-down.svg" className="w-[16px] h-[16px] ml-2" alt="arrow down" />
+                                    <img src="/assets/images/arrow-down.svg" className="w-[16px] h-[16px] ml-2" alt="arrow down" />
                                 </>
                             ) : (
                                 <select
@@ -186,7 +186,7 @@ export default function CartBox({
 
                             {/* Delete button */}
                             <img
-                                src="src\assets\images\circle-xmark-solid.svg"
+                                src="/assets/images/circle-xmark-solid.svg"
                                 className="flex items-center justify-center w-[16px] h-[16px] transition-transform duration-300 hover:scale-140 hover:cursor-pointer"
                                 alt="remove"
                             />

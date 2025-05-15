@@ -123,18 +123,18 @@ const Cart = () => {
   // Re-update the DB everytime use select a new color, size, quantity
 
   // Submitting the finalized Cart and convert it to order
-  const handleCheckoutOrder = async () => {
-    const formattedOrderItems = orderItem.map((item) => ({
-      productId: item.productId,
-      selectedSize: item.size,
-      selectedColor: item.color,
-      selectedImage: item.productImage,
-      quantity: item.quantity,
-      unitPrice: item.price,
-      totalItemPrice: item.price * item.quantity
-    }));
-    console.log('Formatted order items:', formattedOrderItems);
-  };
+  // const handleCheckoutOrder = async () => {
+  //   const formattedOrderItems = orderItem.map((item) => ({
+  //     productId: item.productId,
+  //     selectedSize: item.size,
+  //     selectedColor: item.color,
+  //     selectedImage: item.productImage,
+  //     quantity: item.quantity,
+  //     unitPrice: item.price,
+  //     totalItemPrice: item.price * item.quantity
+  //   }));
+  //   console.log('Formatted order items:', formattedOrderItems);
+  // };
 
   // Recalculate total price
   useEffect(() => {
@@ -156,25 +156,31 @@ const Cart = () => {
       <div className="flex justify-center  items-center w-full pl-[88px]">
         <div className="w-[1072px] flex justify-between mt-[50px] pb-[25px] border-b-2 border-secondary-light-gray-300"></div>
       </div>
-      {orderItem.map((item) => (
-        <CartBox
-          key={item.cartItemId}
-          imageArray={item.imageArray}
-          name={item.name}
-          size={item.size}
-          color={item.color}
-          quantity={item.quantity}
-          price={item.price}
-          productId={item.productId}
-          productType={item.productType}
-          cartItemId={item.cartItemId}
-          onQuantityChange={handleQuantityChange}
-          onDeleteData={handleRemoveFromCart}
-          onDeleteFront={handleDeleteItem}
-          onSizeChange={handleSizeChange}
-          onColorChange={handleColorChange}
-        />
-      ))}
+      {orderItem.length === 0 ? (
+  <div className="text-center text-2xl font-semibold mt-8">
+    Please add items to your cart.
+  </div>
+) : (
+  orderItem.map((item) => (
+    <CartBox
+      key={item.cartItemId}
+      imageArray={item.imageArray}
+      name={item.name}
+      size={item.size}
+      color={item.color}
+      quantity={item.quantity}
+      price={item.price}
+      productId={item.productId}
+      productType={item.productType}
+      cartItemId={item.cartItemId}
+      onQuantityChange={handleQuantityChange}
+      onDeleteData={handleRemoveFromCart}
+      onDeleteFront={handleDeleteItem}
+      onSizeChange={handleSizeChange}
+      onColorChange={handleColorChange}
+    />
+  ))
+)}
       <div className="flex flex-col justify-center items-center w-full mt-[42px] pl-[360px] mb-[72px]">
         <div className="flex w-[800px] mb-[32px]">
           <input
@@ -204,7 +210,7 @@ const Cart = () => {
         </div>
         <Link to="/Checkout">
           <button
-            onClick={handleCheckoutOrder}
+            // onClick={handleCheckoutOrder}
             className="w-[800px] h-[56px] bg-black font-semibold text-white text-xl hover:scale-105 duration-300 hover:cursor-pointer"
           >
             Check Out

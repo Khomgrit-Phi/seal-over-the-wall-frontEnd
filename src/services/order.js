@@ -15,6 +15,7 @@ export const getUserOrders = async (userId) => {
 export const createOrder = async (items, shippingMethod, total, address, payment) => {
     try {
         let payload = { items, shippingMethod, total, address, payment };
+        console.log("this is service payload", payload);
         const request = await api.post(`/order/createOrder`, payload);
         return request.data;
     } catch (error) {

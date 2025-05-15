@@ -47,7 +47,7 @@ const CheckoutShipping = ({ onNext, updateData }) => {
       return;
     }
 
-    console.log('Submitting', shippingData);
+    console.log('Submitting shipping', shippingData);
     updateData(shippingData);
 
     setShippingData({
@@ -270,8 +270,8 @@ const CheckoutShipping = ({ onNext, updateData }) => {
                 <input
                   type="radio"
                   name="shipping"
-                  value="Fastest Deliver"
-                  checked={shippingData.shipping === 'Fastest Deliver'}
+                  value="Fastest Delivery"
+                  checked={shippingData.shipping === 'Fastest Delivery'}
                   onChange={handleOnchange}
                   className="delivery-checkbox appearance-none w-[24px] h-[24px] rounded-full border border-[#A1A1AA] checked:bg-black"
                 />

@@ -3,6 +3,8 @@ import CheckoutAddressCard from '../../components/CheckoutAddressCard';
 import CheckoutShippingCard from '../../components/CheckoutShippingCard';
 import CheckoutCardCard from '../../components/CheckoutCardCard';
 import CheckoutButtonCard from '../../components/CheckoutButtonCard';
+import { useAuth } from '../../context/AuthContext';
+
 
 const CheckoutSummary = ({ onNext, onEdit, checkoutData, checkoutOrder }) => {
   return (
@@ -27,16 +29,16 @@ const CheckoutSummary = ({ onNext, onEdit, checkoutData, checkoutOrder }) => {
       >
         <CheckoutShippingCard
           method={
-            checkoutData.shippingInfo.shipping === 'fastest'
+            checkoutData.shippingInfo.shipping === 'Fastest Delivery'
               ? 'Fastest Delivery'
-              : checkoutData.shippingInfo.shipping === 'standard'
+              : checkoutData.shippingInfo.shipping === 'Standard Delivery'
               ? 'Standard Delivery'
               : 'Cash on Delivery (COD)'
           }
           methodPrice={
-            checkoutData.shippingInfo.shipping === 'fastest' ? 120 : checkoutData.shippingInfo.shipping === 'standard' ? 60 : 120
+            checkoutData.shippingInfo.shipping === 'Fastest Delivery' ? 120 : checkoutData.shippingInfo.shipping === 'Standard Delivery' ? 60 : 120
           }
-          date="March 15 2025"
+          date="3 - 5 days"
         />
       </div>
 

@@ -54,3 +54,14 @@ export const updateDetail = async (itemId, color, size, quantity, image) => {
     throw error;
   }
 };
+
+//Clear cart after create an order
+export const clearCart = async (userId) => {
+  try {
+    const request = await api.patch(`cart/empty/${userId}`);
+    return console.log(request)
+  } catch (error) {
+    console.log('error updating cart item: ', error);
+    throw error;
+  }
+}

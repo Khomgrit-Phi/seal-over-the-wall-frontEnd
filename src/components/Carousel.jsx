@@ -29,9 +29,9 @@ export default function Carousel({
         >{slides}</div>
       </div>
       <div className="absolute inset-0 flex justify-between items-center p-4">
-        <img src=".\src\assets\images\chevron-left.svg" onClick={prev}
+        <img src="/assets/images/chevron-left.svg" onClick={prev}
         className="w-[30px] h-[30px] hover:cursor-pointer"/>
-        <img src=".\src\assets\images\chevron-right.svg" onClick={next}
+        <img src="/assets/images/chevron-right.svg" onClick={next}
         className="w-[30px] h-[30px] hover:cursor-pointer"/>
       </div>
       <div className="absolute bottom-15 right-10">

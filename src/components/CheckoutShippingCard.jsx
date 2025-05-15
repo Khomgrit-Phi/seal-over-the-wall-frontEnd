@@ -10,7 +10,7 @@ function CheckoutShipping({method, date,methodPrice}) {
                         <input type="radio" id="standard" name="deliveryOption" value="standard" defaultChecked />
                         <label className='ml-2 text-primary-black font-semibold text-xl ' for="standard">{method}</label>
                       </div>
-                      <span className='text-secoundary-light-gray-500 font-normal'>{`Will be received by ${date}.`}</span>
+                      <span className='text-secoundary-light-gray-500 font-normal'>{`Will be received within ${date}.`}</span>
                 </div>
                       <span class="font-[500] text-xl">{methodPrice} THB</span>
             </div>

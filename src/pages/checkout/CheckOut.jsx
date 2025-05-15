@@ -6,13 +6,15 @@ import CheckoutSummary from './CheckoutSummary';
 import CheckoutSuccess from './CheckoutSuccess';
 import { useAuth } from '../../context/AuthContext';
 import { createOrder, getOrder } from '../../services/order';
-import { set } from 'zod';
+import { clearCart } from '../../services/cart';
+
 
 function CheckOut() {
   const [step, setStep] = React.useState(0);
   const [orderDetail, setOrderDetail] = React.useState(null);
 
-  const { cart } = useAuth();
+  const { user, cart } = useAuth();
+  const userId = user._id
 
 
   const [checkoutData, setCheckoutData] = React.useState({
@@ -38,7 +40,6 @@ function CheckOut() {
         ...newData
       }
     }));
-    console.log(checkoutData);
   };
 
   const handleOrderCreate = async () => {
@@ -67,27 +68,25 @@ function CheckOut() {
       exp: checkoutData.paymentInfo.exp,
       cvv: checkoutData.paymentInfo.cvv
     };
-    console.log('The handleOrderCreate is called', items, shippingMethod, total, address, payment);
 
+    console.log("this is sending shippingmethod", shippingMethod )
     const res = await createOrder(items, shippingMethod, total, address, payment);
-    console.log(res);
-    console.log('log res ID:', res.order._id);
+    console.log("this is response receiving from creating service", res);
+    // console.log('log res ID:', res.order._id);
 
     handleFetchOrder(res.order._id);
+
+    await clearCart(userId)
   };
 
   const handleFetchOrder = async (orderId) => {
     const response = await getOrder(orderId);
-    console.log("This is from Cart page",response);
+    console.log("This is the response from Cart page to use in success ",response);
     setOrderDetail(response);
   };
 
   const handleNext = () => setStep((prev) => prev + 1);
   const handleBack = () => setStep((prev) => prev - 1);
-  const handleReset = () => {
-    localStorage.removeItem('checkout-step');
-    setStep(0);
-  };
   const handleEdit = () => setStep(0);
 
   const renderStepContent = () => {
@@ -99,7 +98,7 @@ function CheckOut() {
       case 2:
         return <CheckoutSummary onNext={handleNext} onEdit={handleEdit} checkoutData={checkoutData} checkoutOrder={handleOrderCreate} />;
       case 3:
-        return <CheckoutSuccess onReset={handleReset} orderDetail={orderDetail} />;
+        return <CheckoutSuccess orderDetail={orderDetail} />;
       default:
         return null;
     }
