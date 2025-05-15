@@ -4,12 +4,17 @@ import CreateDesign from "./CreateDesign";
 import CollectDetails from "./CollectDetails";
 import ExpressAndPublish from "./ExpressAndPublish";
 import Preview from "./Preview";
+import { useNavigate } from 'react-router-dom';
+
 
 function Create() {
   const [step, setStep] = React.useState(() => {
     const saved = localStorage.getItem('create-step');
     return saved ? parseInt(saved, 10) : 0;
   });
+
+  const navigate = useNavigate();
+
 
   const [createData, setCreateData] = React.useState({
     createdesign: {},
@@ -31,22 +36,23 @@ function Create() {
       const nextStep = prev + 1;
 
       if (nextStep > 3) {
-        // ✅ Reset when preview is done
-        localStorage.removeItem('create-step');
-        setCreateData({
-          createdesign: {},
-          collectdetails: {},
-          expressandpublish: {}
-        });
-        return 0; // back to first step
-      }
+
+      localStorage.removeItem('create-step');
+      setCreateData({
+        createdesign: {},
+        collectdetails: {},
+        expressandpublish: {}
+      });
+      navigate('/shop');
+      return prev;
+    }
 
       return nextStep;
     });
   };
 
   const handleBack = () => setStep((prev) => prev - 1);
-  
+
   const handleReset = () => {
     localStorage.removeItem('create-step');
     setStep(0);
