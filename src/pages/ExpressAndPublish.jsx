@@ -43,7 +43,10 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
         </p>
         <div className="flex justify-end items-center gap-4 pr-[128px] mt-1.5">
           <button><BackButton onBack={onBack} /></button>
-          <button disabled={!isFormValid} className={!isFormValid ? 'opacity-50 cursor-not-allowed' : ''}>
+          <button
+            disabled={!isFormValid}
+            className={`transition-opacity ${!isFormValid ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
             <NextStepButton onNext={() => onNext({ expressandpublish: products })} />
           </button>
         </div>
@@ -71,7 +74,7 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
                 <label className="block mb-2 text-xl font-normal">Product Name</label>
                 <input
                   type="text"
-                  className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-132"
+                  className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-full max-w-[400px]"
                   value={product.productName}
                   onChange={(e) => handleProductChange(idx, "productName", e.target.value)}
                 />
@@ -79,7 +82,7 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
                 <label className="block mb-2 text-xl font-normal mt-6">Category</label>
                 <input
                   type="text"
-                  className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-132"
+                  className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-full max-w-[400px]"
                   value={product.type}
                   readOnly
                 />
@@ -91,14 +94,14 @@ const ExpressAndPublish = ({ onNext, onBack, createData }) => {
                   <button className="bg-[#E1E1E4] text-[#202020] text-xl font-medium px-2 py-2 rounded-sm">custom</button>
                   <button className="bg-[#E1E1E4] text-[#202020] text-xl font-medium px-2 py-2 rounded-sm">{product.type}</button>
                   <button className="bg-[#E1E1E4] text-[#202020] text-xl font-medium px-2 py-2 rounded-sm">collection</button>
-                  <button className="bg-[#fff] text-[#91919B] text-xl font-medium px-2 py-2 rounded-sm flex items-center gap-2 border border-dashed border-[#E1E1E4]">
+                  <button className="bg-white text-[#91919B] text-xl font-medium px-2 py-2 rounded-sm flex items-center gap-2 border border-dashed border-[#E1E1E4]">
                     Add <img src={iconAdd} alt="add" className="h-6 w-6" />
                   </button>
                 </div>
 
                 <label className="block mb-2 text-xl font-normal">Concept</label>
                 <textarea
-                  className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-166 min-h-[50px] resize-none"
+                  className="border border-[#DBDBDC] rounded-lg px-4 py-3 w-full max-w-[600px] min-h-[50px] resize-none"
                   placeholder="Concept"
                   value={product.concept}
                   onChange={(e) => handleProductChange(idx, "concept", e.target.value)}

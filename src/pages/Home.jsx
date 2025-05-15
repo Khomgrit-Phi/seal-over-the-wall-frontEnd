@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Hero from "../components/HomePage/Hero";
 import ExpressTheWorld from "../components/HomePage/ExpressTheWorld";
 import TodayTrend from "../components/HomePage/TodayTrend";
-import Banner from "../components/HomePage/banner";
+import Banner from "../components/HomePage/Banner";
 import OwnIt from "../components/HomePage/OwnIt";
 import SaleSlide from "../components/HomePage/SaleSlide";
 
