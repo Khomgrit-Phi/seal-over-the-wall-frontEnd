@@ -93,7 +93,7 @@ const Success = ({ onReset, orderDetail }) => {
             {/* Order status */}
               <div className="border border-[#A1A1AA] w-full p-6">
                 <OrderStatusCard
-                  orderId="356945678"
+                  orderId={order._id}
                   method={order.shippingMethod}
                   date={new Date(new Date(order.orderDate).getTime() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString("en-US", {
                     day: "numeric",

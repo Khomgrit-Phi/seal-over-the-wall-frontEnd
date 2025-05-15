@@ -8,6 +8,7 @@ import product7 from "../../assets/images/home/slide/screaming-blue.png";
 import product8 from "../../assets/images/home/slide/think-out-side-the-box-back-white.png";
 import product9 from "../../assets/images/home/slide/think-out-side-the-box-backt-black.png";
 import logoads from "../../assets/images/home/slide/logo-ads.svg";
+import { Link } from "react-router";
 
 import { useInView } from "react-intersection-observer"
 import { motion, useAnimation } from "framer-motion";
@@ -82,9 +83,11 @@ const controls = useAnimation();
           </motion.div>
         </div>
         <div className="flex justify-center items-center">
+          <Link to="/shop">
           <button className="text-lg bg-white px-8 py-2 rounded-full mt-4 text-primary-blue-500 cursor-pointer">
             Go to Shop
           </button>
+          </Link>
         </div>
       </section>
     </>

@@ -26,7 +26,7 @@ const CreateDesignNav = () => {
       `}>
       <div className="flex flex-row items-center justify-between px-10 py-5">
           <div className="left-nav flex items-center gap-5">
-            <img src={logo} alt="Logo" className="logo w-52" />
+            <Link to ="/"><img src={logo} alt="Logo" className="logo w-52" /></Link>
           </div>
           <div className='flex items-center gap-[24px]'>
           <button className='font-medium text-lg cursor-pointer text-primary-black hover:text-primary-blue-500 transition duration-300'>
