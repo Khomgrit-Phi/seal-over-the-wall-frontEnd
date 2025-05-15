@@ -2,15 +2,15 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import NextStepButton from "../components/createDesignPage/NextStepButton";
 import BackButton from "../components/collectDetailsPage/BackButton";
-import iconArrowLeft from "../assets/images/expressAndPublish/iconArrowLeft.png";
-import iconArrowRight from "../assets/images/preview/iconArrowRight.png";
-import logoCustommike from "../assets/images/preview/custommike-navbar-logo.svg";
-import logoResponsible from "../assets/images/preview/Responsible.svg";
-import logoEco from "../assets/images/preview/ECO.svg";
-import logoOrganic from "../assets/images/preview/Organic.svg";
-import iconIg from "../assets/images/preview/icon-ig.svg";
-import iconX from "../assets/images/preview/icon-x.svg";
-import iconFb from "../assets/images/preview/icon-fb.svg";
+import iconArrowLeft from "/assets/images/expressAndPublish/iconArrowLeft.png";
+import iconArrowRight from "/assets/images/preview/iconArrowRight.png";
+import logoCustommike from "/assets/images/preview/custommike-navbar-logo.svg";
+import logoResponsible from "/assets/images/preview/Responsible.svg";
+import logoEco from "/assets/images/preview/ECO.svg";
+import logoOrganic from "/assets/images/preview/Organic.svg";
+import iconIg from "/assets/images/preview/icon-ig.svg";
+import iconX from "/assets/images/preview/icon-x.svg";
+import iconFb from "/assets/images/preview/icon-fb.svg";
 import uploadProduct from "../services/product";
 
 
