@@ -6,7 +6,6 @@ import GiftCard from '../components/GiftCard';
 import Questions from '../components/Questions';
 import { useAuth } from '../context/AuthContext.jsx';
 import { deleteCartItem, getCart } from '../services/cart.js';
-import { createOrder } from '../services/order.js';
 
 const Cart = () => {
   const [orderItem, setOrderItem] = useState([]);
