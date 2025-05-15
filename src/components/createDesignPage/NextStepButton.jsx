@@ -1,5 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import arrowright from "../../assets/images/create-design-pages/arrow-right.svg";
 
