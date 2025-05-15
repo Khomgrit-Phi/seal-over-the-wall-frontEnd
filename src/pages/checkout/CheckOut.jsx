@@ -10,11 +10,10 @@ import { set } from 'zod';
 
 function CheckOut() {
   const [step, setStep] = React.useState(0);
-  const [orderDetail, setOrderDetail] = React.useState();
+  const [orderDetail, setOrderDetail] = React.useState(null);
 
   const { cart } = useAuth();
 
-  console.log(cart);
 
   const [checkoutData, setCheckoutData] = React.useState({
     shippingInfo: {},
@@ -78,9 +77,9 @@ function CheckOut() {
   };
 
   const handleFetchOrder = async (orderId) => {
-    const orderDetail = getOrder(orderId);
-    console.log(orderDetail);
-    setOrderDetail(orderDetail);
+    const response = await getOrder(orderId);
+    console.log("This is from Cart page",response);
+    setOrderDetail(response);
   };
 
   const handleNext = () => setStep((prev) => prev + 1);

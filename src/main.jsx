@@ -1,6 +1,8 @@
 // import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css';
+import 'keen-slider/keen-slider.min.css';
+
 
 // React Component
 import App from './App.jsx'

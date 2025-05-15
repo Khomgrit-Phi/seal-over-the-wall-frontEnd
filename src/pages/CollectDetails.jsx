@@ -24,7 +24,7 @@ function CollectDetails({ createData, onNext, onBack, updateCreateData }) {
 
   const buildProductPayload = () => {
     return productEntries.map((entry) => ({
-      styleName: "Custommike?",
+      styleName: "Custommike",
       productType: entry.type,
       price: entry.price,
       sizes: ["S", "M", "L"],

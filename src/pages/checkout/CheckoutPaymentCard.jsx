@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import CheckoutButton from '../../components/CheckoutButtonCard';
 import CheckoutPaymentQR from './CheckoutPaymentQR';
+import { useAuth} from '../../context/AuthContext';
 
 const CheckoutPaymentCard = ({ onNext, updateData }) => {
   const [cardData, setCardData] = useState({
@@ -11,6 +12,8 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
     cvv: '',
     saveDetail: false
   });
+
+  const {cart} = useAuth()
 
   const handleOnchange = useCallback((e) => {
     const { name, value, type, checked } = e.target;
@@ -181,7 +184,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
             </div>
             <div className="w-full">
               <button type="submit" className="w-full">
-                <CheckoutButton currentStep="payment" orderValue="1234" />
+                <CheckoutButton currentStep="payment" orderValue={cart.total} />
               </button>
               <p className="text-secondary-light-gray-500 mt-[12px] col-span-2 text-wrap">
                 By continuing, I confirm that I have read and accept the&nbsp;

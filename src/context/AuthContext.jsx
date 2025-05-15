@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState,useCallback } from 'react';
 import api from '../services/api';
 import { addToCart } from '../services/cart';
 
@@ -10,16 +10,40 @@ export const AuthProvider = ({ children }) => {
   const [cart, setCart] = useState(null);
   // const navigate = useNavigate();
 
-  const fetchCart = async () => {
-    try {
-      console.log('Get in Fetch Cart');
-      const cartData = await api.get(`/cart/${user?._id}`);
-      setCart(cartData);
-      console.log(cart);
-    } catch (error) {
-      console.error("Can not get user's cart: ", error);
-    }
-  };
+  // const fetchCart = async () => {
+  //   try {
+  //     console.log('Get in Fetch Cart');
+  //     const cartData = await api.get(`/populated/cart/${user?._id}`);
+  //     setCart(cartData);
+  //     console.log(cart);
+  //   } catch (error) {
+  //     console.error("Can not get user's cart: ", error);
+  //   }
+  // };
+
+  const fetchCart = useCallback(async () => {
+  try {
+    console.log('Fetching updated cart');
+    const cartData = await api.get(`/populated/cart/${user?._id}`);
+    setCart(cartData);
+    console.log(cartData);
+  } catch (error) {
+    console.error("Can't get user's cart: ", error);
+  }
+}, [user?._id]);
+
+const updateCartData = async () => {
+  try {
+    console.log('Updating cart data');
+    const updatedCartResponse = await api.get(`/cart/${user?._id}`);
+    setCart(updatedCartResponse.data.cart);
+    console.log('Updated cart:', updatedCartResponse.data.cart);
+  } catch (error) {
+    console.error("Can't update cart data:", error);
+  }
+};
+
+
   // Fetch the user's profile on app load
   useEffect(() => {
     const fetchProfile = async () => {
@@ -74,7 +98,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, login, logout, loading, cart, setCart, addItemToCart }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, setUser, login, logout, loading, cart, setCart, addItemToCart ,updateCartData}}>{children}</AuthContext.Provider>
   );
 };
 

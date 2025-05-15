@@ -16,7 +16,7 @@ const CheckoutShipping = ({ onNext, updateData }) => {
     phone: '',
     smsPromotion: false,
     emailPromotion: false,
-    shipping: 'standard'
+    shipping: ''
   });
 
   const handleOnchange = (e) => {
@@ -248,8 +248,8 @@ const CheckoutShipping = ({ onNext, updateData }) => {
                 <input
                   type="radio"
                   name="shipping"
-                  value="standard"
-                  checked={shippingData.shipping === 'standard'}
+                  value="Standard Delivery"
+                  checked={shippingData.shipping === 'Standard Delivery'}
                   onChange={handleOnchange}
                   className="delivery-checkbox appearance-none w-[24px] h-[24px] rounded-full border pb-4 border-[#A1A1AA] checked:bg-black"
                 />
@@ -270,8 +270,8 @@ const CheckoutShipping = ({ onNext, updateData }) => {
                 <input
                   type="radio"
                   name="shipping"
-                  value="fastest"
-                  checked={shippingData.shipping === 'fastest'}
+                  value="Fastest Deliver"
+                  checked={shippingData.shipping === 'Fastest Deliver'}
                   onChange={handleOnchange}
                   className="delivery-checkbox appearance-none w-[24px] h-[24px] rounded-full border border-[#A1A1AA] checked:bg-black"
                 />
@@ -292,8 +292,8 @@ const CheckoutShipping = ({ onNext, updateData }) => {
                 <input
                   type="radio"
                   name="shipping" // This should match your state key
-                  value="cod"
-                  checked={shippingData.shipping === 'cod'}
+                  value="Cash on Delivery"
+                  checked={shippingData.shipping === 'Cash on Delivery'}
                   onChange={handleOnchange}
                   className="delivery-checkbox appearance-none w-[24px] h-[24px] rounded-full border border-[#A1A1AA] checked:bg-black"
                 />
