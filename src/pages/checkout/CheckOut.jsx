@@ -69,10 +69,9 @@ function CheckOut() {
       cvv: checkoutData.paymentInfo.cvv
     };
 
-    console.log("this is sending shippingmethod", shippingMethod )
+    
     const res = await createOrder(items, shippingMethod, total, address, payment);
-    console.log("this is response receiving from creating service", res);
-    // console.log('log res ID:', res.order._id);
+
 
     handleFetchOrder(res.order._id);
 
@@ -81,7 +80,7 @@ function CheckOut() {
 
   const handleFetchOrder = async (orderId) => {
     const response = await getOrder(orderId);
-    console.log("This is the response from Cart page to use in success ",response);
+
     setOrderDetail(response);
   };
 

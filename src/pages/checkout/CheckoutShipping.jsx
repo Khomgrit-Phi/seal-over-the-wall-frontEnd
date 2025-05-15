@@ -47,7 +47,6 @@ const CheckoutShipping = ({ onNext, updateData }) => {
       return;
     }
 
-    console.log('Submitting shipping', shippingData);
     updateData(shippingData);
 
     setShippingData({

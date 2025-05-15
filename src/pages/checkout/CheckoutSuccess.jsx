@@ -8,7 +8,6 @@ import { Link } from 'react-router';
 
 const Success = ({ onReset, orderDetail }) => {
   const order = orderDetail;
-  console.log('This is in success', order);
 
   const colorMap = {
     black: 0,

@@ -48,7 +48,6 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
 
     updateData(cardData);
 
-    console.log('Submitting Payment', cardData);
     setCardData({
       firstName: '',
       lastName: '',
