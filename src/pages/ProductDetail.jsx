@@ -8,7 +8,7 @@ import park from '/assets/images/productDetail/park.svg';
 import thaiFlag from '/assets/images/productDetail/thai-flag.svg';
 import wash from '/assets/images/productDetail/Wash.svg';
 import BreadcrumbTop from '../components/mainMenu/BreadcrumbTop';
-import Creator from '../components/ProductDetailPage/creator';
+import Creator from '../components/ProductDetailPage/Creator';
 import ProductPreview from '../components/ProductDetailPage/ProductPreview';
 import ProductRelate from '../components/ProductDetailPage/ProductRelate';
 import SizeSelector from '../components/ProductDetailPage/SizeSelector';
