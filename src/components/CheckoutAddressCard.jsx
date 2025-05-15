@@ -7,12 +7,13 @@ function CheckoutAddress({ firstName,lastName, address, specific, subDistrict, d
       <p id="name" className="mb-3 text-[24px] font-medium">
         {firstName} {lastName}
       </p>
+      <p id="tel" className="text-[24px] font-[500] text-wrap">
+        Tel: {tel}
+      </p>
       <p id="Address" className="text-[24px] font-[500] text-wrap">
         {address} {specific} {subDistrict} {district} {city} {postal}
       </p>
-      <p id="tel" className="text-[24px] font-[500] text-wrap">
-        {tel}
-      </p>
+      
     </div>
   );
 }

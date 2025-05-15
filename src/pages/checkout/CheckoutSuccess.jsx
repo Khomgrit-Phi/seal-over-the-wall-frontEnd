@@ -4,10 +4,10 @@ import OrderStatusCard from '../../components/OrderStatusCard';
 import TotalCard from '../../components/TotalCard';
 import ProductDataStore from '../../stores/productDataStore';
 import SaleSlide from '../../components/HomePage/SaleSlide';
+import { Link } from 'react-router';
 
 const Success = ({ onReset, orderDetail }) => {
   const order = orderDetail;
-  console.log('This is in success', order);
 
   const colorMap = {
     black: 0,
@@ -16,11 +16,6 @@ const Success = ({ onReset, orderDetail }) => {
     white: 3,
   }
   const colorArray = ["202020", "1A2C8B", "ADADAF", "FFFFFF"];
-
-  console.log("#",colorArray[colorMap["black"]])
-
-
-
 
 
 
@@ -42,7 +37,7 @@ const Success = ({ onReset, orderDetail }) => {
         </article>
         <section className="flex flex-row gap-4">
           <div className="flex flex-row w-[936px] min-h-[875px] h-auto">
-            <div className="product w-full flex flex-col border border-[#A1A1AA] px-6 sm:px-12 md:px-20 lg:px-28 xl:px-36 py-4 sm:py-6 md:py-10 lg:py-12 xl:py-14 gap-y-6 mb-40">
+            <div className="product w-full min-h-[875px] flex flex-col border border-[#A1A1AA] px-6 sm:px-12 md:px-20 lg:px-28 xl:px-36 py-4 sm:py-6 md:py-10 lg:py-12 xl:py-14 gap-y-6 mb-40">
               {order && order.items.map((product) => (
                 <React.Fragment key={product._id}>
                   {/* Products detail */}
@@ -54,18 +49,18 @@ const Success = ({ onReset, orderDetail }) => {
                       <h4 className="text-2xl font-semibold">{product.productId.title} <br/> <span className='mb-6 text-[20px] text-[#A1A1AA] font-semibold"'>quantity: {product.quantity} </span></h4>
                       <div className="flex flex-wrap items-center gap-4 sm:gap-2">
                         {/* Color circle div */}
-                        <div className="flex items-center gap-2 mr-4"> 
+                        <div className="flex items-center gap-2 mr-4">
                           <span className="text-lg font-normal">color:</span>
                           <div
                               className="w-6 h-6 outline-1 rounded-full"
                               style={{ backgroundColor: `#${colorArray[colorMap[product.selectedColor]]}` }}
                             ></div>
-                          <i className="fa-solid fa-angle-down w-4 h-4"></i>
+                          
                         </div>
                         {/* Size div */}
                         <div className="flex items-center gap-2 mr-auto">
                           <span className="text-lg font-normal">size: {product.selectedSize}</span>
-                          <i className="fa-solid fa-angle-down w-4 h-4"></i>
+                          
                         </div>
                         <span className="text-xl font-medium text-right ml-auto">{product.totalPrice} THB</span>
                       </div>
@@ -87,7 +82,7 @@ const Success = ({ onReset, orderDetail }) => {
               district={order.address.district}
               city={order.address.city}
               postal={order.address.postal}
-              tel={items.addressDetail.tel} />
+              tel={order.address.phone} />
             </div>
 
             {/* Order status */}
@@ -107,14 +102,14 @@ const Success = ({ onReset, orderDetail }) => {
             {/* Summary detail */}
 
             <div className="w-full">
-              <button className="w-full" onClick={onReset}>
+              <Link to = "/"><button className="w-full" onClick={onReset}>
                 <TotalCard
                   subTotal={order.total}
-                  shippingCost={120}
-                  orderValue={order.total + 120}
+                  shippingMethod={order.shippingMethod}
+                  orderValue={order.total}
                   currentStep="successful"
                 />
-              </button>
+              </button></Link>
             </div>
           </div>
         </section>

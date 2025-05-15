@@ -48,7 +48,6 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
 
     updateData(cardData);
 
-    console.log('Submitting', cardData);
     setCardData({
       firstName: '',
       lastName: '',
@@ -168,7 +167,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
                 </div>
               </div>
               <div className="col-span-2 flex gap-2 w-full">
-                <img src="src\assets\images\mingcute_information-fill.svg" alt="Info" />
+                <img src="/assets/images/mingcute_information-fill.svg" alt="Info" />
                 <p className="w-full text-secondary-light-gray-500 ">Credit card payments may take up to 24h to be processed</p>
               </div>
             </div>
