@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import NextStepButton from "../components/createDesignPage/NextStepButton.jsx";
 import BackButton from "../components/collectDetailsPage/BackButton.jsx";
-import iconAdd from "/assets/images/expressAndPublish/iconAdd.png";
+import iconAdd from "../assets/images/expressAndPublish/iconAdd.png";
 
 const ExpressAndPublish = ({ onNext, onBack, createData }) => {
   const [products, setProducts] = useState([]);
