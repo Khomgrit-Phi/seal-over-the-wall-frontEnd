@@ -1,5 +1,5 @@
   import React, { useRef, useState } from 'react';
-import fileicon from '../../assets/images/create-design-pages/file-icon.svg';
+import fileicon from '/assets/images/create-design-pages/file-icon.svg';
 
 
 

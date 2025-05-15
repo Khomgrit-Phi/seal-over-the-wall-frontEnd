@@ -1,9 +1,9 @@
 "use client"
 
-import slide1 from "../../assets/images/shop/Don’t_kill_my_vibe_bag_white.png"
-import slide2 from "../../assets/images/shop/Fetch_this_bag_black.png"
-import slide3 from "../../assets/images/shop/Fetch_this_shirt_blue.png"
-import slide4 from "../../assets/images/shop/Just_keep_running_shirt_black.png"
+import slide1 from "/assets/images/shop/Don’t_kill_my_vibe_bag_white.png"
+import slide2 from "/assets/images/shop/Fetch_this_bag_black.png"
+import slide3 from "/assets/images/shop/Fetch_this_shirt_blue.png"
+import slide4 from "/assets/images/shop/Just_keep_running_shirt_black.png"
 
 import React, { useEffect, useState } from "react"
 import {

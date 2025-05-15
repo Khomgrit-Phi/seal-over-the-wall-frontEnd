@@ -1,7 +1,7 @@
 import { BiHeart, BiSolidHeart } from "react-icons/bi";
 import { useState } from "react";
 import { toast } from "sonner";
-import logoCustommize from "../../assets/images/custommike-navbar-logo.svg";
+import logoCustommize from "/assets/images/custommike-navbar-logo.svg";
 
 import { Link } from "react-router-dom";
 

@@ -48,7 +48,6 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
 
     updateData(cardData);
 
-    console.log('Submitting', cardData);
     setCardData({
       firstName: '',
       lastName: '',
@@ -74,7 +73,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
             }}
             className="flex justify-center  w-[140px] h-[57px]border-zinc-400 hover:border-[2px] hover:border-[#334DD8] "
           >
-            <img src="src/assets/images/card-icon.svg" alt="Card" />
+            <img src="/assets/images/card-icon.svg" alt="Card" />
           </button>
           {/* PromptPay logo */}
           <button
@@ -83,7 +82,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
             }}
             className="w-[140px] h-[57px] border-zinc-400 hover:border-[2px] hover:border-[#334DD8]"
           >
-            <img src="src/assets/images/promt-pay logo.png" alt="PromptPay" />
+            <img src="/assets/images/promt-pay logo.png" alt="PromptPay" />
           </button>
         </div>
 
@@ -93,7 +92,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
         {method === 'card' && (
           <form onSubmit={handleSubmit} className="flex flex-col items-start w-full h-auto">
             <button className="flex flex-row w-full h-[28px] items-center hover: cursor-pointer hover:scale-105 duration-300">
-              <img src="src/assets/images/circle-plus.png" className="inline-flex w-[20px] h-[20px] mt-0.5 mr-2.5" alt="Add Card" />
+              <img src="/assets/images/circle-plus.png" className="inline-flex w-[20px] h-[20px] mt-0.5 mr-2.5" alt="Add Card" />
               <span className="inline-flex font-semibold text-xl px-2">Add other credit card</span>
             </button>
 
@@ -168,7 +167,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
                 </div>
               </div>
               <div className="col-span-2 flex gap-2 w-full">
-                <img src="src\assets\images\mingcute_information-fill.svg" alt="Info" />
+                <img src="/assets/images/mingcute_information-fill.svg" alt="Info" />
                 <p className="w-full text-secondary-light-gray-500 ">Credit card payments may take up to 24h to be processed</p>
               </div>
             </div>

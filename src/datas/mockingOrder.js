@@ -29,7 +29,7 @@ export const orders =
                 variants: {
                     size: "M",
                     color: "black",
-                    image: "src/assets/images/Products/t-shirt/more-espresso/more-espresso-front-black.png"
+                    image: "/assets/images/Products/t-shirt/more-espresso/more-espresso-front-black.png"
                 }
             }
 
@@ -43,7 +43,7 @@ export const orders =
                 variants: {
                     size: "L",
                     color: "black",
-                    image: "src/assets/images/Products/t-shirt/more-espresso/more-espresso-front-black.png"
+                    image: "/assets/images/Products/t-shirt/more-espresso/more-espresso-front-black.png"
                 }
             },
             {   productId: 7,
@@ -55,7 +55,7 @@ export const orders =
                 variants: {
                     size: "M",
                     color: "blue",
-                    image: "src/assets/images/Products/t-shirt/fetch-this/fetch-front-blue.png"
+                    image: "/assets/images/Products/t-shirt/fetch-this/fetch-front-blue.png"
                 }
             },
             {   productId: 5,
@@ -67,7 +67,7 @@ export const orders =
                 variants: {
                     size: "one-size",
                     color: "white",
-                    image: "src/assets/images/Products/bags/fetch/fetch-white.png"
+                    image: "/assets/images/Products/bags/fetch/fetch-white.png"
                 }
 
             },
@@ -80,7 +80,7 @@ export const orders =
                 variants: {
                     size: "one-size",
                     color: "blue",
-                    image: "src/assets/images/Products/cup/screaming/screaming-blue.png"
+                    image: "/assets/images/Products/cup/screaming/screaming-blue.png"
                 }
             }],
 

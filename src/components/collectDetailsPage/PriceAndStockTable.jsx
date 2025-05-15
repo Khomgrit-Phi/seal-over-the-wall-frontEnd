@@ -1,8 +1,8 @@
 import React from 'react';
-import tshirt from '../../assets/images/Products/shirt/prove/prove-shirt-white-front.png';
-import bags from '../../assets/images/Products/bag/prove/prove-bag-white-front.png';
-import cups from '../../assets/images/Products/cup/prove/prove-cup-white-front.png';
-import line from '../../assets/images/collect-details-pages/Line.svg';
+import tshirt from '/assets/images/Products/shirt/prove/prove-shirt-white-front.png';
+import bags from '/assets/images/Products/bag/prove/prove-bag-white-front.png';
+import cups from '/assets/images/Products/cup/prove/prove-cup-white-front.png';
+import line from '/assets/images/collect-details-pages/line.svg';
 
 function PriceAndStockTable({ entries, setEntries }) {
   const productMap = {

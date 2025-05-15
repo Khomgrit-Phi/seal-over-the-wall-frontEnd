@@ -4,9 +4,9 @@ import Carousel from '../components/Carousel';
 import { useAuth } from '../context/AuthContext';
 import { loginUser } from '../services/authService';
 
-import bag from '../assets/images/login-bag.svg';
-import cup from '../assets/images/login-cup.svg';
-import shirt from '../assets/images/login-shirt.svg';
+import bag from '/assets/images/login-bag.svg';
+import cup from '/assets/images/login-cup.svg';
+import shirt from '/assets/images/login-shirt.svg';
 
 const slides = [shirt, bag, cup];
 
@@ -43,7 +43,7 @@ export default function Login() {
         {/* Left Side */}
         <div className="flex items-center justify-center w-full h-full col-span-1">
           <div className="flex flex-col items-center w-[430px] mt-[48px]">
-            <img src="src\assets\images\custommike-navbar-logo.svg" className="w-[139px] h-[18px] mb-[185px]" />
+            <img src="/assets/images/custommike-navbar-logo.svg" className="w-[139px] h-[18px] mb-[185px]" />
             <div className="flex flex-col items-center mb-[48px]">
               <h3 className="text-4xl font-bold">Welcome Back</h3>
               <p className="mt-[12px]">Enter your email and password to access your account</p>
@@ -97,11 +97,11 @@ export default function Login() {
             </form>
             <div className="flex gap-[8px]">
               <button className="flex w-[211px] h-[48px] rounded-lg border-1 border-secondary-light-gray-300 items-center justify-center gap-[8px] mt-[12px] hover:scale-105 duration-300 hover:cursor-pointer">
-                <img src="src\assets\images\google-color-svgrepo-com.svg" className="w-[24px] h-[24px]" />
+                <img src="/assets/images/google-color-svgrepo-com.svg" className="w-[24px] h-[24px]" />
                 <p>Google</p>
               </button>
               <button className="flex w-[211px] h-[48px] rounded-lg border-1 border-secondary-light-gray-300 items-center justify-center gap-[8px] mt-[12px] hover:scale-105 duration-300 hover:cursor-pointer">
-                <img src="src\assets\images\facebook-svgrepo-com.svg" className="w-[24px] h-[24px]" />
+                <img src="/assets/images/facebook-svgrepo-com.svg" className="w-[24px] h-[24px]" />
                 <p>Facebook</p>
               </button>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import arrowright from "../../assets/images/create-design-pages/arrow-right.svg";
+import arrowright from "/assets/images/create-design-pages/arrow-right.svg";
 
 function NextStepButton({ onNext, step }) {
   const isLastStep = step === 3;

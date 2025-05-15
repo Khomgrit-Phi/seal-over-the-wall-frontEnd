@@ -1,7 +1,7 @@
 import React from 'react'
-import tshirticon from "../../assets/images/create-design-pages/selection-t-shirt.svg"
-import bagsicon from "../../assets/images/create-design-pages/selection-bags.svg"
-import cupsicon from "../../assets/images/create-design-pages/selection-cups.svg"
+import tshirticon from "/assets/images/create-design-pages/selection-t-shirt.svg"
+import bagsicon from "/assets/images/create-design-pages/selection-bags.svg"
+import cupsicon from "/assets/images/create-design-pages/selection-cups.svg"
 
 function ProductSelection({ selected, setSelected }) {
     const products = [

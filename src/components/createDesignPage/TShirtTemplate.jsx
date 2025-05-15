@@ -1,5 +1,5 @@
 import React from 'react';
-import tshirtTemplate from "../../assets/images/create-design-pages/selection-t-shirt.svg";
+import tshirtTemplate from "/assets/images/create-design-pages/selection-t-shirt.svg";
 
 
 
