@@ -1,7 +1,6 @@
 import React from 'react';
 import CheckoutButton from '../../components/CheckoutButtonCard';
 import { useState } from 'react';
-
 const CheckoutShipping = ({ onNext, updateData }) => {
   const [shippingData, setShippingData] = useState({
     firstName: '',
@@ -18,7 +17,6 @@ const CheckoutShipping = ({ onNext, updateData }) => {
     emailPromotion: false,
     shipping: ''
   });
-
   const handleOnchange = (e) => {
     const { name, value, type, checked } = e.target;
     setShippingData((prev) => ({
@@ -26,10 +24,8 @@ const CheckoutShipping = ({ onNext, updateData }) => {
       [name]: type === 'checkbox' ? checked : value
     }));
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (
       !shippingData.firstName ||
       !shippingData.lastName ||
@@ -46,9 +42,7 @@ const CheckoutShipping = ({ onNext, updateData }) => {
       alert('Please fill out all required fields before continuing.');
       return;
     }
-
     updateData(shippingData);
-
     setShippingData({
       firstName: '',
       lastName: '',
@@ -64,10 +58,8 @@ const CheckoutShipping = ({ onNext, updateData }) => {
       emailPromotion: false,
       shipping: ''
     });
-
     onNext();
   };
-
   return (
     <>
       <form onSubmit={handleSubmit} className="flex flex-col w-[1072px] mx-auto mb-10">
@@ -233,13 +225,11 @@ const CheckoutShipping = ({ onNext, updateData }) => {
             <p className="text-xl font-semibold">Please add me to the Custommike? email list</p>
           </div>
         </div>
-
         {/* Shipping method */}
         <div className="mb-[56px]">
           <div className="flex justify-between pb-4 mt-[64px] mb-[20px] border-b-[1.25px] border-secondary-light-gray-500">
             <p className="text-[2rem] font-semibold">Select a Shipping</p>
           </div>
-
           {/* Standard */}
           <label className="flex text-xl justify-between items-center w-full mb-[20px] border-b-[1.25px] pb-4 border-secondary-light-gray-500 cursor-pointer">
             <div className="flex flex-col w-[705px]">
@@ -261,7 +251,6 @@ const CheckoutShipping = ({ onNext, updateData }) => {
             </div>
             <span className="font-[500] text-xl w-[120px] text-center">{`60`} THB</span>
           </label>
-
           {/* Fastest */}
           <label className="flex text-xl justify-between items-center w-full mb-[20px] border-b-[1.25px] pb-4 border-secondary-light-gray-500 cursor-pointer">
             <div className="flex flex-col w-[705px]">
@@ -283,7 +272,6 @@ const CheckoutShipping = ({ onNext, updateData }) => {
             </div>
             <span className="font-[500] text-xl w-[120px] text-center">{`120`} THB</span>
           </label>
-
           {/* COD */}
           <label className="flex text-xl justify-between items-center w-full mb-[20px] border-b-[1.25px] pb-4 border-secondary-light-gray-500 cursor-pointer">
             <div className="flex flex-col w-[705px]">
@@ -308,7 +296,6 @@ const CheckoutShipping = ({ onNext, updateData }) => {
             <span className="font-[500] text-xl w-[120px] text-center">{`120`} THB</span>
           </label>
         </div>
-
         <button type="submit">
           <CheckoutButton currentStep="shipping" />
         </button>
@@ -327,5 +314,4 @@ const CheckoutShipping = ({ onNext, updateData }) => {
     </>
   );
 };
-
-export default CheckoutShipping;
+export default CheckoutShippi
