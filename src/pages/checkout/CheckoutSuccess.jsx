@@ -5,10 +5,8 @@ import TotalCard from '../../components/TotalCard';
 import ProductDataStore from '../../stores/productDataStore';
 import SaleSlide from '../../components/HomePage/SaleSlide';
 import { Link } from 'react-router';
-
 const Success = ({ onReset, orderDetail }) => {
   const order = orderDetail;
-
   const colorMap = {
     black: 0,
     blue: 1,
@@ -16,15 +14,10 @@ const Success = ({ onReset, orderDetail }) => {
     white: 3,
   }
   const colorArray = ["202020", "1A2C8B", "ADADAF", "FFFFFF"];
-
-
-
   const items = ProductDataStore((state) => state.orders);
-
   if (!orderDetail) {
     return <p className='text-8xl mx-auto'>Loading order details...</p>;
   }
-
   return (
     <div className="w-auto flex flex-col items-center">
       <div className="flex flex-col w-[1616px] content-center">
@@ -84,7 +77,6 @@ const Success = ({ onReset, orderDetail }) => {
               postal={order.address.postal}
               tel={order.address.phone} />
             </div>
-
             {/* Order status */}
               <div className="border border-[#A1A1AA] w-full p-6">
                 <OrderStatusCard
@@ -98,9 +90,7 @@ const Success = ({ onReset, orderDetail }) => {
                   status={items.shippingDetail.status}
                 />
               </div>
-
             {/* Summary detail */}
-
             <div className="w-full">
               <Link to = "/"><button className="w-full" onClick={onReset}>
                 <TotalCard
@@ -118,5 +108,4 @@ const Success = ({ onReset, orderDetail }) => {
     </div>
   );
 };
-
 export default Success;
