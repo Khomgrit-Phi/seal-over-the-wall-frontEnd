@@ -7,21 +7,15 @@ import CheckoutSuccess from './CheckoutSuccess';
 import { useAuth } from '../../context/AuthContext';
 import { createOrder, getOrder } from '../../services/order';
 import { clearCart } from '../../services/cart';
-
-
 function CheckOut() {
   const [step, setStep] = React.useState(0);
   const [orderDetail, setOrderDetail] = React.useState(null);
-
   const { user, cart } = useAuth();
   const userId = user._id
-
-
   const [checkoutData, setCheckoutData] = React.useState({
     shippingInfo: {},
     paymentInfo: {}
   });
-
   const updateShippingInfo = (newData) => {
     setCheckoutData((prev) => ({
       ...prev,
@@ -31,7 +25,6 @@ function CheckOut() {
       }
     }));
   };
-
   const updatePaymentInfo = (newData) => {
     setCheckoutData((prev) => ({
       ...prev,
@@ -41,7 +34,6 @@ function CheckOut() {
       }
     }));
   };
-
   const handleOrderCreate = async () => {
     // const userId = user._id;
     const items = cart.items;
@@ -68,26 +60,18 @@ function CheckOut() {
       exp: checkoutData.paymentInfo.exp,
       cvv: checkoutData.paymentInfo.cvv
     };
-
     
     const res = await createOrder(items, shippingMethod, total, address, payment);
-
-
     handleFetchOrder(res.order._id);
-
     await clearCart(userId)
   };
-
   const handleFetchOrder = async (orderId) => {
     const response = await getOrder(orderId);
-
     setOrderDetail(response);
   };
-
   const handleNext = () => setStep((prev) => prev + 1);
   const handleBack = () => setStep((prev) => prev - 1);
   const handleEdit = () => setStep(0);
-
   const renderStepContent = () => {
     switch (step) {
       case 0:
@@ -102,7 +86,6 @@ function CheckOut() {
         return null;
     }
   };
-
   const renderTitle = () => {
     switch (step) {
       case 0:
@@ -134,11 +117,9 @@ function CheckOut() {
         return null;
     }
   };
-
   React.useEffect(() => {
     localStorage.setItem('checkout-step', step.toString());
   }, [step]);
-
   return (
     <div className="flex flex-col items-center mt-28">
       {renderTitle()}
@@ -147,5 +128,4 @@ function CheckOut() {
     </div>
   );
 }
-
 export default CheckOut;
