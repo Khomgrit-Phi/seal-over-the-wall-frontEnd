@@ -314,4 +314,4 @@ const CheckoutShipping = ({ onNext, updateData }) => {
     </>
   );
 };
-export default CheckoutShippig;
+export default CheckoutShipping;
