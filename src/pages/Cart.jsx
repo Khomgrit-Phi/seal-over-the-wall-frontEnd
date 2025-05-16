@@ -6,7 +6,6 @@ import GiftCard from '../components/GiftCard';
 import Questions from '../components/Questions';
 import { useAuth } from '../context/AuthContext.jsx';
 import { deleteCartItem, getCart } from '../services/cart.js';
-
 const Cart = () => {
   const [orderItem, setOrderItem] = useState([]);
   const [cartData, setCartData] = useState(null);
@@ -15,7 +14,6 @@ const Cart = () => {
   const [error, setError] = useState(null);
   const { user, setCart } = useAuth();
   const userId = user._id;
-
   // Fetch cart data
   useEffect(() => {
     const fetchCartData = async () => {
@@ -50,20 +48,16 @@ const Cart = () => {
     };
     fetchCartData();
   }, [userId, setCart]);
-
-
   // Update quantity
   const handleQuantityChange = (cartItemId, newQuantity) => {
     setOrderItem((prevItems) => prevItems.map((item) => (item.cartItemId === cartItemId ? { ...item, quantity: newQuantity } : item)));
     setCart(cartData)
   };
-
   // Delete item and prepare for order convertion (Front End)
   const handleDeleteItem = (itemIdToDelete) => {
     setOrderItem((prevItems) => prevItems.filter((item) => item._id !== itemIdToDelete));
     setCart(cartData)
   };
-
   // Update color
   const handleColorChange = (cartItemId, newColor, newImage) => {
     setOrderItem((prevItems) =>
@@ -71,12 +65,10 @@ const Cart = () => {
   );
   setCart(cartData)
   };
-
   const handleSizeChange = (cartItemId, newSize) => {
     setOrderItem((prevItems) => prevItems.map((item) => (item.cartItemId === cartItemId ? { ...item, size: newSize } : item)));
     setCart(cartData)
   };
-
   // Delete item in DB and and re-render the Cart
   // Get item ID
   const handleRemoveFromCart = useCallback(
@@ -90,11 +82,9 @@ const Cart = () => {
         const cartId = cartData._id;
         const response = await deleteCartItem(cartId, cartItemIdToRemove);
         console.log('Item removed from cart:', response);
-
         // Re-fetch cart data *and* update state
         const updatedCartResponse = await getCart(userId);
         const updatedCartData = updatedCartResponse.data.cart;
-
         setCartData(updatedCartData); // Update cartData
         setOrderItem(
           updatedCartData.items.map((item) => ({
@@ -119,9 +109,7 @@ const Cart = () => {
     },
     [cartData?._id, userId]
   );
-
   // Re-update the DB everytime use select a new color, size, quantity
-
   // Submitting the finalized Cart and convert it to order
   // const handleCheckoutOrder = async () => {
   //   const formattedOrderItems = orderItem.map((item) => ({
@@ -135,21 +123,17 @@ const Cart = () => {
   //   }));
   //   console.log('Formatted order items:', formattedOrderItems);
   // };
-
   // Recalculate total price
   useEffect(() => {
     const newTotal = orderItem.reduce((sum, item) => sum + item.price * item.quantity, 0);
     setTotalPrice(newTotal);
   }, [orderItem]);
-
   if (loading) {
     return <div>Loading cart...</div>;
   }
-
   if (error) {
     return <div>Error loading cart: {error}</div>;
   }
-
   return (
     <div className="flex flex-col ">
       <h2 className="text-center text-4xl font-bold mt-[132px]">Cart</h2>
