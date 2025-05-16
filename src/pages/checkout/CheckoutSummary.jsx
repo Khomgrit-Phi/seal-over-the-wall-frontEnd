@@ -4,8 +4,6 @@ import CheckoutShippingCard from '../../components/CheckoutShippingCard';
 import CheckoutCardCard from '../../components/CheckoutCardCard';
 import CheckoutButtonCard from '../../components/CheckoutButtonCard';
 import { useAuth } from '../../context/AuthContext';
-
-
 const CheckoutSummary = ({ onNext, onEdit, checkoutData, checkoutOrder }) => {
   return (
     <div id="summary" className="flex flex-col w-[1072px] gap-2 items-center mx-auto">
@@ -22,7 +20,6 @@ const CheckoutSummary = ({ onNext, onEdit, checkoutData, checkoutOrder }) => {
           Edit
         </button>
       </div>
-
       <div
         id="shippingInformation"
         className="flex justify-between border-[1.25px] p-6 w-full h-auto items-center border-secondary-light-gray-500"
@@ -41,11 +38,9 @@ const CheckoutSummary = ({ onNext, onEdit, checkoutData, checkoutOrder }) => {
           date="3 - 5 days"
         />
       </div>
-
       <div id="paymentMethod" className=" border-[1.25px] border-secondary-light-gray-500 p-6 w-full h-auto mb-14 ">
         <CheckoutCardCard cardNumber={`${checkoutData.paymentInfo.cardNumber}`} expire={`${checkoutData.paymentInfo.expDate}`} />
       </div>
-
       <button
         onClick={() => {
           onNext();
@@ -55,7 +50,6 @@ const CheckoutSummary = ({ onNext, onEdit, checkoutData, checkoutOrder }) => {
       >
         <CheckoutButtonCard currentStep="summary" />
       </button>
-
       <div className="items-start flex w-full">
         <p className="text-gray-500 mt-[12px] col-span-2 text-wrap inline-flex">
           By continuing, I confirm that I have read and accept the&nbsp;
@@ -72,5 +66,4 @@ const CheckoutSummary = ({ onNext, onEdit, checkoutData, checkoutOrder }) => {
     </div>
   );
 };
-
 export default CheckoutSummary;
