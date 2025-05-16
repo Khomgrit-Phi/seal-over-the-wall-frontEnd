@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 import CheckoutButton from '../../components/CheckoutButtonCard';
 import CheckoutPaymentQR from './CheckoutPaymentQR';
 import { useAuth} from '../../context/AuthContext';
-
 const CheckoutPaymentCard = ({ onNext, updateData }) => {
   const [cardData, setCardData] = useState({
     firstName: '',
@@ -12,15 +11,11 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
     cvv: '',
     saveDetail: false
   });
-
   const {cart} = useAuth()
-
   const handleOnchange = useCallback((e) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === 'checkbox' ? checked : value;
-
     let formattedValue = newValue;
-
     if (name === 'cardNumber') {
       formattedValue = newValue.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 ');
     } else if (name === 'exp') {
@@ -31,23 +26,18 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
     } else if (name === 'cvv') {
       formattedValue = newValue.replace(/\D/g, '').substring(0, 4);
     }
-
     setCardData((prev) => ({
       ...prev,
       [name]: formattedValue
     }));
   }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!cardData.firstName || !cardData.lastName || !cardData.cardNumber || !cardData.exp || !cardData.cvv) {
       alert('Please fill out all required fields before continuing.');
       return;
     }
-
     updateData(cardData);
-
     setCardData({
       firstName: '',
       lastName: '',
@@ -59,7 +49,6 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
     onNext();
   };
   const [method, setMethod] = useState('card');
-
   return (
     <main className="flex flex-row gap-[16px] mx-[152px] mb-auto">
       {/* */}
@@ -85,9 +74,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
             <img src="/assets/images/promt-pay logo.png" alt="PromptPay" />
           </button>
         </div>
-
         {/* */}
-
         {/* If card */}
         {method === 'card' && (
           <form onSubmit={handleSubmit} className="flex flex-col items-start w-full h-auto">
@@ -95,7 +82,6 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
               <img src="/assets/images/circle-plus.png" className="inline-flex w-[20px] h-[20px] mt-0.5 mr-2.5" alt="Add Card" />
               <span className="inline-flex font-semibold text-xl px-2">Add other credit card</span>
             </button>
-
             <div className="grid grid-cols-2 gap-[24px] w-full">
               <div className="col-span-1">
                 <p className="mt-[24px] font-semibold text-[1.25rem]">
@@ -141,7 +127,6 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
                     pattern="\d{4} \d{4} \d{4} \d{4}|\d{16}"
                     required
                   />
-
                   <input
                     type="text"
                     placeholder="Expiration date (MM/YY)"
@@ -199,9 +184,7 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
             </div>
           </form>
         )}
-
         {/* If QR */}
-
         {method === 'promptPay' && (
           <div>
             <CheckoutPaymentQR orderId="123456789" orderValue={1816} />
@@ -211,5 +194,4 @@ const CheckoutPaymentCard = ({ onNext, updateData }) => {
     </main>
   );
 };
-
 export default CheckoutPaymentCard;
