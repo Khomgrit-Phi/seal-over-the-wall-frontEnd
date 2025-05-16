@@ -3,7 +3,6 @@ import { Link } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import AddToCart from "../productPage/AddToCart";
 import FavoriteMenu from "../productPage/FavoriteMenu";
-
 const ProductRelateCard = ({ item }) => {
   const minRating = 3;
   const maxRating = 5;
@@ -20,18 +19,15 @@ const ProductRelateCard = ({ item }) => {
       <div class="w-full h-auto bg-[#F4F4F5]">
         <div className="relative overflow-hidden ">
           <img
-            src={`/${item.images?.[randomIndex]}`}
+            src={`${item.images?.[randomIndex]}`}
             alt={item.name}
             className="w-full h-auto object-cover"
           />
           <div className="absolute top-2 right-2  z-10 ">
             <FavoriteMenu />
           </div>
-
         </div>
         <div class="p-4">
-
-
           <h6 class="text-2xl">{item.title}</h6>
           <p class="text-xl">{item.price}</p>
           <div class="flex justify-between items-center">
