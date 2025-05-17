@@ -30,16 +30,20 @@ const ProductDetail = () => {
 
   const { addItemToCart } = useAuth();
 
+  // Debug log 1: Check productId from route
+  console.log('🧪 productId from URL:', productId);
+
   useEffect(() => {
     const fetchProductById = async () => {
       setLoading(true);
       setError(null);
       try {
         const fetchedProduct = await getProductById(productId);
+        console.log('🧪 API product response:', fetchedProduct); // Debug log 2
         setProduct(fetchedProduct);
       } catch (err) {
-        setError('Failed to fetch product.');
-        console.error(err);
+        console.error('❌ Error fetching product by ID:', err);
+        setError('Failed to fetch product');
       } finally {
         setLoading(false);
       }
@@ -47,6 +51,11 @@ const ProductDetail = () => {
 
     fetchProductById();
   }, [productId]);
+
+  // Debug log 3: Watch product state
+  useEffect(() => {
+    console.log('🧪 product state after fetch:', product);
+  }, [product]);
 
   if (loading) {
     return (
@@ -66,7 +75,11 @@ const ProductDetail = () => {
   }
 
   if (!product || error) {
-    return <div className="text-center text-red-500 mt-10">{error || 'Product not found.'}</div>;
+    return (
+      <div className="text-center text-red-500 mt-10">
+        {error || 'Product not found or could not be loaded.'}
+      </div>
+    );
   }
 
   return (
@@ -167,21 +180,19 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* Additional Info */}
         <div className="flex p-4 border rounded-2xl mt-6">
           <div className="w-2/5 px-10 border-r">
             <img src={wash} alt="" className="inline w-12" />
             <h6 className="inline text-2xl font-semibold ml-2">Garment care</h6>
             <p className="text-xl mt-4">
-              Love your garment and it will love you back. Being gentle is easy and better for the planet, it also protects the print and
-              helps maintain shape and colour for longer.
+              Love your garment and it will love you back. Being gentle is easy and better for the planet.
             </p>
             <ul className="mt-4 text-xl space-y-2">
               {[
                 'Wash garment inside out',
-                'Only wash your garment on a cold cycle',
-                'Do not tumble dry (it’s the worst)',
-                'Iron your garment inside out',
+                'Only wash on a cold cycle',
+                'Do not tumble dry',
+                'Iron inside out',
               ].map((tip, idx) => (
                 <li key={idx} className="flex items-center">
                   <RiArrowRightSLine className="mr-2" />
@@ -197,13 +208,12 @@ const ProductDetail = () => {
                 <img src={park} alt="Park" className="inline w-12" />
                 <h6 className="inline text-2xl font-semibold ml-2">Most shipping options</h6>
                 <p className="text-xl mt-2">From <strong className="text-2xl font-semibold">60 THB</strong></p>
-                <p>Choose from our Economy or Standard shipping</p>
+                <p>Choose from Economy or Standard shipping</p>
               </div>
               <div>
                 <img src={fast} alt="Fast" className="inline w-12" />
                 <h6 className="inline text-2xl font-semibold ml-2">Fastest Delivery</h6>
-                <p className="text-xl mt-2">1 day!</p>
-                <p>Only for Bangkok with optimized location delivery</p>
+                <p className="text-xl mt-2">1 day (Bangkok only)</p>
               </div>
             </div>
             <div className="mt-4">
