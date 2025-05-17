@@ -6,7 +6,7 @@ const baseURL = import.meta.env.DEV //meta.env.DEV will be true in local environ
   : import.meta.env.VITE_PUBLIC_API_URL;
 
 const api = axios.create({
-  baseURL,
+  baseURL: "https://your-backend.onrender.com/api",
   withCredentials: true // critical for sending cookies!
 });
 
